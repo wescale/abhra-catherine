@@ -12,7 +12,7 @@ spec:
     repoURL: https://helm.nginx.com/stable
     targetRevision: 0.13.2
     helm:
-      releaseName: nginx-ingress
+      releaseName: abhra
   destination:
     namespace: tools-nginx-ingress
     server: https://kubernetes.default.svc

@@ -12,7 +12,7 @@ spec:
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 2.17.0
     helm:
-      releaseName: argo-rollouts
+      releaseName: abhra
   destination:
     namespace: tools-argo-rollouts
     server: https://kubernetes.default.svc

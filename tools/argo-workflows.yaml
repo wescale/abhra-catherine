@@ -12,7 +12,7 @@ spec:
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 0.16.6
     helm:
-      releaseName: argo-workflows
+      releaseName: abhra
   destination:
     namespace: tools-argo-workflows
     server: https://kubernetes.default.svc
