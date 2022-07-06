@@ -1,22 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tools
+  name: argo-events
   namespace: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: tools
   source:
-    repoURL: https://github.com/wescale/abhra-catherine
-    targetRevision: HEAD
-    path: tools
+    chart: argo-events
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: 2.0.2
+    helm:
+      releaseName: argo-events
   destination:
+    namespace: argo-events
     server: https://kubernetes.default.svc
-    namespace: tools
   syncPolicy:
     automated:
       selfHeal: true
       prune: true
     syncOptions:
     - CreateNamespace=true
+

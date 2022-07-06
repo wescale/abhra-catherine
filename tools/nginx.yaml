@@ -1,22 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tools
+  name: nginx-ingress
   namespace: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: tools
   source:
-    repoURL: https://github.com/wescale/abhra-catherine
-    targetRevision: HEAD
-    path: tools
+    chart: nginx-ingress
+    repoURL: https://helm.nginx.com/stable
+    targetRevision: 0.13.2
+    helm:
+      releaseName: nginx-ingress
   destination:
+    namespace: nginx-ingress
     server: https://kubernetes.default.svc
-    namespace: tools
   syncPolicy:
     automated:
       selfHeal: true
       prune: true
     syncOptions:
     - CreateNamespace=true
+
