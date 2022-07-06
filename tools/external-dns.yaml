@@ -14,7 +14,7 @@ spec:
     helm:
       releaseName: external-dns
       valueFiles:
-          - external-dns-values.yaml
+          - values.yaml
   destination:
     namespace: tools-external-dns
     server: https://kubernetes.default.svc
