@@ -13,7 +13,7 @@ spec:
     path: tools
   destination:
     server: https://kubernetes.default.svc
-    namespace: tools-definitions
+    #namespace: tools-definitions
   syncPolicy:
     automated:
       selfHeal: true
