@@ -12,9 +12,9 @@ spec:
     repoURL: https://helm.nginx.com/stable
     targetRevision: 0.13.2
     helm:
-      releaseName: tools-nginx-ingress
+      releaseName: nginx-ingress
   destination:
-    namespace: nginx-ingress
+    namespace: tools-nginx-ingress
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
