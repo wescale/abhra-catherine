@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: tools
-  namespace: argo-cd
+  namespace: tools-argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -11,11 +11,7 @@ spec:
   sourceRepos:
   - '*'
   destinations:
-  - namespace: 'argo-cd'
-    server: https://kubernetes.default.svc
   - namespace: 'tools-*'
-    server: https://kubernetes.default.svc
-  - namespace: 'tools'
     server: https://kubernetes.default.svc
   clusterResourceWhitelist:
   - group: '*'

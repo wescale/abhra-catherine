@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: nginx-ingress
-  namespace: argo-cd
+  namespace: tools-argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
