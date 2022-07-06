@@ -1,0 +1,21 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  creationTimestamp: null
+  name: ns-dig
+  namespace: tools-external-dns
+spec:
+  encryptedData:
+    tsigSecret: AgDVc9pDJcHCLGOn+pLOdjztGLHGHmsHsP8m98gLVn2j5ABID19TRMh1SCZNJScQw0nCRJz1HUuo5Vz8ysQUmVqQR2jHKZhmhFqhg3+ZBdxbuGoE7yGLdI40oOqExJnabngVpY9ODXlPxay2gGaZHnzjsh7TL7clLAOVupjpXeB6u1n7WxSu6WUbAnui4DWkJ1o7ivKaNMAqG2uqTHAJ7V1i1QowUPpZxs36DNDYEwgduLuIFau8d9afBCk2zzZ2CP2FnFF8tzQwXGa5XOXyA7jp5vbrHqEQcXM5mZh5hDZLC+KlQdXJ7slY6PO3GXPzrHOt7ZzJ7ARUhrMmsAANfceChSu48HVxm1QaaUZdCoXxOtsOXy0eFoHjoY/AF91AUt09LON9xyQJX/jqi4Plz1rgdkjMnw/J9MK2xukC3TYCSwwFt+o//C0Y4jhqOCP7aeUipxTC9koQNbjEhSYbGwTGs73UlAufNYg5UTknPvWB6KZRq7qmuDmECpF10tMmbHx+eU8+PktjjgIy9iOOEbXSfXxpaiHOIZV/WB1qgQP0OGKsicaXjukmxb3+Hxy7ajNi5ijOx36WjOSrV8zNer1X/gLO3MpWyrJgEyn9xRsNq7PBDoT5ftPZ7F/YKf0exQ4Cobp6U6mzMH7+8wM+/r50qmHgn0Ty6M3fX9lJW89qjBi4E7i/nXC5VPQN/0ebyoE1MWB1qPKwbSj4CoWnnHwnBb/SPvqP1wGEC2Jg3w0tWzMdyc82GbT3vKGywuI=
+  template:
+    data: null
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      creationTimestamp: null
+      name: ns-dig
+      namespace: tools-external-dns
+    type: Opaque
+

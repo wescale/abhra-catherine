@@ -1,0 +1,14 @@
+registry: txt
+txtPrefix: external-dns-
+txtOwnerId: k8s
+provider: rfc2136
+rfc2136:
+  host: ns.abhra.shambhala.cloud
+  port: 53
+  zone: abhra.shambhala.cloud.
+  secretName: ns-dig
+  tsigSecretAlg: hmac-sha256
+  tsigKeyname: abhra.shambhala.cloud.
+  #tsigAxfr: true
+source: ingress
+domain-filter: abhra.shambhala.cloud.
