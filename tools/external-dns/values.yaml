@@ -8,7 +8,7 @@ rfc2136:
   zone: abhra.shambhala.cloud.
   secretName: ns-dig
   tsigSecretAlg: hmac-sha256
-  tsigKeyname: abhra.shambhala.cloud.
+  #tsigKeyname: abhra.shambhala.cloud.
   #tsigAxfr: true
 source: ingress
 domain-filter: abhra.shambhala.cloud.
