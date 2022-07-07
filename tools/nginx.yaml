@@ -11,8 +11,10 @@ spec:
   project: tools
   source:
     chart: nginx-ingress
-    repoURL: https://helm.nginx.com/stable
-    targetRevision: 0.13.2
+    # repoURL: https://helm.nginx.com/stable
+    # targetRevision: 0.13.2
+    repoURL: https://kubernetes.github.io/ingress-nginx
+    targetRevision: 4.1.4
     helm:
       releaseName: abhra
   destination:
