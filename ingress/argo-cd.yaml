@@ -1,27 +1,27 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argo-server
+  name: argocd-server-ingress
   namespace: tools-argo-cd
   annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: https
     cert-manager.io/cluster-issuer: letsencrypt-production
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
-    - http:
-        paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-             name: abhra-argocd-server
-             port:
-               number: 443
-      host: cd.argo.ingress.weshare.aws.wescale.fr
+  - host: cd.argo.ingress.weshare.aws.wescale.fr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: abhra-argocd-server
+            port:
+              name: https
   tls:
-    - hosts:
-      - cd.argo.ingress.weshare.aws.wescale.fr
-      secretName: argo-server-cert
+  - hosts:
+    - cd.argo.ingress.weshare.aws.wescale.fr
+    secretName: argocd-secret # do not change, this is provided by Argo CD
