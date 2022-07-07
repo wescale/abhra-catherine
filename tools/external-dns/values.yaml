@@ -3,7 +3,7 @@ txtPrefix: external-dns-
 txtOwnerId: k8s
 provider: rfc2136
 rfc2136:
-  host: ns.abhra.shambhala.cloud
+  host: 51.15.225.44
   port: 53
   zone: abhra.shambhala.cloud.
   #secretName: ns-dig
