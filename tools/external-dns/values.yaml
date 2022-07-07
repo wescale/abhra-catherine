@@ -6,7 +6,8 @@ rfc2136:
   host: ns.abhra.shambhala.cloud
   port: 53
   zone: abhra.shambhala.cloud.
-  secretName: ns-dig
+  #secretName: ns-dig
+  tsigSecret: 3jpZ2UoczxqfLv9kdeWAacc6/Q+T1OBwsqquT3voCmg=
   tsigSecretAlg: hmac-sha256
   #tsigKeyname: abhra.shambhala.cloud.
   #tsigAxfr: true
