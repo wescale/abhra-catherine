@@ -4,14 +4,12 @@ metadata:
   name: argocd-server-ingress
   namespace: tools-argo-cd
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
-  - host: cd.argo.ingress.weshare.aws.wescale.fr
+  - host: cd.argo.abhra.shambhala.cloud
     http:
       paths:
       - path: /
@@ -21,7 +19,3 @@ spec:
             name: abhra-argocd-server
             port:
               name: https
-  tls:
-  - hosts:
-    - cd.argo.ingress.weshare.aws.wescale.fr
-    secretName: argocd-secret # do not change, this is provided by Argo CD
