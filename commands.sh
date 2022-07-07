@@ -5,7 +5,7 @@ helm install -n tools-argo-cd --create-namespace abhra charts/argo-cd/
 
 kubectl create namespace tools-sealed-secrets
 
-kubectl --namespace tools-sealed-secrets apply -f secret/master.key
+kubectl --namespace tools-sealed-secrets apply -f secrets/master.key
 
 kubectl -n tools-argo-cd apply -f configuration/argo-cd-project.yaml
 kubectl -n tools-argo-cd apply -f configuration/argo-cd-application.yaml

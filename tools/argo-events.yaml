@@ -5,6 +5,8 @@ metadata:
   namespace: tools-argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: tools
   source:
@@ -12,7 +14,7 @@ spec:
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 2.0.2
     helm:
-      releaseName: argo-events
+      releaseName: abhra
   destination:
     namespace: tools-argo-events
     server: https://kubernetes.default.svc

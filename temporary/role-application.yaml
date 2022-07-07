@@ -1,27 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-workflows
+  name: tools
   namespace: tools-argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: tools
   source:
-    chart: argo-workflows
-    repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 0.16.6
-    helm:
-      releaseName: abhra
+    repoURL: https://github.com/wescale/abhra-catherine
+    targetRevision: HEAD
+    path: role
   destination:
-    namespace: tools-argo-workflows
     server: https://kubernetes.default.svc
+    namespace: tools-definitions
   syncPolicy:
     automated:
       selfHeal: true
       prune: true
     syncOptions:
     - CreateNamespace=true
-
