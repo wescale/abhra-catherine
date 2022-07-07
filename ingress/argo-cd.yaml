@@ -4,7 +4,7 @@ metadata:
   name: argo-server
   namespace: tools-argo-cd
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: ingress-nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: https
