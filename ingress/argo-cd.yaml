@@ -20,8 +20,8 @@ spec:
              name: abhra-argocd-server
              port:
                number: 443
-      host: cd.argo.abhra.shambhala.cloud
+      host: cd.argo.ingress.weshare.aws.wescale.fr
   tls:
     - hosts:
-      - cd.argo.abhra.shambhala.cloud
+      - cd.argo.ingress.weshare.aws.wescale.fr
       secretName: argo-server-cert
