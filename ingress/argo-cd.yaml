@@ -4,18 +4,11 @@ metadata:
   name: argo-server
   namespace: tools-argo-cd
   annotations:
-    # kubernetes.io/ingress.class: nginx
-    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    # nginx.ingress.kubernetes.io/backend-protocol: https
-    # cert-manager.io/cluster-issuer: letsencrypt-production
     cert-manager.io/cluster-issuer: letsencrypt-production
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    # Add on
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    #nginx.ingress.kubernetes.io/backend-protocol: https
 spec:
   rules:
     - http:
@@ -27,9 +20,8 @@ spec:
              name: abhra-argocd-server
              port:
                number: 443
-      host: cd.argo.ingress.weshare.aws.wescale.fr
+      host: cd.argo.weshare.aws.wescale.fr
   tls:
     - hosts:
-      - cd.argo.ingress.weshare.aws.wescale.fr
-      #secretName: argo-server-cert
+      - cd.argo.weshare.aws.wescale.fr
       secretName: argocd-secret
