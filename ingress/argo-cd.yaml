@@ -5,9 +5,9 @@ metadata:
   namespace: tools-argo-cd
   annotations:
     kubernetes.io/ingress.class: nginx
-    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    # nginx.ingress.kubernetes.io/backend-protocol: https
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: https
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   rules:
@@ -17,7 +17,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-             name: argocd-server
+             name: abhra-argocd-server
              port:
                number: 443
       host: cd.argo.abhra.shambhala.cloud
