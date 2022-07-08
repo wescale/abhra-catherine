@@ -27,7 +27,7 @@ spec:
             secretName: ns-dig
             tsigSecretAlg: hmac-sha256
             tsigKeyname: abhra.shambhala.cloud.
-            tsigAxfr: true
+            tsigAxfr: false
           source: ingress
           domain-filter: abhra.shambhala.cloud.
   destination:
