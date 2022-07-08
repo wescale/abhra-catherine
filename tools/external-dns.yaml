@@ -28,7 +28,7 @@ spec:
             tsigSecret: 3jpZ2UoczxqfLv9kdeWAacc6/Q+T1OBwsqquT3voCmg=
             tsigSecretAlg: hmac-sha256
             tsigKeyname: abhra.shambhala.cloud.
-            #tsigAxfr: true
+            tsigAxfr: true
           source: ingress
           domain-filter: abhra.shambhala.cloud.
   destination:
