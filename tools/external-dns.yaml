@@ -24,8 +24,7 @@ spec:
             host: 51.15.225.44
             port: 53
             zone: abhra.shambhala.cloud.
-            #secretName: ns-dig
-            tsigSecret: 3jpZ2UoczxqfLv9kdeWAacc6/Q+T1OBwsqquT3voCmg=
+            secretName: ns-dig
             tsigSecretAlg: hmac-sha256
             tsigKeyname: abhra.shambhala.cloud.
             tsigAxfr: true
