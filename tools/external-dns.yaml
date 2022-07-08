@@ -30,6 +30,7 @@ spec:
             tsigAxfr: false
           source: ingress
           domain-filter: abhra.shambhala.cloud
+          logLevel: debug
   destination:
     namespace: tools-external-dns
     server: https://kubernetes.default.svc
