@@ -15,6 +15,12 @@ spec:
     targetRevision: 0.16.6
     helm:
       releaseName: abhra
+      values: |
+        workflow:
+          rbac:
+            create: false
+          serviceAccount:
+            name: argo-workflow-sa
   destination:
     namespace: tools-argo-workflows
     server: https://kubernetes.default.svc

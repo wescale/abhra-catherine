@@ -15,8 +15,22 @@ spec:
     targetRevision: 6.6.0
     helm:
       releaseName: abhra
-      valueFiles:
-          - values.yaml
+      value: |
+          registry: txt
+          txtPrefix: external-dns-
+          txtOwnerId: k8s
+          provider: rfc2136
+          rfc2136:
+            host: 51.15.225.44
+            port: 53
+            zone: abhra.shambhala.cloud.
+            #secretName: ns-dig
+            tsigSecret: 3jpZ2UoczxqfLv9kdeWAacc6/Q+T1OBwsqquT3voCmg=
+            tsigSecretAlg: hmac-sha256
+            tsigKeyname: abhra.shambhala.cloud.
+            #tsigAxfr: true
+          source: ingress
+          domain-filter: abhra.shambhala.cloud.
   destination:
     namespace: tools-external-dns
     server: https://kubernetes.default.svc
