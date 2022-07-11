@@ -6,7 +6,7 @@ metadata:
 spec:
   nats:
     exotic:
-      url: nats://abhra-nats.tools-nats.svc:6222
-      clusterID: nats
+      url: "nats://abhra-nats.tools-nats.svc:4222"
+      clusterID: "nats"
     #native:
       #replicas: 3 # optional, defaults to 3, and requires minimal 3
