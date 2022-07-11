@@ -7,6 +7,6 @@ spec:
   nats:
     exotic:
       url: nats://abhra-nats.tools-nats.svc:4222
-      clusterID: nats
+      clusterID: test-cluster
     #native:
       #replicas: 3 # optional, defaults to 3, and requires minimal 3
