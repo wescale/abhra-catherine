@@ -5,5 +5,8 @@ metadata:
   namespace: tools-argo-events
 spec:
   nats:
-    native:
-      replicas: 3 # optional, defaults to 3, and requires minimal 3
+    exotic:
+      url: nats://abhra-nats.tools-nats.svc:4222
+      clusterID: argo-events-cluster-id
+    #native:
+      #replicas: 3 # optional, defaults to 3, and requires minimal 3
