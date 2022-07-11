@@ -18,4 +18,4 @@ metadata:
   namespace: tools-argo-events
 spec:
   jetstream:
-    version: 2.8.1  # see 'version' section below
+    version: 2.7.4  # see 'version' section below
