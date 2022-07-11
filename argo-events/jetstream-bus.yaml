@@ -4,5 +4,11 @@ metadata:
   name: default
   namespace: tools-argo-events
 spec:
-  jetstream:
-    version: 2.8.1 
+  nats:
+    native:
+      replicas: 3 # optional, defaults to 3, and requires minimal 3
+      auth: token # optional, default to none
+      persistence: # optional
+        storageClassName: standard
+        accessMode: ReadWriteOnce
+        volumeSize: 10Gi
