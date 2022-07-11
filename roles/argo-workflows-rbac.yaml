@@ -14,7 +14,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: argo-workflow-role
+  name: argo-workflows-role
 subjects:
 - kind: ServiceAccount
   name: argo-workflows-sa
