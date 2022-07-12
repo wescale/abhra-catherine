@@ -1,22 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-state-metrics
+  name: promtail
   namespace: tools-argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: tools
   source:
-    chart: kube-state-metrics
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 4.13.0
+    chart: promtail
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 6.2.0
     helm:
       releaseName: abhra
   destination:
-    namespace: tools-prometheus
+    namespace: tools-promtail
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
@@ -24,3 +24,4 @@ spec:
       prune: true
     syncOptions:
     - CreateNamespace=true
+
