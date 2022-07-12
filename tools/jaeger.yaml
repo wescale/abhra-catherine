@@ -13,6 +13,7 @@ spec:
     chart: jaeger
     repoURL: https://jaegertracing.github.io/helm-charts
     targetRevision: 0.57.0
+    helm:
       releaseName: abhra
   destination:
     namespace: tools-jaeger
