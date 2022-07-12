@@ -15,13 +15,10 @@ spec:
     targetRevision: 6.2.0
     helm:
       releaseName: abhra
-      values: |-
-        loki:
-          serviceName:abhra-loki
+      values: |
         config:
           clients:
             - url: http://loki.tools-loki:3100/loki/api/v1/push
-            tenant_id: 1
   destination:
     namespace: tools-promtail
     server: https://kubernetes.default.svc
