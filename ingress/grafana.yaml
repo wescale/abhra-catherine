@@ -17,8 +17,8 @@ spec:
              name: abhra-grafana
              port:
                number: 80
-      host: grafana.abhra.shambhala.cloud
+      host: grafana.ingress.abhra.shambhala.cloud
   tls:
     - hosts:
-      - grafana.abhra.shambhala.cloud
+      - grafana.ingress.abhra.shambhala.cloud
       secretName: grafana-server-cert
