@@ -8,15 +8,15 @@ spec:
   template:
     serviceAccountName: argo-events-sa
   dependencies:
-    - name: message-body-cd
+    - name: argo-cd-secret
       eventSourceName: k8s-event
       eventName: argo-cd-secret
-    - name: message-body-workflows
+    - name: argo-workflows-secret
       eventSourceName: k8s-event
       eventName: argo-workflows-secret
   triggers:
   - template:
-      conditions: "message-body-cd || message-body-workflows"
+      conditions: "argo-cd-secret || argo-workflows-secret"
       name: echo-body
       k8s:
         group: ""
@@ -38,14 +38,14 @@ spec:
                 command: [echo]
                 args: [""]
               restartPolicy: Never
-        parameters:
-        - src:
-            dependencyName: message-body-cd
-            dataTemplate: "{{ .Input.body.data.password | b64dec }}"
-          dest: spec.containers.0.args.0
-        - src:
-            dependencyName: message-body-workflows
-            dataKey: body
-          dest: spec.containers.0.args.0
+        # parameters:
+        # - src:
+        #     dependencyName: message-body-cd
+        #     dataTemplate: "{{ .Input.body.data.password | b64dec }}"
+        #   dest: spec.containers.0.args.0
+        # - src:
+        #     dependencyName: message-body-workflows
+        #     dataKey: body
+        #   dest: spec.containers.0.args.0
 
           
