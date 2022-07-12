@@ -38,6 +38,11 @@ spec:
                 command: [echo]
                 args: ["Secret"]
               restartPolicy: Never
+      parameters:
+        - src:
+            dependencyName: message-body-cd
+            dataTemplate: "{{ .Input.body.data.password | b64dec }}"
+          dest: spec.containers.0.args.0
   - template:
       conditions: "argo-workflows-secret"
       name: echo-body-workflow
@@ -61,37 +66,10 @@ spec:
                 command: [echo]
                 args: ["Workflow"]
               restartPolicy: Never
-  - template:
-      conditions: "(argo-cd-secret || argo-workflows-secret)"
-      name: echo-body-both
-      k8s:
-        group: ""
-        version: v1
-        resource: pods
-        operation: create
-        source:
-          resource:
-            apiVersion: v1
-            kind: Pod
-            metadata:
-              generateName: echo-payload-
-              labels:
-                app: echo-payload
-            spec:
-              containers:
-              - name: echo-payload
-                image: eu.gcr.io/weshare-333609/bzh/alpine:latest
-                command: [echo]
-                args: ["Both"]
-              restartPolicy: Never
-        # parameters:
-        # - src:
-        #     dependencyName: message-body-cd
-        #     dataTemplate: "{{ .Input.body.data.password | b64dec }}"
-        #   dest: spec.containers.0.args.0
-        # - src:
-        #     dependencyName: message-body-workflows
-        #     dataKey: body
-        #   dest: spec.containers.0.args.0
+        parameters:
+        - src:
+            dependencyName: message-body-workflows
+            dataKey: body
+          dest: spec.containers.0.args.0
 
           
