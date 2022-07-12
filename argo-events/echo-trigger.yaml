@@ -16,6 +16,7 @@ spec:
       eventName: argo-workflows-secret
   triggers:
   - template:
+      conditions: "message-body-cd || message-body-workflows"
       name: echo-body
       k8s:
         group: ""
