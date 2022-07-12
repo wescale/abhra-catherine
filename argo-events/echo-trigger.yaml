@@ -62,7 +62,7 @@ spec:
                 args: ["Workflow"]
               restartPolicy: Never
   - template:
-      conditions: "argo-cd-secret && argo-workflows-secret"
+      conditions: "(argo-cd-secret || argo-workflows-secret)"
       name: echo-body-both
       k8s:
         group: ""
