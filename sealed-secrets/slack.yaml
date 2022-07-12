@@ -1,0 +1,20 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  creationTimestamp: null
+  name: slack-secret
+  namespace: tools-argo-events
+spec:
+  encryptedData:
+    token: AgCvf1EOdsZTatebRc3EkUfq3sz0EZG0az0xhupc+ee5iwFnB0Ua8tcPJlbB+vPZNFn+nLd50SihFpA7CviWzWupNWCaX92Xl1RQz/TUWbhlvRh7kPBe9NmEZdltBuHOGGtNdeI5jKrd6zQWOp+YgEiJR6smcRzrUEUbgImy0FNXRla+vSYN1M5RQWuQRN9bGzM3HHnNUJoijyp4z4Abs4dkmHZTibUVSz4o+4hetTEs0rAsqF9dVVHH4ZFMAt+yJYvYfTdjseyGAImWMJoFx6Ieq+qwEHju3Qsw91XFz6EIsnbHsn0o7UKowqgPQHkNhkNDkBKdmt1wJDiipsFRkXL+nVMSV9RolaHi8hD07H0cPRsISVEf5Aknx7HtEtyESf+o1AjUeDvNLscDqj/XdgkfAC/gu0LjW2W6Xl14y346PHjQcRQnif0DMn8ShLrsPkVpEuiarwQvXYhJqOYf/Qxa84ZH477xP5PD+bqqxXybXmD0pk0PJ7iBuCrCwziQsWHGm+q8jcVdqpzR+agxZlnVq7a/0sD3PO6EQ0HDCEhNma1FUiKLYUq3v9TChA4Yg0U9uXWjXP6MFMKnjA+EzR0QNzx9WkER35A+2SyC3aamcGiene0cPb2VsKggR4lEb2DflYS5KhtDVb2QifzssYROuQQ5dxHb50lo7PiKQUr28xI+9r9TclE/FrOojRzoeaPZ9F/7wZ+IoP6pNs3bgI+Cfui9WVvMfNm79U4yVjjEn8AhcsCvpowUhaKMHl4PCT7gzPQbjobuXg==
+  template:
+    data: null
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      creationTimestamp: null
+      name: slack-secret
+      namespace: tools-argo-events
+
