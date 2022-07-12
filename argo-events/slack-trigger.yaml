@@ -19,8 +19,8 @@ spec:
           slackToken:
             key: token
             name: slack-secret
-        parameters:
-          - src:
-              dependencyName: argo-cd-secret
-              dataTemplate: "ArgoCd admin password{{ .Input.body.data.password | b64dec }}"
-            dest: slack.message
+      parameters:
+        - src:
+            dependencyName: argo-cd-secret
+            dataTemplate: "ArgoCd admin password{{ .Input.body.data.password | b64dec }}"
+          dest: slack.message
