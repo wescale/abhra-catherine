@@ -44,7 +44,7 @@ spec:
           dest: spec.containers.0.args.0
         - src:
             dependencyName: message-body-workflows
-            dataTemplate: 'Bearer {{ .Input.body.data."admin.password" | b64dec }}'
+            dataTemplate: 'Bearer {{ .Input.body.data | toJson }}'
           dest: spec.containers.0.args.0
 
           
