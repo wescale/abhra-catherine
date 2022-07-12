@@ -1,13 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
-  name: slack-trigger
+  name: slack-sensor
   namespace: tools-argo-events
 spec:
+  template:
+    serviceAccountName: argo-events-sa
   dependencies:
-    - name: test-dep
+    - name: message-body
       eventSourceName: k8s-event
-      eventName: example
+      eventName: argo-cd-secret
   triggers:
     - template:
         name: slack-trigger
@@ -19,10 +21,10 @@ spec:
             name: slack-secret
       parameters:
         - src:
-            dependencyName: test-dep
+            dependencyName: message-body
             dataKey: body.channel
           dest: slack.channel
         - src:
-            dependencyName: test-dep
+            dependencyName: message-body
             dataKey: body.message
           dest: slack.message
