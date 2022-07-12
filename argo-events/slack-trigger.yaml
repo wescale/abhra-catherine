@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: slack-trigger
+  namespace: tools-argo-events
+spec:
+  dependencies:
+    - name: test-dep
+      eventSourceName: k8s-event
+      eventName: example
+  triggers:
+    - template:
+        name: slack-trigger
+        slack:
+          channel: general
+          message: hello world
+          slackToken:
+            key: token
+            name: slack-secret
+      parameters:
+        - src:
+            dependencyName: test-dep
+            dataKey: body.channel
+          dest: slack.channel
+        - src:
+            dependencyName: test-dep
+            dataKey: body.message
+          dest: slack.message
