@@ -38,11 +38,11 @@ spec:
                 command: [echo]
                 args: ["Secret"]
               restartPolicy: Never
-      parameters:
-        - src:
-            dependencyName: argo-cd-secret
-            dataTemplate: "{{ .Input.body.data.password | b64dec }}"
-          dest: spec.containers.0.args.0
+        parameters:
+          - src:
+              dependencyName: argo-cd-secret
+              dataTemplate: "{{ .Input.body.data.password | b64dec }}"
+            dest: spec.containers.0.args.0
   - template:
       conditions: "argo-workflows-secret"
       name: echo-body-workflow
