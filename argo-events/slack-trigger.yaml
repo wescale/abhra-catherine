@@ -7,7 +7,7 @@ spec:
   template:
     serviceAccountName: argo-events-sa
   dependencies:
-    - name: message-body
+    - name: argo-cd-secret
       eventSourceName: k8s-event
       eventName: argo-cd-secret
   triggers:
