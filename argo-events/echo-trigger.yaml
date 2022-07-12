@@ -38,11 +38,11 @@ spec:
                 command: [echo]
                 args: [""]
               restartPolicy: Never
-        # parameters:
-        # - src:
-        #     dependencyName: message-body-cd
-        #     dataTemplate: "{{ .Input.body.data.password | b64dec }}"
-        #   dest: spec.containers.0.args.0
+        parameters:
+        - src:
+            dependencyName: message-body-cd
+            dataTemplate: "{{ .Input.body.data.password | b64dec }}"
+          dest: spec.containers.0.args.0
         # - src:
         #     dependencyName: message-body-workflows
         #     dataKey: body
