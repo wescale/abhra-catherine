@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fluent-bit
+  namespace: tools-argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: tools
+  source:
+    chart: fluent-bit
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 2.3.1
+    helm:
+      releaseName: abhra
+  destination:
+    namespace: tools-fluent-bit
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+
