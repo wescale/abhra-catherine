@@ -8,9 +8,12 @@ spec:
   template:
     serviceAccountName: argo-events-sa
   dependencies:
-    - name: message-body
+    - name: message-body-cd
       eventSourceName: k8s-event
       eventName: argo-cd-secret
+    - name: message-body-workflows
+      eventSourceName: k8s-event
+      eventName: argo-workflows-secret
   triggers:
   - template:
       name: echo-body
@@ -36,8 +39,12 @@ spec:
               restartPolicy: Never
         parameters:
         - src:
-            dependencyName: message-body
+            dependencyName: message-body-cd
             dataTemplate: "{{ .Input.body.data.password | b64dec }}"
+          dest: spec.containers.0.args.0
+        - src:
+            dependencyName: message-body-workflows
+            dataTemplate: "Bearer {{ .Input.body.data.password | b64dec }}"
           dest: spec.containers.0.args.0
 
           
