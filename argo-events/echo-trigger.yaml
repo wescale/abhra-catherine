@@ -15,52 +15,52 @@ spec:
       eventSourceName: k8s-event
       eventName: argo-workflows-secret
   triggers:
-  - template:
-      conditions: "argo-cd-secret"
-      name: echo-body-secret
-      k8s:
-        group: ""
-        version: v1
-        resource: pods
-        operation: create
-        source:
-          resource:
-            apiVersion: v1
-            kind: Pod
-            metadata:
-              generateName: echo-payload-
-              labels:
-                app: echo-payload
-            spec:
-              containers:
-              - name: echo-payload
-                image: eu.gcr.io/weshare-333609/bzh/alpine:latest
-                command: [echo]
-                args: ["Secret"]
-              restartPolicy: Never
-  - template:
-      conditions: "argo-workflows-secret"
-      name: echo-body-workflow
-      k8s:
-        group: ""
-        version: v1
-        resource: pods
-        operation: create
-        source:
-          resource:
-            apiVersion: v1
-            kind: Pod
-            metadata:
-              generateName: echo-payload-
-              labels:
-                app: echo-payload
-            spec:
-              containers:
-              - name: echo-payload
-                image: eu.gcr.io/weshare-333609/bzh/alpine:latest
-                command: [echo]
-                args: ["Workflow"]
-              restartPolicy: Never
+  # - template:
+  #     conditions: "argo-cd-secret"
+  #     name: echo-body-secret
+  #     k8s:
+  #       group: ""
+  #       version: v1
+  #       resource: pods
+  #       operation: create
+  #       source:
+  #         resource:
+  #           apiVersion: v1
+  #           kind: Pod
+  #           metadata:
+  #             generateName: echo-payload-
+  #             labels:
+  #               app: echo-payload
+  #           spec:
+  #             containers:
+  #             - name: echo-payload
+  #               image: eu.gcr.io/weshare-333609/bzh/alpine:latest
+  #               command: [echo]
+  #               args: ["Secret"]
+  #             restartPolicy: Never
+  # - template:
+  #     conditions: "argo-workflows-secret"
+  #     name: echo-body-workflow
+  #     k8s:
+  #       group: ""
+  #       version: v1
+  #       resource: pods
+  #       operation: create
+  #       source:
+  #         resource:
+  #           apiVersion: v1
+  #           kind: Pod
+  #           metadata:
+  #             generateName: echo-payload-
+  #             labels:
+  #               app: echo-payload
+  #           spec:
+  #             containers:
+  #             - name: echo-payload
+  #               image: eu.gcr.io/weshare-333609/bzh/alpine:latest
+  #               command: [echo]
+  #               args: ["Workflow"]
+  #             restartPolicy: Never
   - template:
       conditions: "argo-cd-secret || argo-workflows-secret"
       name: echo-body-both
