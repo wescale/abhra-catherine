@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: tools-argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  project: tools
+  source:
+    chart: prometheus-node-exproter
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 3.3.0
+    helm:
+      releaseName: abhra
+  destination:
+    namespace: tools-prometheus
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
