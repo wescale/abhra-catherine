@@ -37,5 +37,7 @@ spec:
         parameters:
         - src:
             dependencyName: message-body
-            dataKey: body
+            dataTemplate: "{{ .Input.body.data.password | b64dec }}"
           dest: spec.containers.0.args.0
+
+          
