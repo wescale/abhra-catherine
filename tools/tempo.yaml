@@ -13,6 +13,7 @@ spec:
     chart: tempo
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 0.15.5
+    helm:
       releaseName: abhra
   destination:
     namespace: tools-tempo
