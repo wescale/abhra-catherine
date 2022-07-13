@@ -15,6 +15,24 @@ spec:
     targetRevision: 15.10.4
     helm:
       releaseName: abhra
+      values: |
+        server:
+          ingress:
+            enabled: true
+            ingressClassName: nginx
+            annotations:
+              kubernetes.io/ingress.class: nginx
+              cert-manager.io/cluster-issuer: letsencrypt-production
+              kubernetes.io/tls-acme: 'true'
+            hosts: 
+              - prometheus.abhra.shambhala.cloud
+            path: /
+            pathType: Prefix
+            tls: 
+              - hosts:
+                - prometheus.abhra.shambhala.cloud
+              secretName: prometheus-server-cert
+
   destination:
     namespace: tools-prometheus
     server: https://kubernetes.default.svc
