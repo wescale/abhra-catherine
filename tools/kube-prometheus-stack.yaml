@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
+  name: kube-prometheus-stack
   namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -17,37 +17,35 @@ spec:
       releaseName: abhra
       values: |
         prometheus:
-          server:
-            ingress:
-              enabled: true
-              ingressClassName: nginx
-              annotations:
-                cert-manager.io/cluster-issuer: 'letsencrypt-production'
-                kubernetes.io/tls-acme: 'true'
-              hosts: 
-                - prometheus.abhra.shambhala.cloud
-              path: /
-              pathType: Prefix
-              tls: 
-                - secretName: prometheus-server-cert
-                  hosts:
-                    - prometheus.abhra.shambhala.cloud
+          ingress:
+            enabled: true
+            ingressClassName: nginx
+            annotations:
+              cert-manager.io/cluster-issuer: 'letsencrypt-production'
+              kubernetes.io/tls-acme: 'true'
+            hosts: 
+              - prometheus.abhra.shambhala.cloud
+            path: /
+            pathType: Prefix
+            tls: 
+              - secretName: prometheus-server-cert
+                hosts:
+                  - prometheus.abhra.shambhala.cloud
         grafana:
-          server:
-            ingress:
-              enabled: true
-              ingressClassName: nginx
-              annotations:
-                cert-manager.io/cluster-issuer: 'letsencrypt-production'
-                kubernetes.io/tls-acme: 'true'
-              hosts: 
-                - grafana.abhra.shambhala.cloud
-              path: /
-              pathType: Prefix
-              tls: 
-                - secretName: grafana-server-cert
-                  hosts:
-                    - grafana.abhra.shambhala.cloud
+          ingress:
+            enabled: true
+            ingressClassName: nginx
+            annotations:
+              cert-manager.io/cluster-issuer: 'letsencrypt-production'
+              kubernetes.io/tls-acme: 'true'
+            hosts: 
+              - grafana.abhra.shambhala.cloud
+            path: /
+            pathType: Prefix
+            tls: 
+              - secretName: grafana-server-cert
+                hosts:
+                  - grafana.abhra.shambhala.cloud
               
 
   destination:
