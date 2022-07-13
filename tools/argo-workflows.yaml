@@ -21,6 +21,21 @@ spec:
             create: false
           serviceAccount:
             name: argo-workflow-sa
+        server:
+          ingress:
+            enabled: true
+            ingressClassName: nginx
+            annotations:
+              cert-manager.io/cluster-issuer: 'letsencrypt-production'
+              kubernetes.io/tls-acme: 'true'
+            hosts: 
+              - workflows.argo.abhra.shambhala.cloud
+            path: /
+            pathType: Prefix
+            tls: 
+              - secretName: argo-workflows-server-cert
+                hosts:
+                  - workflows.argo.abhra.shambhala.cloud
   destination:
     namespace: tools-argo
     server: https://kubernetes.default.svc
