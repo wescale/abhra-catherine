@@ -15,6 +15,10 @@ spec:
     targetRevision: 2.6.5
     helm:
       releaseName: abhra
+      values: |
+        promtail:
+          config:
+            lokiAddress: http://{{ .Release.Name }}-loki:3100/loki/api/v1/push
   destination:
     namespace: tools-monitoring
     server: https://kubernetes.default.svc
