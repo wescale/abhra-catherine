@@ -29,9 +29,10 @@ spec:
             path: /
             pathType: Prefix
             tls: 
-              - hosts:
-                - prometheus.abhra.shambhala.cloud
-              secretName: prometheus-server-cert
+              - secretName: prometheus-server-cert
+                hosts:
+                  - prometheus.abhra.shambhala.cloud
+              
 
   destination:
     namespace: tools-prometheus
