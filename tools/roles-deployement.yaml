@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sealed-secrets-application
+  name: roles-deployement
   namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: tools
   source:
     repoURL: https://github.com/wescale/abhra-catherine
     targetRevision: HEAD
-    path: sealed-secrets
+    path: roles
   destination:
     server: https://kubernetes.default.svc
     namespace: tools-argo
