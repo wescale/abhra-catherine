@@ -33,7 +33,7 @@ spec:
           domain-filter: abhra.shambhala.cloud
           logLevel: debug
   destination:
-    namespace: tools-external-dns
+    namespace: tools-web
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

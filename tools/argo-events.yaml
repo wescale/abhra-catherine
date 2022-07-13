@@ -16,7 +16,7 @@ spec:
     helm:
       releaseName: abhra
   destination:
-    namespace: tools-argo-events
+    namespace: tools-argo
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

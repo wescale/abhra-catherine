@@ -34,7 +34,7 @@ spec:
               
 
   destination:
-    namespace: tools-prometheus
+    namespace: tools-monitoring
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

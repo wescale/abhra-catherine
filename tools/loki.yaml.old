@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: loki
   namespace: tools-argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,13 +10,13 @@ metadata:
 spec:
   project: tools
   source:
-    chart: grafana
+    chart: loki
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 6.32.2
+    targetRevision: 2.13.1
     helm:
       releaseName: abhra
   destination:
-    namespace: tools-grafana
+    namespace: tools-monitoring
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

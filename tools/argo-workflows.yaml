@@ -22,7 +22,7 @@ spec:
           serviceAccount:
             name: argo-workflow-sa
   destination:
-    namespace: tools-argo-workflows
+    namespace: tools-argo
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

@@ -20,7 +20,7 @@ spec:
           clients:
             - url: http://abhra-loki.tools-loki:3100/loki/api/v1/push
   destination:
-    namespace: tools-promtail
+    namespace: tools-monitoring
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

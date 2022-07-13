@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: tools
-  namespace: tools-argo-cd
+  namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:

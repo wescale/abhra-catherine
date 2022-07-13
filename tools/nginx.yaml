@@ -19,7 +19,7 @@ spec:
     helm:
       releaseName: abhra
   destination:
-    namespace: tools-nginx-ingress
+    namespace: tools-web
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

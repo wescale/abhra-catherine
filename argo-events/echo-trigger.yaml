@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
   name: echo-sensor
-  namespace: tools-argo-events
+  namespace: tools-argo
 spec:
   template:
     serviceAccountName: argo-events-sa

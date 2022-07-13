@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: argo-workflows-sa
-  namespace: tools-argo-workflows
+  namespace: tools-argo
 
 ---
 
@@ -10,7 +10,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argo-workflows-role-binding
-  namespace: tools-argo-workflows
+  namespace: tools-argo
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -25,7 +25,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argo-workflows-role
-  namespace: tools-argo-workflows
+  namespace: tools-argo
 rules:
 - apiGroups:
   - ""
