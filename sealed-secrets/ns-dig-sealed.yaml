@@ -5,10 +5,10 @@ metadata:
     sealedsecrets.bitnami.com/cluster-wide: "true"
   creationTimestamp: null
   name: ns-dig
-  namespace: tools-external-dns
+  namespace: tools-web
 spec:
   encryptedData:
-    rfc2136_tsig_secret: AgC6WM0UNhIHfE3JistmK7trc1Xw4yAuKXLDIZdpIpy7DlamWBoSPJPsbgadcvFKk6sSQmTPk8u60T47BMuAthCIWrVdgMWnkpProJTFUXZHqPb2eOdf0rOpDm+lZtQwrhNMKZRxyLH6sZhRXgyx7m3FlT47MkjmwK31ESP2uZIpd6LnWfLCJN12v79yc2YHoOZt2l1aU4HtspwctFZNf3J2pkWweXrTnuQwActUGySR4q3JEafT4N/HHbjCwb2XlxeqW1zLuWVQSJCKe5eTkjZPLbHQ+pU5/QQr1eK84/etytkexvfYy03vDvK97Pi//ojC+NCWNnI34+yaZlf4M5DmGixqoHpKY/ZRYwWArrBXH/SYxn0RUuCJo/McVE8tJdfwydDyg2fTihiiADSzlqXUqHYs1ia1qZ5F1fUG358DsUyPYsh4M4B8O1uSJ3Pc9lWSzdMprRazGs+oYoJh6queCBLLe+/gg7ETflqrOwV1Rx2dsCSbBy0OBU2n3/+AgJA0pNWmdkGQMUknurVUmfjVROdfgRcQj26QK+dP/GEUYHs2vtqrsgRAOVJdun/omN44lHc7R2v+nCFJOhbIUqyFsvEmRxp2slj65xIUdzcuPrKRpzsp1kEIim7XX2ajJ9nlZhZVs21t4uVEHCfJJ9zWUKR7XKygQaJgIJvjudc88Og6DbgHu7TvcSgO0A+2YelvfddWFnNH/Faxnr+uw1vTwSdfU9+zq4ckCEdy6eXe7CTdbqPRPlRZ1pAp7Vo=
+    rfc2136_tsig_secret: AgC4myYWl0zMvYDqyua6JV8JyHymo2Y49F0SX0g3HIvfJA2muzbsinVbD5aeeJ9YZKKRgT0W1yzGKkunQAvO83O5mndr7PMb6MVKzYrIP+iWNSQjBfYMbNfVioTVHXDnEZlOIkOrwos+LczyXdim3XvlF1W4JN9swLi7agNjBQTlBkYYEuqP8cvv4V2atf3zwV1uOUBj08+uL3U1qJdy1aBS21QBS+w8z/MzmErGAH2Zxbe2H5Gi28U/V9+kCWZakVSXefsXR+BbUOeFyFPFJR98V1BNUCGj8xu6cs/PcF4d/L+d0aGYktdC+BxWi3HmGuyZXaYkDnyA8V/8S1vB11c75XSzTxiQPovymt1V+vxs8AgEswVu0wIlRyhQcA3xh2NCfjgHMPSfLqu0ud/8xLBQzN8nedbUq2jjS6X+cjNhr0/le7pjQFDLrhJCT5zO8Fzum+DB+EzeyyyqF3TwrOJYqAXwJde+kDitcBBriP476hysLQReKo5MLS0SN6v4p0B0YwNDuA+zQywwh0KD9xv0kZKJx6OBFsCabhxuSPZJXC3Q9S7ZzbctAGwFN7D3E3ALyI5V5Ry5xBT3FgZd7Rj1wTHhaTXZ7iq3ure4jeyY4ZjR4q+pGcIOWmtH2hbStKyjWX2KhcAih7ShrzVutkRSuEOftGG1/WAP/EEiCYjT4NBxwicoc4QPCmCyNc0QYILwBgBPKXoBlPKmJNYDCtr4rWImwuIMDK+DuzazSQL08v37z9ZumQ4m9Z83rfI=
   template:
     data: null
     metadata:
@@ -16,6 +16,6 @@ spec:
         sealedsecrets.bitnami.com/cluster-wide: "true"
       creationTimestamp: null
       name: ns-dig
-      namespace: tools-external-dns
+      namespace: tools-web
     type: Opaque
 

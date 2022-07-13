@@ -5,10 +5,10 @@ metadata:
     sealedsecrets.bitnami.com/cluster-wide: "true"
   creationTimestamp: null
   name: slack-secret
-  namespace: tools-argo-events
+  namespace: tools-argo
 spec:
   encryptedData:
-    token: AgCvf1EOdsZTatebRc3EkUfq3sz0EZG0az0xhupc+ee5iwFnB0Ua8tcPJlbB+vPZNFn+nLd50SihFpA7CviWzWupNWCaX92Xl1RQz/TUWbhlvRh7kPBe9NmEZdltBuHOGGtNdeI5jKrd6zQWOp+YgEiJR6smcRzrUEUbgImy0FNXRla+vSYN1M5RQWuQRN9bGzM3HHnNUJoijyp4z4Abs4dkmHZTibUVSz4o+4hetTEs0rAsqF9dVVHH4ZFMAt+yJYvYfTdjseyGAImWMJoFx6Ieq+qwEHju3Qsw91XFz6EIsnbHsn0o7UKowqgPQHkNhkNDkBKdmt1wJDiipsFRkXL+nVMSV9RolaHi8hD07H0cPRsISVEf5Aknx7HtEtyESf+o1AjUeDvNLscDqj/XdgkfAC/gu0LjW2W6Xl14y346PHjQcRQnif0DMn8ShLrsPkVpEuiarwQvXYhJqOYf/Qxa84ZH477xP5PD+bqqxXybXmD0pk0PJ7iBuCrCwziQsWHGm+q8jcVdqpzR+agxZlnVq7a/0sD3PO6EQ0HDCEhNma1FUiKLYUq3v9TChA4Yg0U9uXWjXP6MFMKnjA+EzR0QNzx9WkER35A+2SyC3aamcGiene0cPb2VsKggR4lEb2DflYS5KhtDVb2QifzssYROuQQ5dxHb50lo7PiKQUr28xI+9r9TclE/FrOojRzoeaPZ9F/7wZ+IoP6pNs3bgI+Cfui9WVvMfNm79U4yVjjEn8AhcsCvpowUhaKMHl4PCT7gzPQbjobuXg==
+    token: AgB3tLpr2ErHljFu4lMNaskkPOToZki66E8VZpkAfKU9TNyKZg4fhmj+phAxhm5wfZlza60i03x2qdVlacjZnzLa/wqcJOPk6KOW10RGOwT1eohZ4a0XZ3z9ZslKNKEqqa9vJ+Sau6AO81hlzpeXro2+lexHUZfPGyV/RtJmTfLGh9XopyM638lpLfWf5ZVFGtQOiIOEQug9hWGfsdI1h3jvYIouU8T5RkFhvgndbsDvb18sSbO8UOseDG+zJkJ6zGB++oBhBPwFRYYHOxWRqbh9j3CwcPfTX+D1HSCzUfBOW0uHDgiytqEab32bSi4tYgca5oFJykt+l+Nslq4EWxpV0sY/3u2qtuoZzTAdVLdrR9xi+92gd5D5YOmlXpSO+GF0V8mMES08FAll1U9QNspVMeLkj2iaLOckc1yqS8G3skSf30wtgyqXI+2AIiEQnAyqmNWqOcfSUr7ejcyssI9H7Lnzo3KZMdA017TvyAeF+IFxQhI9wyXTl3c+QbY22+WIdkWCHlZRXHYAnWgT2e8yJB3kA6qWtq+Kniy8iADEmZoyC/vnq/l87nnRXuj1DWE/0KQKi+Go1Xwg0RF+YwFQmaD+8S2CgNYdvahnLJS0p2j0zLAkAhukD2rN8OgaHlsmGA9t4Ngiv5TluLJF6AhrkJ49Suqn43TAVfZp7tbYTvEvq3Kve+OLK8UaPOZOVbvZVBAamr70AHtsp80IrfDdaAms3dkeeRyVt1sQuls6LFVZMqZsKR8rdEjXlO/yN5eJ90NN7GuJ6w==
   template:
     data: null
     metadata:
@@ -16,5 +16,5 @@ spec:
         sealedsecrets.bitnami.com/cluster-wide: "true"
       creationTimestamp: null
       name: slack-secret
-      namespace: tools-argo-events
+      namespace: tools-argo
 
