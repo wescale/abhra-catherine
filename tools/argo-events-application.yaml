@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argo-events-application
-  namespace: tools-argo-cd
+  namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
@@ -15,7 +15,7 @@ spec:
     path: argo-events
   destination:
     server: https://kubernetes.default.svc
-    namespace: tools-definitions
+    namespace: tools-argo
   syncPolicy:
     automated:
       selfHeal: true
