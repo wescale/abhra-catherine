@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: nginx-ingress
-  namespace: guru
+  namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
@@ -17,9 +17,9 @@ spec:
     repoURL: https://kubernetes.github.io/ingress-nginx
     targetRevision: 4.1.4
     helm:
-      releaseName: abhra
+      releaseName: guru
   destination:
-    namespace: tools-web
+    namespace: guru
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
