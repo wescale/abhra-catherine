@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guru2
+  name: guru
   namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   project: guru
   source:
@@ -15,7 +15,7 @@ spec:
     path: guru
   destination:
     server: https://kubernetes.default.svc
-    namespace: guru2
+    namespace: guru
   syncPolicy:
     automated:
       selfHeal: true

@@ -11,7 +11,7 @@ spec:
   sourceRepos:
   - '*'
   destinations:
-  - namespace: 'guru2'
+  - namespace: 'guru'
     server: https://kubernetes.default.svc
   - namespace: 'kube-system'
     server: https://kubernetes.default.svc
