@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guru
+  name: tools
   namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "10"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
-  project: guru
+  project: tools
   source:
     repoURL: https://github.com/wescale/abhra-catherine
     targetRevision: HEAD
     path: guru
   destination:
     server: https://kubernetes.default.svc
-    namespace: guru
+    namespace: tools-argo
   syncPolicy:
     automated:
       selfHeal: true
