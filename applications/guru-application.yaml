@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress-prj
+  name: guru
   # Ongoing bug : https://github.com/argoproj/argo-cd/issues/3474
   namespace: tools-argo
   finalizers:
