@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guru
+  name: guru2
   namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -15,7 +15,7 @@ spec:
     path: guru
   destination:
     server: https://kubernetes.default.svc
-    namespace: guru
+    namespace: guru2
   syncPolicy:
     automated:
       selfHeal: true
