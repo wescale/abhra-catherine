@@ -1,0 +1,23 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: guru
+  namespace: tools-argo
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Tooling project
+  sourceRepos:
+  - '*'
+  destinations:
+  - namespace: 'guru'
+    server: https://kubernetes.default.svc
+  - namespace: 'kube-system'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'

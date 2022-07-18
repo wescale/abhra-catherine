@@ -1,22 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-rollouts
-  namespace: tools-argo
+  name: drone
+  namespace: guru
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  project: tools
+  project: guru
   source:
-    chart: argo-rollouts
-    repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 2.17.0
+    chart: drone
+    repoURL: https://github.com/drone/charts
+    targetRevision: 0.17.1
     helm:
-      releaseName: abhra
+      releaseName: guru
   destination:
-    namespace: tools-argo-rollouts
+    namespace: guru
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
