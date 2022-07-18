@@ -1,8 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress
-  namespace: tools-argo
+  name: nginx-ingress-app
+  namespace: guru
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
