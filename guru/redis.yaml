@@ -1,21 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress-app
+  name: redis
   # Ongoing bug : https://github.com/argoproj/argo-cd/issues/3474
   namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "12"
 spec:
   project: guru
   source:
-    chart: ingress-nginx
-    repoURL: https://kubernetes.github.io/ingress-nginx
-    targetRevision: 4.1.4
+    chart: redis
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 7.0.3
     helm:
       releaseName: guru
+      values: |
+        auth:
+          password: xxx
+          # existingSecret
+          # existingSecretPasswordKey
   destination:
     namespace: guru
     server: https://kubernetes.default.svc
