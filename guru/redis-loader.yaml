@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: redis-loader
+  namespace: guru
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+        - name: redis-loader
+          image: rg.fr-par.scw.cloud/guru/redis-loader:latest
+          env:
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: guru-redis
+                key: redis-password
+          - name: REDIS_HOST
+            value: "guru-redis-master"
+          - name: REDIS_PORT
+            value: "6379"
+      restartPolicy: Never
+  backoffLimit: 4
