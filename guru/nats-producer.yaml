@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nats-producer-deployment
+  namespace: guru
+spec:
+  selector:
+    matchLabels:
+      app: nats-producer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nats-producer
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: nats-producer
+        image: rg.fr-par.scw.cloud/guru/nats-producer
+        env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: guru-redis
+              key: redis-password
+        - name: REDIS_HOST
+          value: "guru-redis-master"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: NATS_URL
+          value: "nats://admin:aqJk67CmUk7Hw7Hu@veilleurs.guru:4222"
+        - name: NATS_CLUSTER_NAME
+          value: "veilleurs"
+        - name: NATS_TOPIC
+          value: "esprit"
