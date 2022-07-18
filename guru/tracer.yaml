@@ -1,0 +1,482 @@
+# hosts =
+# ["tracer-ignore-me-service.guru.svc.cluster.local:5001",
+# "tracer-not-relevant-service.guru.svc.cluster.local:5002",
+# "tracer-useless-module-service.guru.svc.cluster.local:5003",
+# "tracer-forget-me-service.guru.svc.cluster.local:5004",
+# "tracer-really-important-service.guru.svc.cluster.local:5005",
+# "tracer-capital-to-understand-service.guru.svc.cluster.local:5006",
+# "tracer-momo-was-there-service.guru.svc.cluster.local:5007",
+# "tracer-wescale-rules-service.guru.svc.cluster.local:5008"
+#]
+
+# Call path
+# 1 -> 2 * -> 8 *
+#          -> 6 (+1) -> 3 *
+#                    -> 4 * (+1)
+#          -> 5 * (+5) -> 7
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracer-ignore-me-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  selector:
+    matchLabels:
+      app: tracer-ignore-me
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tracer-ignore-me
+        challenge: tracer
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/tracer-base:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: TRACE_NAME
+          value: "Ignore me"
+        # - name: USE_NEXT_MESSAGE_METHOD
+        #   value: "True"
+        - name: CALL_HTTP_1
+          value: "tracer-not-relevant-service.guru.svc.cluster.local:5002"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: guru-redis
+              key: redis-password
+        - name: REDIS_HOST
+          value: "guru-redis-master"
+        - name: REDIS_PORT
+          value: "6379"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tracer-ignore-me-service
+  namespace: guru
+spec:
+  ports:
+  - port: 5001
+    targetPort: 5000
+    name: http
+  selector:
+    app: tracer-ignore-me
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracer-not-relevant-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  selector:
+    matchLabels:
+      app: tracer-not-relevant
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tracer-not-relevant
+        challenge: tracer
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/tracer-base:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: TRACE_NAME
+          value: "Not relevant"
+        - name: USE_NEXT_MESSAGE_METHOD
+          value: "True"
+        - name: CALL_HTTP_1
+          value: "tracer-wescale-rules-service.guru.svc.cluster.local:5008"
+        - name: CALL_HTTP_2
+          value: "tracer-capital-to-understand-service.guru.svc.cluster.local:5006"
+        - name: CALL_HTTP_3
+          value: "tracer-really-important-service.guru.svc.cluster.local:5005"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: guru-redis
+              key: redis-password
+        - name: REDIS_HOST
+          value: "guru-redis-master"
+        - name: REDIS_PORT
+          value: "6379"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tracer-not-relevant-service
+  namespace: guru
+spec:
+  ports:
+  - port: 5002
+    targetPort: 5000
+    name: http
+  selector:
+    app: tracer-not-relevant
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracer-useless-module-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  selector:
+    matchLabels:
+      app: tracer-useless-module
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tracer-useless-module
+        challenge: tracer
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/tracer-base:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: TRACE_NAME
+          value: "Useless module"
+        - name: USE_NEXT_MESSAGE_METHOD
+          value: "True"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: guru-redis
+              key: redis-password
+        - name: REDIS_HOST
+          value: "guru-redis-master"
+        - name: REDIS_PORT
+          value: "6379"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tracer-useless-module-service
+  namespace: guru
+spec:
+  ports:
+  - port: 5003
+    targetPort: 5000
+    name: http
+  selector:
+    app: tracer-useless-module
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracer-forget-me-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  selector:
+    matchLabels:
+      app: tracer-forget-me
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tracer-forget-me
+        challenge: tracer
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/tracer-base:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: TRACE_NAME
+          value: "Forget me"
+        - name: USE_NEXT_MESSAGE_METHOD
+          value: "True"
+        - name: PREVIOUS_CASCADING_CALLS
+          value: "1"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: guru-redis
+              key: redis-password
+        - name: REDIS_HOST
+          value: "guru-redis-master"
+        - name: REDIS_PORT
+          value: "6379"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tracer-forget-me-service
+  namespace: guru
+spec:
+  ports:
+  - port: 5004
+    targetPort: 5000
+    name: http
+  selector:
+    app: tracer-forget-me
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracer-really-important-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  selector:
+    matchLabels:
+      app: tracer-really-important
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tracer-really-important
+        challenge: tracer
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/tracer-base:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: TRACE_NAME
+          value: "Really important"
+        - name: USE_NEXT_MESSAGE_METHOD
+          value: "True"
+        - name: PREVIOUS_CASCADING_CALLS
+          value: "5"
+        - name: CALL_HTTP_1
+          value: "tracer-momo-was-there-service.guru.svc.cluster.local:5007"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: guru-redis
+              key: redis-password
+        - name: REDIS_HOST
+          value: "guru-redis-master"
+        - name: REDIS_PORT
+          value: "6379"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tracer-really-important-service
+  namespace: guru
+spec:
+  ports:
+  - port: 5005
+    targetPort: 5000
+    name: http
+  selector:
+    app: tracer-really-important
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracer-capital-to-understand-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  selector:
+    matchLabels:
+      app: tracer-capital-to-understand
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tracer-capital-to-understand
+        challenge: tracer
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/tracer-base:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: TRACE_NAME
+          value: "Capital to understand"
+        - name: PREVIOUS_CASCADING_CALLS
+          value: "1"
+        - name: CALL_HTTP_1
+          value: "tracer-useless-module-service.guru.svc.cluster.local:5003"
+        - name: CALL_HTTP_2
+          value: "tracer-forget-me-service.guru.svc.cluster.local:5004"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: guru-redis
+              key: redis-password
+        - name: REDIS_HOST
+          value: "guru-redis-master"
+        - name: REDIS_PORT
+          value: "6379"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tracer-capital-to-understand-service
+  namespace: guru
+spec:
+  ports:
+  - port: 5006
+    targetPort: 5000
+    name: http
+  selector:
+    app: tracer-capital-to-understand
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracer-momo-was-there-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  selector:
+    matchLabels:
+      app: tracer-momo-was-there
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tracer-momo-was-there
+        challenge: tracer
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/tracer-base:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: TRACE_NAME
+          value: "Momo was there"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: guru-redis
+              key: redis-password
+        - name: REDIS_HOST
+          value: "guru-redis-master"
+        - name: REDIS_PORT
+          value: "6379"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tracer-momo-was-there-service
+  namespace: guru
+spec:
+  ports:
+  - port: 5007
+    targetPort: 5000
+    name: http
+  selector:
+    app: tracer-momo-was-there
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracer-wescale-rules-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  selector:
+    matchLabels:
+      app: tracer-wescale-rules
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tracer-wescale-rules
+        challenge: tracer
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/tracer-base:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: TRACE_NAME
+          value: "WeScale rules"
+        - name: USE_NEXT_MESSAGE_METHOD
+          value: "True"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: guru-redis
+              key: redis-password
+        - name: REDIS_HOST
+          value: "guru-redis-master"
+        - name: REDIS_PORT
+          value: "6379"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tracer-wescale-rules-service
+  namespace: guru
+spec:
+  ports:
+  - port: 5008
+    targetPort: 5000
+    name: http
+  selector:
+    app: tracer-wescale-rules
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tracer-ignore-me-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  rules:
+    - host: "tracer.abhra.shambhala.cloud"
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: tracer-ignore-me-service
+              port:
+                number: 5001
+  tls:
+    - hosts:
+        - "tracer.abhra.shambhala.cloud"
+      secretName: tracer-cert
