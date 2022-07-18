@@ -11,16 +11,18 @@ metadata:
 spec:
   project: guru
   source:
-    chart: nats-operator
+    chart: nats
     repoURL: https://nats-io.github.io/k8s/helm/charts/
-    targetRevision: 0.7.4
+    targetRevision: 0.17.1
     helm:
       releaseName: guru
       values: |
         cluster:
           enabled: true
           name: veilleurs
-        
+        nats:
+          jetstream:
+            enabled: false
         auth:
           enabled: true
 
@@ -28,7 +30,7 @@ spec:
             publish: ["_STAN.discover.>", "_STAN.sub.>", "_STAN.unsub.>", "_INBOX.>", "_STAN.close.>"]
             subscribe: ["_INBOX.>", "_STAN.>", "esprit", "stan", "Stan", "veilleurs", "Veilleurs"]
 
-          
+
           users:
             - user: "admin"
               pass: "aqJk67CmUk7Hw7Hu"
