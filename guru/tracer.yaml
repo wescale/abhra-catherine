@@ -22,6 +22,7 @@ metadata:
   namespace: guru
   annotations:
     "sidecar.jaegertracing.io/inject": "true"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   selector:
     matchLabels:
