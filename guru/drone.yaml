@@ -13,7 +13,7 @@ spec:
   source:
     chart: drone
     repoURL: https://github.com/drone/charts
-    targetRevision: 0.17.1
+    targetRevision: 0.4.0
     helm:
       releaseName: guru
   destination:
