@@ -3,6 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: guru
+  # Ongoing bug : https://github.com/argoproj/argo-cd/issues/3474
   namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -11,6 +12,9 @@ spec:
   sourceRepos:
   - '*'
   destinations:
+  # Ongoing bug : https://github.com/argoproj/argo-cd/issues/3474
+  - namespace: 'tools-argo'
+    server: https://kubernetes.default.svc
   - namespace: 'guru'
     server: https://kubernetes.default.svc
   - namespace: 'kube-system'
