@@ -26,19 +26,18 @@ spec:
         auth:
           enabled: true
 
-          defaultPermissions:
-            publish: ["_STAN.discover.>", "_STAN.sub.>", "_STAN.unsub.>", "_INBOX.>", "_STAN.close.>"]
-            subscribe: ["_INBOX.>", "_STAN.>", "esprit", "stan", "Stan", "veilleurs", "Veilleurs"]
-
-
-          users:
-            - user: "admin"
-              pass: "aqJk67CmUk7Hw7Hu"
-              permissions:
-                publish: ">"
-                subscribe: ">"
-            - user: "consumer"
-              pass: "t9ph33XUuxzesCNH"
+          basic:
+            users:
+              - user: "admin"
+                password: "aqJk67CmUk7Hw7Hu"
+                permissions:
+                  publish: ">"
+                  subscribe: ">"
+              - user: "consumer"
+                password: "t9ph33XUuxzesCNH"
+                permissions:
+                  publish: ["_STAN.discover.>", "_STAN.sub.>", "_STAN.unsub.>", "_INBOX.>", "_STAN.close.>"]
+                  subscribe: ["_INBOX.>", "_STAN.>", "esprit", "stan", "Stan", "veilleurs", "Veilleurs"]
           # enabled: true
           # token: eyJhbGciOiJSUzI1NiIsImtpZCI6Im9HUl94ZmtGbVVRMWYtTDZxazBJMzZ6OXpwWVdZWW44eGlVRVZ5RWZVejAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6Im5hdHMtdG9rZW4taDJzbmYiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoibmF0cyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImQ4MzE2MjY0LTNjOTAtNDA0ZC1hY2YxLTYyY2Q2Y2RhMmFlMyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0Om5hdHMifQ.E7vBgXRWP8JDs8Bh6LVWxTDhpJkcguj2svqWU7SGv5mwjhxGR37yvDDIyM0Jp2FHtIDtRAP-VWveTiQq2zMTRmZNv1t712sTOuqhCwrIfB8o2w2tmEVS5GbaYCEM7aRx28lHCk7JPI3HytLuAYeLb3SU6a4YwAQRMAkV7aCaKf60Ym7ckdApUmdvmhKFgpWYAH8X1OtebuVUjdWKGAUuO3VNZJkZB5ZKDQJpqRAtrb-aFSAMv_d0fq4fH_ds0ve_Jbtc6UaEHZsp4zhyEl0AeHnSwmHzYrRBl296t-rPuSVy7TEO6x-Vk6s6wRUklYfGXhNdVbXDwLbDbICPeFfwqg
   destination:
