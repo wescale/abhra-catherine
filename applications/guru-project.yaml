@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: guru
-  namespace: tools-argo
+  namespace: guru
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
