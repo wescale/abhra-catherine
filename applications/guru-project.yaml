@@ -17,6 +17,8 @@ spec:
     server: https://kubernetes.default.svc
   - namespace: 'guru'
     server: https://kubernetes.default.svc
+  - namespace: 'observability'
+    server: https://kubernetes.default.svc
   - namespace: 'kube-system'
     server: https://kubernetes.default.svc
   clusterResourceWhitelist:
