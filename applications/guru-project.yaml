@@ -2,17 +2,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: tools
-  namespace: tools-argo
+  name: guru
+  namespace: guru
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: Tooling project
+  description: Guru project
   sourceRepos:
   - '*'
   destinations:
-  - namespace: 'tools-*'
-    server: https://kubernetes.default.svc
   - namespace: 'guru'
     server: https://kubernetes.default.svc
   - namespace: 'kube-system'

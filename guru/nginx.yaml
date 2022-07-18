@@ -2,13 +2,13 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: nginx-ingress
-  namespace: tools-argo
+  namespace: guru
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  project: tools
+  project: guru
   source:
     # chart: nginx-ingress
     # repoURL: https://helm.nginx.com/stable
