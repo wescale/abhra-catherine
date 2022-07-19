@@ -27,29 +27,28 @@ spec:
           port: 80
         ingress:
           enabled: true
-          annotations: 
-            kubernetes.io/ingress.class: nginx
-            ingress.kubernetes.io/ssl-redirect: "true"
-            cert-manager.io/cluster-issuer: letsencrypt-production
-          hosts:
-            - host: "ci.abhra.shambhala.cloud"
-              paths:
-                - path: "/"
-                  pathType: Prefix
-          tls: # < placing a host in the TLS config will indicate a certificate should be created
-            - hosts:
-                - "ci.abhra.shambhala.cloud"
-              secretName: "drone-cert"
+          ingressClassName: nginx
+          annotations:
+            cert-manager.io/cluster-issuer: 'letsencrypt-production'
+            kubernetes.io/tls-acme: 'true'
+          hosts: 
+            - ci.argo.abhra.shambhala.cloud
+          path: /
+          pathType: Prefix
+          tls: 
+            - secretName: drone-cert
+              hosts:
+                - ci.argo.abhra.shambhala.cloud
         env:
-          DRONE_SERVER_HOST: "ci.abhra.shambhala.cloud"
-          DRONE_SERVER_PROTO: "https"
-          DRONE_SERVER: "https://ci.abhra.shambhala.cloud"
-          DRONE_GITLAB_SERVER: "https://gitlab.com"
+          DRONE_SERVER_HOST: ci.abhra.shambhala.cloud
+          DRONE_SERVER_PROTO: https
+          DRONE_SERVER: https://ci.abhra.shambhala.cloud
+          DRONE_GITLAB_SERVER: https://gitlab.com
           DRONE_LOGS_COLOR: true
           DRONE_LOGS_DEBUG: true
           DRONE_LOGS_PRETTY: true
-          DRONE_LOGS_TRACE: "true"
-          DRONE_GIT_ALWAYS_AUTH: "true"
+          DRONE_LOGS_TRACE: true
+          DRONE_GIT_ALWAYS_AUTH: true
         extraSecretNamesForEnvFrom:
           - drone-secrets
   destination:
