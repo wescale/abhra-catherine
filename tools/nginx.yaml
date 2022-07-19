@@ -18,6 +18,9 @@ spec:
     targetRevision: 4.1.4
     helm:
       releaseName: abhra
+      values: |
+        tcp:
+          4222: "guru/guru-nats:4222"
   destination:
     namespace: tools-web
     server: https://kubernetes.default.svc

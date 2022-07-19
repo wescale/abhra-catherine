@@ -17,6 +17,8 @@ spec:
     helm:
       releaseName: guru
       values: |
+        serviceAnnotations:
+          external-dns.alpha.kubernetes.io/hostname:  sandeshon.abhra.shambhala.cloud
         cluster:
           enabled: true
           name: veilleurs
