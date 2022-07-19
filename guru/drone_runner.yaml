@@ -24,6 +24,7 @@ spec:
           KUBERNETES_NAMESPACE: guru
         extraSecretNamesForEnvFrom:
           - drone-runner-kube-secrets
+          - drone-secrets
   destination:
     namespace: guru
     server: https://kubernetes.default.svc
