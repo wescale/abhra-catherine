@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: drone-runner-kube
+  # Ongoing bug : https://github.com/argoproj/argo-cd/issues/3474
+  namespace: tools-argo
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: guru
+  source:
+    chart: drone-runner-kube
+    repoURL: https://charts.drone.io
+    targetRevision: 0.1.9
+    helm:
+      releaseName: guru
+      values: |
+        rbac:
+          secretNamespace: guru
+        env:
+          KUBERNETES_NAMESPACE: guru
+        extraSecretNamesForEnvFrom:
+          - drone-runner-kube-secrets
+  destination:
+    namespace: guru
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+
