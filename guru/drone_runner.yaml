@@ -18,7 +18,8 @@ spec:
       releaseName: guru
       values: |
         rbac:
-          secretNamespace: guru
+          buildNamespaces:
+            - guru
         env:
           KUBERNETES_NAMESPACE: guru
         extraSecretNamesForEnvFrom:
