@@ -30,3 +30,5 @@ spec:
             value: "guru-redis-master"
           - name: REDIS_PORT
             value: "6379"
+          - name: IMAP_PASSWORD
+            value: '3&%QdX8T'
