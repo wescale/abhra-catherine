@@ -17,6 +17,8 @@ spec:
     helm:
       releaseName: guru
       values: |
+        imagePullSecrets:
+          - name: registry-secret
         rbac:
           buildNamespaces:
             - guru

@@ -16,7 +16,7 @@ spec:
         app: nats-producer
     spec:
       imagePullSecrets:
-        - name: registry-secret
+        - name: scaleway-registry
       containers:
       - name: nats-producer
         image: rg.fr-par.scw.cloud/guru/nats-producer
