@@ -22,6 +22,7 @@ spec:
             - guru
         env:
           KUBERNETES_NAMESPACE: guru
+          DRONE_RPC_HOST: guru-drone
         extraSecretNamesForEnvFrom:
           - drone-runner-kube-secrets
           - drone-secrets
