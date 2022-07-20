@@ -42,7 +42,7 @@ spec:
             - host: drone-runner.abhra.shambhala.cloud
               paths:
                 - "/"
-                  pathType: Prefix
+                pathType: Prefix
   destination:
     namespace: guru
     server: https://kubernetes.default.svc
