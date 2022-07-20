@@ -41,7 +41,7 @@ spec:
           hosts:
             - host: drone-runner.abhra.shambhala.cloud
               paths:
-                - path: /
+                - path: "/"
                   pathType: Prefix
   destination:
     namespace: guru
