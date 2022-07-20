@@ -33,16 +33,6 @@ spec:
         extraSecretNamesForEnvFrom:
           - drone-runner-kube-secrets
           - drone-secrets
-        ingress:
-          enabled: true
-          annotations:
-            kubernetes.io/ingress.class: nginx
-            kubernetes.io/tls-acme: "true"
-          hosts:
-            - host: drone-runner.abhra.shambhala.cloud
-              paths:
-                - "/"
-                pathType: Prefix
   destination:
     namespace: guru
     server: https://kubernetes.default.svc
