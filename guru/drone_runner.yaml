@@ -21,6 +21,7 @@ spec:
           buildNamespaces:
             - guru
         env:
+          DRONE_NAMESPACE_DEFAULT: guru
           KUBERNETES_NAMESPACE: guru
           DRONE_RPC_HOST: guru-drone
         extraSecretNamesForEnvFrom:
