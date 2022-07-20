@@ -24,7 +24,7 @@ spec:
           DRONE_NAMESPACE_DEFAULT: guru
           KUBERNETES_NAMESPACE: guru
           DRONE_RPC_HOST: guru-drone
-          DRONE_DEBUG: true
+          DRONE_TRACE: true
         extraSecretNamesForEnvFrom:
           - drone-runner-kube-secrets
           - drone-secrets
