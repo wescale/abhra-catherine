@@ -13579,4 +13579,4 @@ spec:
   tls:
     - hosts:
         - "tracing.abhra.shambhala.cloud"
-      secretName: tracing-cert
+      secretName: tracing-ingress-cert
