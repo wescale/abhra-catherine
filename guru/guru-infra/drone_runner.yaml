@@ -34,8 +34,8 @@ spec:
           - drone-runner-kube-secrets
           - drone-secrets
         ingress:
-          enabled: false
-          annotations: {}
+          enabled: true
+          annotations:
             kubernetes.io/ingress.class: nginx
             kubernetes.io/tls-acme: "true"
           hosts:
