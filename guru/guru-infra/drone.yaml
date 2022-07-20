@@ -38,7 +38,7 @@ spec:
           DRONE_LOGS_TRACE: true
           DRONE_GIT_ALWAYS_AUTH: true
         extraSecretNamesForEnvFrom:
-          - drone-secrets
+          - drone-secrets-2
   destination:
     namespace: guru
     server: https://kubernetes.default.svc
