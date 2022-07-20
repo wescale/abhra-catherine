@@ -17,16 +17,19 @@ spec:
     helm:
       releaseName: guru
       values: |
-        imagePullSecrets:
-          - name: registry-secret
+        # imagePullSecrets:
+        #   - name: registry-secret
         rbac:
           buildNamespaces:
             - guru
         env:
           DRONE_NAMESPACE_DEFAULT: guru
-          KUBERNETES_NAMESPACE: guru
+          # KUBERNETES_NAMESPACE: guru
           DRONE_RPC_HOST: guru-drone
           DRONE_TRACE: true
+          DRONE_DEBUG: true
+          DRONE_RPC_DUMP_HTTP: true
+          DRONE_RPC_DUMP_HTTP_BODY: true
         extraSecretNamesForEnvFrom:
           - drone-runner-kube-secrets
           - drone-secrets
