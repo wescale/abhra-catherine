@@ -31,4 +31,7 @@ spec:
           - name: REDIS_PORT
             value: "6379"
           - name: IMAP_PASSWORD
-            value: 'enugyoljcegfvxng'
+            valueFrom:
+              secretKeyRef:
+                name: otto-bot-creds
+                key: IMAP_PASSWORD
