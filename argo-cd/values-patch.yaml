@@ -7,6 +7,7 @@ argo-cd:
     # envFrom: 
     # - secretRef:
     #     name: google-oidc-credentials
+    url: https://cd-sso.argo.abhra.shambhala.cloud
     additionalProjects: 
       - name: tools
         namespace: tools-argo
