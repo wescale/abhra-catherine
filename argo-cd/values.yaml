@@ -2,6 +2,7 @@ argo-cd:
   dex:
     enabled: true
   server:
+    url: https://cd-sso.argo.abhra.shambhala.cloud
     extraArgs:
       - --insecure
     additionalProjects: 
@@ -50,9 +51,13 @@ argo-cd:
           repoURL: https://github.com/wescale/abhra-catherine
           targetRevision: HEAD
         syncPolicy:
+          automated:
+            selfHeal: true
+            prune: true
           syncOptions:
           - CreateNamespace=true
     config:
+      url: https://cd-sso.argo.abhra.shambhala.cloud
       repositories: |
         - type: helm
           name: argo-cd

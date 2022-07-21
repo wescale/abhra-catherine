@@ -7,7 +7,6 @@ argo-cd:
     # envFrom: 
     # - secretRef:
     #     name: google-oidc-credentials
-    url: https://cd-sso.argo.abhra.shambhala.cloud
     additionalProjects: 
       - name: tools
         namespace: tools-argo
@@ -54,6 +53,9 @@ argo-cd:
           repoURL: https://github.com/wescale/abhra-catherine
           targetRevision: HEAD
         syncPolicy:
+          automated:
+              selfHeal: true
+              prune: true
           syncOptions:
           - CreateNamespace=true
       - name: tools
@@ -67,9 +69,13 @@ argo-cd:
           targetRevision: HEAD
           path: tools
         syncPolicy:
+          automated:
+            selfHeal: true
+            prune: true
           syncOptions:
           - CreateNamespace=true
     config:
+      url: https://cd-sso.argo.abhra.shambhala.cloud
       dex.config: |
         connectors:
         - config:
