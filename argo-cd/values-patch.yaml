@@ -48,6 +48,19 @@ argo-cd:
         syncPolicy:
           syncOptions:
           - CreateNamespace=true
+      - name: tools
+        namespace: tools-argo
+        destination:
+          namespace: tools-argo
+          server: https://kubernetes.default.svc
+        project: tools
+        source:
+          repoURL: https://github.com/wescale/abhra-catherine
+          targetRevision: HEAD
+          path: tools
+        syncPolicy:
+          syncOptions:
+          - CreateNamespace=true
     config:
       repositories: |
         - type: helm
