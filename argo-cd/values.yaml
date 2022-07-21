@@ -1,0 +1,54 @@
+argo-cd:
+  dex:
+    enabled: false
+  server:
+    extraArgs:
+      - --insecure
+    additionalProjects: 
+      - name: tools
+        namespace: tools-argo
+        additionalAnnotations:
+          app.kubernetes.io/managed-by : Helm
+          meta.helm.sh/release-name: abhra
+          meta.helm.sh/release-namespace: tools-argo
+        finalizers:
+        - resources-finalizer.argocd.argoproj.io
+        description: Tooling project
+        sourceRepos:
+        - '*'
+        destinations:
+        - namespace: 'tools-*'
+          server: https://kubernetes.default.svc
+        - namespace: 'kube-system'
+          server: https://kubernetes.default.svc
+        clusterResourceWhitelist:
+        - group: '*'
+          kind: '*'
+        namespaceResourceWhitelist:
+        - group: '*'
+          kind: '*'
+    additionalApplications:
+      - name: argocd
+        namespace: tools-argo
+        destination:
+          namespace: tools-argo
+          server: https://kubernetes.default.svc
+        project: tools
+        source:
+          helm:
+            version: v3
+            valueFiles:
+            - values-patch.yaml
+          path: argo-cd
+          repoURL: https://github.com/wescale/abhra-catherine
+          targetRevision: HEAD
+        syncPolicy:
+          syncOptions:
+          - CreateNamespace=true
+    config:
+      repositories: |
+        - type: helm
+          name: argo-cd
+          url: https://argoproj.github.io/argo-helm
+        - type: git
+          url: https://github.com/wescale/abhra-catherine
