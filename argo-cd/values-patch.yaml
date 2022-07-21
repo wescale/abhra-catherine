@@ -30,25 +30,25 @@ argo-cd:
         namespaceResourceWhitelist:
         - group: '*'
           kind: '*'
-    additionalApplications:
-      - name: tools
-        namespace: tools-argo
-        additionalAnnotations:
-          argocd.argoproj.io/sync-wave: "1"
-        destination:
-          namespace: tools-argo
-          server: https://kubernetes.default.svc
-        project: tools
-        source:
-          repoURL: https://github.com/wescale/abhra-catherine
-          targetRevision: HEAD
-          path: tools
-        syncPolicy:
-          automated:
-            selfHeal: true
-            prune: true
-          syncOptions:
-          - CreateNamespace=true
+    # additionalApplications:
+    #   - name: tools
+    #     namespace: tools-argo
+    #     additionalAnnotations:
+    #       argocd.argoproj.io/sync-wave: "1"
+    #     destination:
+    #       namespace: tools-argo
+    #       server: https://kubernetes.default.svc
+    #     project: tools
+    #     source:
+    #       repoURL: https://github.com/wescale/abhra-catherine
+    #       targetRevision: HEAD
+    #       path: tools
+    #     syncPolicy:
+    #       automated:
+    #         selfHeal: true
+    #         prune: true
+    #       syncOptions:
+    #       - CreateNamespace=true
     config:
       url: https://cd-sso.argo.abhra.shambhala.cloud
       dex.config: |
