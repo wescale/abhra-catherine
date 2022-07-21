@@ -33,6 +33,10 @@ argo-cd:
     additionalApplications:
       - name: argocd
         namespace: tools-argo
+        additionalAnnotations:
+          app.kubernetes.io/managed-by : Helm
+          meta.helm.sh/release-name: abhra
+          meta.helm.sh/release-namespace: tools-argo
         destination:
           namespace: tools-argo
           server: https://kubernetes.default.svc
