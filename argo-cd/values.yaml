@@ -11,6 +11,7 @@ argo-cd:
           app.kubernetes.io/managed-by : Helm
           meta.helm.sh/release-name: abhra
           meta.helm.sh/release-namespace: tools-argo
+          argocd.argoproj.io/sync-wave: "4"
         finalizers:
         - resources-finalizer.argocd.argoproj.io
         description: Tooling project
@@ -30,6 +31,11 @@ argo-cd:
     additionalApplications:
       - name: argocd
         namespace: tools-argo
+        additionalAnnotations:
+          app.kubernetes.io/managed-by : Helm
+          meta.helm.sh/release-name: abhra
+          meta.helm.sh/release-namespace: tools-argo
+          argocd.argoproj.io/sync-wave: "2"
         destination:
           namespace: tools-argo
           server: https://kubernetes.default.svc
@@ -39,6 +45,7 @@ argo-cd:
             version: v3
             valueFiles:
             - values-patch.yaml
+            releaseName: abhra
           path: argo-cd
           repoURL: https://github.com/wescale/abhra-catherine
           targetRevision: HEAD
