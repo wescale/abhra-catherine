@@ -1,24 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: issuers-deployment
+  name: argo-cd
   namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   project: tools
+  destination:
+    namespace: tools-argo
+    server: https://kubernetes.default.svc
   source:
+    helm:
+      version: v3
+      valueFiles:
+      - values-patch.yaml
+      releaseName: abhra
+    path: argo-cd
     repoURL: https://github.com/wescale/abhra-catherine
     targetRevision: HEAD
-    path: issuers
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: tools-argo
   syncPolicy:
     automated:
       selfHeal: true
       prune: true
     syncOptions:
     - CreateNamespace=true
+
