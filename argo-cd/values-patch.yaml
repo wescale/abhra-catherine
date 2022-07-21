@@ -69,6 +69,15 @@ argo-cd:
           syncOptions:
           - CreateNamespace=true
     config:
+      dex.config: |
+        connectors:
+        - config:
+            issuer: https://accounts.google.com
+            clientID: 757461153918-c53aktbh8crmarmu1b9fvuqi5i3aop3s.apps.googleusercontent.com
+            clientSecret: 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
+          type: oidc
+          id: google
+          name: Google
       repositories: |
         - type: helm
           name: argo-cd
