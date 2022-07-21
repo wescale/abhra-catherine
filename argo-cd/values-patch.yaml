@@ -14,7 +14,7 @@ argo-cd:
           app.kubernetes.io/managed-by : Helm
           meta.helm.sh/release-name: abhra
           meta.helm.sh/release-namespace: tools-argo
-          argocd.argoproj.io/sync-wave: "4"
+          argocd.argoproj.io/sync-wave: "5"
         finalizers:
         - resources-finalizer.argocd.argoproj.io
         description: Tooling project
@@ -38,7 +38,7 @@ argo-cd:
           app.kubernetes.io/managed-by : Helm
           meta.helm.sh/release-name: abhra
           meta.helm.sh/release-namespace: tools-argo
-          argocd.argoproj.io/sync-wave: "2"
+          argocd.argoproj.io/sync-wave: "1"
         destination:
           namespace: tools-argo
           server: https://kubernetes.default.svc
