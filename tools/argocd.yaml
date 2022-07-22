@@ -6,7 +6,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "30"
+    argocd.argoproj.io/sync-wave: "50"
 spec:
   project: tools
   destination:
@@ -24,7 +24,7 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
-      prune: true
+      #prune: true
     syncOptions:
     - CreateNamespace=true
 
