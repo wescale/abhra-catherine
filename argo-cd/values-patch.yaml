@@ -42,12 +42,6 @@ argo-cd:
           path: argo-cd
           repoURL: https://github.com/wescale/abhra-catherine
           targetRevision: HEAD
-        syncPolicy:
-          automated:
-            selfHeal: false
-            prune: true
-          syncOptions:
-          - CreateNamespace=true
       - name: tools
         namespace: tools-argo
         additionalAnnotations:
