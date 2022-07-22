@@ -30,6 +30,8 @@ argo-cd:
     additionalApplications:
       - name: argocd
         namespace: tools-argo
+        additionalAnnotations:
+          argocd.argoproj.io/sync-wave: "1000"
         destination:
           namespace: tools-argo
           server: https://kubernetes.default.svc
@@ -51,7 +53,7 @@ argo-cd:
       - name: tools
         namespace: tools-argo
         additionalAnnotations:
-          argocd.argoproj.io/sync-wave: "1"
+          argocd.argoproj.io/sync-wave: "100"
         destination:
           namespace: tools-argo
           server: https://kubernetes.default.svc
