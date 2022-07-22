@@ -47,4 +47,3 @@
         release_namespace: "{{ ns_tooling }}"
         wait: true
         replace: true
-
