@@ -47,7 +47,7 @@ argo-cd:
           syncOptions:
           - CreateNamespace=true
     config:
-      url: https://cd-sso.argo.abhra.shambhala.cloud
+      url: https://cd.argo.abhra.shambhala.cloud
       repositories: |
         - type: helm
           name: argo-cd

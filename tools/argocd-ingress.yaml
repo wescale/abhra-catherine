@@ -21,8 +21,8 @@ spec:
              name: abhra-argocd-server
              port:
                number: 80
-      host: cd-sso.argo.abhra.shambhala.cloud
+      host: cd.argo.abhra.shambhala.cloud
   tls:
     - hosts:
-      - cd-sso.argo.abhra.shambhala.cloud
+      - cd.argo.abhra.shambhala.cloud
       secretName: argocd-server-cert
