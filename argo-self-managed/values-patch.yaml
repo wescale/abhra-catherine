@@ -44,12 +44,6 @@ argo-cd:
           path: argo-cd
           repoURL: https://github.com/wescale/abhra-catherine
           targetRevision: HEAD
-        syncPolicy:
-          automated:
-            selfHeal: false
-            prune: true
-          syncOptions:
-          - CreateNamespace=true
       - name: tools
         namespace: tools-argo
         additionalAnnotations:
@@ -70,6 +64,15 @@ argo-cd:
           - CreateNamespace=true
     config:
       url: https://cd-sso.argo.abhra.shambhala.cloud
+      dex.config: |
+        connectors:
+        - config:
+            issuer: https://accounts.google.com
+            clientID: 757461153918-c53aktbh8crmarmu1b9fvuqi5i3aop3s.apps.googleusercontent.com
+            clientSecret: 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
+          type: oidc
+          id: google
+          name: Google
       repositories: |
         - type: helm
           name: argo-cd
