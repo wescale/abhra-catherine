@@ -28,26 +28,6 @@ argo-cd:
         - group: '*'
           kind: '*'
     additionalApplications:
-      - name: argocd
-        namespace: tools-argo
-        destination:
-          namespace: tools-argo
-          server: https://kubernetes.default.svc
-        project: tools
-        source:
-          helm:
-            version: v3
-            valueFiles:
-            - values-selfmanaged.yaml
-          path: argo-cd
-          repoURL: https://github.com/wescale/abhra-catherine
-          targetRevision: HEAD
-        syncPolicy:
-          automated:
-            selfHeal: false
-            prune: true
-          syncOptions:
-          - CreateNamespace=true
       - name: tools
         namespace: tools-argo
         additionalAnnotations:
@@ -74,18 +54,3 @@ argo-cd:
           url: https://argoproj.github.io/argo-helm
         - type: git
           url: https://github.com/wescale/abhra-catherine
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-        kubernetes.io/tls-acme: "true"
-        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-      hosts: 
-        - cd-sso.argo.abhra.shambhala.cloud
-      pathType: Prefix
-      tls: 
-        - secretName: argocd-secret
-          hosts:
-            - cd-sso.argo.abhra.shambhala.cloud
