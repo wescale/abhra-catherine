@@ -10,10 +10,10 @@ argo-cd:
     additionalProjects: 
       - name: tools
         namespace: tools-argo
-        additionalAnnotations:
-          app.kubernetes.io/managed-by : Helm
-          meta.helm.sh/release-name: abhra
-          meta.helm.sh/release-namespace: tools-argo
+        # additionalAnnotations:
+        #   app.kubernetes.io/managed-by : Helm
+        #   meta.helm.sh/release-name: abhra
+        #   meta.helm.sh/release-namespace: tools-argo
         finalizers:
         - resources-finalizer.argocd.argoproj.io
         description: Tooling project
@@ -33,8 +33,8 @@ argo-cd:
     additionalApplications:
       - name: tools
         namespace: tools-argo
-        additionalAnnotations:
-          argocd.argoproj.io/sync-wave: "1"
+        # additionalAnnotations:
+        #   argocd.argoproj.io/sync-wave: "1"
         destination:
           namespace: tools-argo
           server: https://kubernetes.default.svc
