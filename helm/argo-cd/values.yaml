@@ -2,9 +2,6 @@ argo-cd:
   dex:
     enabled: true
   server:
-    envFrom: 
-    - secretRef:
-        name: google-credentials
     extraArgs:
       - --insecure
     additionalProjects: 
@@ -61,8 +58,10 @@ argo-cd:
         connectors:
         - config:
             issuer: https://accounts.google.com
-            clientID: $google.clientID
-            clientSecret: $google.clientSecret
+            clientID: $google-secret:clientID
+            clientSecret: $google-secret:clientSecret
+            # clientID: 757461153918-c53aktbh8crmarmu1b9fvuqi5i3aop3s.apps.googleusercontent.com
+            # clientSecret: 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
           type: oidc
           id: google
           name: Google
