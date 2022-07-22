@@ -62,7 +62,7 @@ argo-cd:
         - config:
             issuer: https://accounts.google.com
             clientID: $google.clientID
-            clientSecret: $google.R09DU1BYLXdocXFzNUxfakRVVzE1OVVkXzB4T09LMFpCWHoK
+            clientSecret: $google.clientSecret
           type: oidc
           id: google
           name: Google
