@@ -38,7 +38,7 @@ argo-cd:
           helm:
             version: v3
             valueFiles:
-            - values-selfmanaged.yaml
+            - values-patch.yaml
           path: argo-cd
           repoURL: https://github.com/wescale/abhra-catherine
           targetRevision: HEAD
