@@ -38,15 +38,7 @@
       kubernetes.core.k8s:
         state: present
         namespace: "{{ ns_tooling }}"
-        src: "{{ project_root }}/sealed-secrets/argocd-secret-sealed.yaml"
-
-    - name: "Argocd helm install"
-      kubernetes.core.helm:
-        name: abhra
-        chart_ref: "{{ project_root }}/helm/argo-cd"
-        release_namespace: "{{ ns_tooling }}"
-        wait: true
-        replace: true
+        src: "{{ project_root }}/sealed-secrets/google-secret.yaml"
 
     - name: "Argocd helm install"
       kubernetes.core.helm:
