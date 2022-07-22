@@ -4,16 +4,13 @@ argo-cd:
   server:
     extraArgs:
       - --insecure
-    # envFrom: 
-    # - secretRef:
-    #     name: google-oidc-credentials
     additionalProjects: 
       - name: tools
         namespace: tools-argo
-        # additionalAnnotations:
-        #   app.kubernetes.io/managed-by : Helm
-        #   meta.helm.sh/release-name: abhra
-        #   meta.helm.sh/release-namespace: tools-argo
+        additionalAnnotations:
+          app.kubernetes.io/managed-by : Helm
+          meta.helm.sh/release-name: abhra
+          meta.helm.sh/release-namespace: tools-argo
         finalizers:
         - resources-finalizer.argocd.argoproj.io
         description: Tooling project
@@ -31,10 +28,30 @@ argo-cd:
         - group: '*'
           kind: '*'
     additionalApplications:
+      - name: argocd
+        namespace: tools-argo
+        destination:
+          namespace: tools-argo
+          server: https://kubernetes.default.svc
+        project: tools
+        source:
+          helm:
+            version: v3
+            valueFiles:
+            - values-selfmanaged.yaml
+          path: argo-cd
+          repoURL: https://github.com/wescale/abhra-catherine
+          targetRevision: HEAD
+        syncPolicy:
+          automated:
+            selfHeal: false
+            prune: true
+          syncOptions:
+          - CreateNamespace=true
       - name: tools
         namespace: tools-argo
-        # additionalAnnotations:
-        #   argocd.argoproj.io/sync-wave: "1"
+        additionalAnnotations:
+          argocd.argoproj.io/sync-wave: "1"
         destination:
           namespace: tools-argo
           server: https://kubernetes.default.svc
@@ -66,18 +83,18 @@ argo-cd:
           url: https://argoproj.github.io/argo-helm
         - type: git
           url: https://github.com/wescale/abhra-catherine
-    # ingress:
-    #   enabled: false
-    #   ingressClassName: nginx
-    #   annotations:
-    #     cert-manager.io/cluster-issuer: letsencrypt-production
-    #     kubernetes.io/tls-acme: "true"
-    #     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    #     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    #   hosts: 
-    #     - cd-sso.argo.abhra.shambhala.cloud
-    #   pathType: Prefix
-    #   tls: 
-    #     - secretName: argocd-secret
-    #       hosts:
-    #         - cd-sso.argo.abhra.shambhala.cloud
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      hosts: 
+        - cd-sso.argo.abhra.shambhala.cloud
+      pathType: Prefix
+      tls: 
+        - secretName: argocd-secret
+          hosts:
+            - cd-sso.argo.abhra.shambhala.cloud
