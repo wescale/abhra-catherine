@@ -1,3 +1,4 @@
 shell/*
 secrets/*
-
+tags
+.direnv

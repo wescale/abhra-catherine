@@ -1,0 +1,49 @@
+---
+- hosts: "localhost"
+  become: false
+  gather_facts: false
+  strategy: linear
+
+  vars:
+    project_root: "{{ (playbook_dir + '/../') | realpath }}"
+    ns_secrets: "tools-sealed-secrets"
+    ns_tooling: "tools-argo"
+
+  tasks:
+    - name: "Expected namespaces"
+      kubernetes.core.k8s:
+        name: "{{ item }}"
+        api_version: v1
+        kind: Namespace
+        state: present
+      loop:
+        - "{{ ns_tooling }}"
+        - "{{ ns_secrets }}"
+
+    - name: "Sealed secret master key deployment"
+      kubernetes.core.k8s:
+        state: present
+        namespace: "{{ ns_secrets }}"
+        src: "{{ project_root }}/secrets/master.key"
+
+    - name: "Sealed secret helm install"
+      kubernetes.core.helm:
+        name: abhra
+        chart_ref: "{{ project_root }}/helm/sealed-secrets"
+        release_namespace: "{{ ns_secrets }}"
+        wait: true
+        replace: true
+
+    - name: "Sealed secret values deployment"
+      kubernetes.core.k8s:
+        state: present
+        namespace: "{{ ns_tooling }}"
+        src: "{{ project_root }}/sealed-secrets/google-secret.yaml"
+
+    - name: "Argocd helm install"
+      kubernetes.core.helm:
+        name: abhra
+        chart_ref: "{{ project_root }}/helm/argo-cd"
+        release_namespace: "{{ ns_tooling }}"
+        wait: true
+        replace: true
