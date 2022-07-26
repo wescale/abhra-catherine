@@ -23,7 +23,12 @@ spec:
             - name: Redis
               type: redis-datasource
               access: proxy
-              editable: false
+              editable: true
+            - name: Loki
+              type: loki  
+              access: proxy
+              editable: true
+              url: https://{{ printf "%s-loki.svc" .Release.Name }}:3100
   destination:
     namespace: tools-monitoring
     server: https://kubernetes.default.svc
