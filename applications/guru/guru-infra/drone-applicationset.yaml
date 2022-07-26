@@ -19,8 +19,8 @@ spec:
         helm:
           releaseName: guru
           valueFiles: 
-            - drone/base/drone-values.yaml
-            - drone/{{nameNormalized}}/drone-values.yaml
+            - base/drone-values.yaml
+            - ./{{nameNormalized}}/drone-values.yaml
       destination:
         namespace: guru
         server: https://kubernetes.default.svc
