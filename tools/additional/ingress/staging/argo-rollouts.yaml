@@ -15,7 +15,7 @@ spec:
           pathType: ImplementationSpecific
           backend:
             service:
-             name: FIXME
+             name: abhra-argo-rollouts-dahsboard
              port:
                number: 3100
       host: rollout.argo.staging.abhra.shambhala.cloud
