@@ -32,7 +32,7 @@ spec:
                   access: proxy
                   editable: true
                   url: https://{{ printf "%s-loki" .Release.Name }}:3100
-                - name: prometheus
+                - name: Prometheus
                   access: Proxy
                   editable: true
                   type: prometheus
