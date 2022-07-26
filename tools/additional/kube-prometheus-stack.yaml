@@ -21,17 +21,17 @@ spec:
           skipCrds: true
           values: |
             grafana:
-              #extraConfigmapMounts
               additionalDataSources:
-                - name: Redis
-                  type: redis-datasource
-                  access: proxy
-                  editable: true
+              - name: Redis
+                type: redis-datasource
+                access: proxy
+                editable: true
                 # - name: Prometheus
                 #   access: Proxy
                 #   editable: true
                 #   type: prometheus
                 #   url: http://{{.Release.Name}}-kube-prometheus-stac-prometheus:9090
+              #extraConfigmapMounts
               ingress:
                   enabled: true
                   ingressClassName: nginx
@@ -61,7 +61,6 @@ spec:
                     - secretName: prometheus-server-cert
                       hosts:
                         - prometheus.{{metadata.labels.abhra.shambhala/url-base-path}}
-
       destination:
         namespace: tools-monitoring
         server: https://kubernetes.default.svc
