@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/wescale/abhra-catherine
     targetRevision: HEAD
-    path: guru/guru-apps
+    path: applications/guru/guru-apps
   destination:
     server: https://kubernetes.default.svc
     namespace: guru
