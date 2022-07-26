@@ -19,7 +19,7 @@ spec:
         helm:
           releaseName: guru
           valueFiles: 
-            - drone-base-values.yaml
+            - ../helm/drone/base/drone-values.yaml
             - helm/drone/{{nameNormalized}}/drone-values.yaml
       destination:
         namespace: guru
