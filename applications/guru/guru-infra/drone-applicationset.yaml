@@ -13,14 +13,12 @@ spec:
     spec:
       project: guru
       source:
-        chart: drone
-        repoURL: https://charts.drone.io
-        targetRevision: 0.5.0
+        chart: helm/drone
         helm:
           releaseName: guru
           valueFiles: 
-            - drone-values.yaml
-            - helm/drone/{{nameNormalized}}/drone-values.yaml
+            - ./base/drone-values.yaml
+            - ./{{nameNormalized}}/drone-values.yaml
       destination:
         namespace: guru
         server: https://kubernetes.default.svc
