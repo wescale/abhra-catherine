@@ -31,7 +31,7 @@ spec:
                   access: Proxy
                   editable: true
                   type: prometheus
-                  url: https://{{ printf "%s-kube-prometheus-stac-prometheus" .Release.Name }}:9090
+                  url: http://{{ printf "%s-kube-prometheus-stac-prometheus" .Release.Name }}:9090
               ingress:
                   enabled: true
                   ingressClassName: nginx
