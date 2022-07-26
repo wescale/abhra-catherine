@@ -18,8 +18,11 @@ spec:
       skipCrds: true
       values: |
         grafana:
-          plugins:
-            - redis-datasource
+          #extraConfigmapMounts
+          additionalDataSources:
+            - name: Redis
+              type: redis-datasource
+              access: proxy
   destination:
     namespace: tools-monitoring
     server: https://kubernetes.default.svc
