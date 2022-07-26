@@ -22,7 +22,7 @@ spec:
           values: |
             grafana:
               plugins:
-              - redis-dashboard
+              - redis-datasource
               #extraConfigmapMounts
               additionalDataSources:
                 - name: Prometheus
