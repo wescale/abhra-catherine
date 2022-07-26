@@ -27,11 +27,16 @@ spec:
                   type: redis-datasource
                   access: proxy
                   editable: true
-                - name: Loki
-                  type: loki  
-                  access: proxy
+                # - name: Loki
+                #   type: loki  
+                #   access: proxy
+                #   editable: true
+                #   url: https://{{ printf "%s-loki" .Release.Name }}:3100
+                - name: prometheus
+                  access: Proxy
                   editable: true
-                  url: https://{{ printf "%s-loki" .Release.Name }}:3100
+                  type: prometheus
+                  url: https://{{ printf "%s-kube-prometheus-stac-prometheus" .Release.Name }}:9090
               ingress:
                   enabled: true
                   ingressClassName: nginx
