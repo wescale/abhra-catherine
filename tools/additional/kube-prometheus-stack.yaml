@@ -63,7 +63,7 @@ spec:
                         - prometheus.{{metadata.labels.abhra.shambhala/url-base-path}}
 
       destination:
-        namespace: tools-argo
+        namespace: tools-monitoring
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:
