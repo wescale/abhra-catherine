@@ -1,3 +1,0 @@
-env:
-  DRONE_SERVER_HOST: ci.abhra.shambhala.cloud
-  DRONE_SERVER: https://ci.abhra.shambhala.cloud
