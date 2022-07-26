@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/wescale/abhra-catherine
     targetRevision: HEAD
-    path: tools-additional
+    path: tools/additional
   destination:
     server: https://kubernetes.default.svc
     namespace: tools-argo

@@ -1,0 +1,32 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: drone
+  namespace: tools-argo
+spec:
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: '{{nameNormalized}}-drone'
+    spec:
+      project: guru
+      source:
+        chart: drone
+        repoURL: https://charts.drone.io
+        targetRevision: 0.5.0
+        helm:
+          releaseName: guru
+          valueFiles: 
+            - drone/base/drone-values.yaml
+            - drone/{{nameNormalized}}/drone-values.yaml
+      destination:
+        namespace: guru
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true

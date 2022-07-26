@@ -463,29 +463,3 @@ spec:
     name: http
   selector:
     app: tracer-wescale-rules
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: tracer-ignore-me-ingress
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-production
-    argocd.argoproj.io/sync-wave: "10"
-spec:
-  rules:
-    - host: "tracer.abhra.shambhala.cloud"
-      http:
-        paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: tracer-ignore-me-service
-              port:
-                number: 5001
-  tls:
-    - hosts:
-        - "tracer.abhra.shambhala.cloud"
-      secretName: tracer-cert

@@ -1,22 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guru
+  name: drone
   # Ongoing bug : https://github.com/argoproj/argo-cd/issues/3474
   namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: guru
   source:
-    repoURL: https://github.com/wescale/abhra-catherine
-    targetRevision: HEAD
-    path: applications/guru
+    chart: drone
+    repoURL: https://charts.drone.io
+    targetRevision: 0.5.0
+    helm:
+      releaseName: guru
+      valueFiles: 
+        - helm/base/drone-values.yaml
+        #FIXME
+        - helm/prod/drone-values.yaml
   destination:
-    server: https://kubernetes.default.svc
     namespace: guru
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       selfHeal: true

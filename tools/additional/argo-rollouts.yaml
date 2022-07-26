@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: roles-deployement
+  name: argo-rollouts
   namespace: tools-argo
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,15 +10,21 @@ metadata:
 spec:
   project: tools
   source:
-    repoURL: https://github.com/wescale/abhra-catherine
-    targetRevision: HEAD
-    path: roles
+    chart: argo-rollouts
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: 2.17.0
+    helm:
+      releaseName: abhra
+      values: |
+        dashboard:
+          enabled: true
   destination:
-    server: https://kubernetes.default.svc
     namespace: tools-argo
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       selfHeal: true
       prune: true
     syncOptions:
     - CreateNamespace=true
+

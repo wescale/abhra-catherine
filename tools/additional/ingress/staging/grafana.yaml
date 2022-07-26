@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-server
+  namespace: tools-monitoring
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+spec:
+  rules:
+    - http:
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+             name: abhra-grafana
+             port:
+               number: 80
+      host: grafana.staging.abhra.shambhala.cloud
+  tls:
+    - hosts:
+      - grafana.staging.abhra.shambhala.cloud
+      secretName: grafana-server-cert

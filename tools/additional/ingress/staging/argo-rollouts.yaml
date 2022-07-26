@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argo-rollout-server
+  namespace: tools-monitoring
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    kubernetes.io/tls-acme: 'true'
+spec:
+  rules:
+    - http:
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+             name: FIXME
+             port:
+               number: 3100
+      host: rollout.argo.staging.abhra.shambhala.cloud
+  tls:
+    - hosts:
+      - rollout.argo.staging.abhra.shambhala.cloud
+      secretName: argo-rollout-server-cert
