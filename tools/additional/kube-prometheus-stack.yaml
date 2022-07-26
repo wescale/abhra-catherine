@@ -23,16 +23,11 @@ spec:
             grafana:
               #extraConfigmapMounts
               additionalDataSources:
-                - name: Redis
-                  type: redis-datasource
-                  access: proxy
-                  editable: true
-                # - name: Loki
-                #   type: loki  
+                # - name: Redis
+                #   type: redis-datasource
                 #   access: proxy
                 #   editable: true
-                #   url: https://{{ printf "%s-loki" .Release.Name }}:3100
-                - name: prometheus
+                - name: Prometheus
                   access: Proxy
                   editable: true
                   type: prometheus
