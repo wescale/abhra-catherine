@@ -10,7 +10,7 @@ spec:
     metadata:
       name: 'guru-ingress'
     spec:
-      project: tools
+      project: guru
       source:
         repoURL: https://github.com/wescale/abhra-catherine
         targetRevision: HEAD
