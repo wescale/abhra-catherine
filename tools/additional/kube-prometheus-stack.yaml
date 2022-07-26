@@ -21,8 +21,15 @@ spec:
           skipCrds: true
           values: |
             grafana:
+              plugins:
+              - redis-dashboard
               #extraConfigmapMounts
               additionalDataSources:
+                - name: Prometheus
+                  access: proxy
+                  editable: true
+                  type: prometheus
+                  url: https://{{ printf "%s-kube-prometheus-stac-prometheus.tools-monitoring" .Release.Name }}:9090
                 - name: Redis
                   type: redis-datasource
                   access: proxy
@@ -32,11 +39,6 @@ spec:
                   access: proxy
                   editable: true
                   url: https://{{ printf "%s-loki" .Release.Name }}:3100
-                - name: Prometheus
-                  access: Proxy
-                  editable: true
-                  type: prometheus
-                  url: https://{{ printf "%s-kube-prometheus-stac-prometheus" .Release.Name }}:9090
               ingress:
                   enabled: true
                   ingressClassName: nginx
