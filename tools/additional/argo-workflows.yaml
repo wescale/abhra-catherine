@@ -41,7 +41,7 @@ spec:
                       - workflows.{{metadata.labels.abhra.shambhala/url-base-path}}
 
       destination:
-        namespace: guru
+        namespace: tools-argo
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:
