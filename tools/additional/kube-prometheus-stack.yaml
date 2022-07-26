@@ -21,17 +21,22 @@ spec:
           skipCrds: true
           values: |
             grafana:
-              additionalDataSources:
-              - name: Redis
-                type: redis-datasource
-                access: proxy
-                editable: true
-                # - name: Prometheus
-                #   access: Proxy
-                #   editable: true
-                #   type: prometheus
-                #   url: http://{{.Release.Name}}-kube-prometheus-stac-prometheus:9090
               #extraConfigmapMounts
+              additionalDataSources:
+                - name: Redis
+                  type: redis-datasource
+                  access: proxy
+                  editable: true
+                - name: Loki
+                  type: loki  
+                  access: proxy
+                  editable: true
+                  url: https://{{ printf "%s-loki" .Release.Name }}:3100
+                - name: prometheus
+                  access: Proxy
+                  editable: true
+                  type: prometheus
+                  url: https://{{ printf "%s-kube-prometheus-stac-prometheus" .Release.Name }}:9090
               ingress:
                   enabled: true
                   ingressClassName: nginx
@@ -61,6 +66,7 @@ spec:
                     - secretName: prometheus-server-cert
                       hosts:
                         - prometheus.{{metadata.labels.abhra.shambhala/url-base-path}}
+
       destination:
         namespace: tools-monitoring
         server: https://kubernetes.default.svc
