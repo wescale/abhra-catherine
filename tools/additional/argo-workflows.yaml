@@ -17,7 +17,7 @@ spec:
         repoURL: https://argoproj.github.io/argo-helm
         targetRevision: 0.16.6
         helm:
-          releaseName: guru
+          releaseName: abhra
           values: |
             workflow:
               rbac:

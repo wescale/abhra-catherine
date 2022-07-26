@@ -1,40 +1,73 @@
+
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: kube-prometheus-stack
+  name: kube-prometheus-stack-as
   namespace: tools-argo
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "4"
 spec:
-  project: tools
-  source:
-    chart: kube-prometheus-stack
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 37.0.0
-    helm:
-      releaseName: abhra
-      skipCrds: true
-      values: |
-        grafana:
-          #extraConfigmapMounts
-          additionalDataSources:
-            - name: Redis
-              type: redis-datasource
-              access: proxy
-              editable: true
-            - name: Loki
-              type: loki  
-              access: proxy
-              editable: true
-              url: https://{{ printf "%s-loki.svc" .Release.Name }}:3100
-  destination:
-    namespace: tools-monitoring
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
-    syncOptions:
-    - CreateNamespace=true
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: kube-prometheus-stack
+    spec:
+      project: tools
+      source:
+        chart: kube-prometheus-stack
+        repoURL: https://prometheus-community.github.io/helm-charts
+        targetRevision: 37.0.0
+        helm:
+          releaseName: abhra
+          skipCrds: true
+          values: |
+            grafana:
+              #extraConfigmapMounts
+              additionalDataSources:
+                - name: Redis
+                  type: redis-datasource
+                  access: proxy
+                  editable: true
+                - name: Loki
+                  type: loki  
+                  access: proxy
+                  editable: true
+                  url: https://{{ printf "%s-loki" .Release.Name }}:3100
+              ingress:
+                  enabled: true
+                  ingressClassName: nginx
+                  annotations:
+                    cert-manager.io/cluster-issuer: 'letsencrypt-{{metadata.labels.abhra.shambhala/environment-type}}'
+                    kubernetes.io/tls-acme: 'true'
+                  hosts: 
+                    - grafana.{{metadata.labels.abhra.shambhala/url-base-path}}
+                  path: /
+                  pathType: Prefix
+                  tls: 
+                    - secretName: grafana-server-cert
+                      hosts:
+                        - grafana.{{metadata.labels.abhra.shambhala/url-base-path}}
+            prometheus:
+              ingress:
+                  enabled: true
+                  ingressClassName: nginx
+                  annotations:
+                    cert-manager.io/cluster-issuer: 'letsencrypt-{{metadata.labels.abhra.shambhala/environment-type}}'
+                    kubernetes.io/tls-acme: 'true'
+                  hosts: 
+                    - prometheus.{{metadata.labels.abhra.shambhala/url-base-path}}
+                  path: /
+                  pathType: Prefix
+                  tls: 
+                    - secretName: prometheus-server-cert
+                      hosts:
+                        - prometheus.{{metadata.labels.abhra.shambhala/url-base-path}}
+
+      destination:
+        namespace: tools-argo
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true
