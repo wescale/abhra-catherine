@@ -23,6 +23,7 @@ spec:
             - name: Redis
               type: redis-datasource
               access: proxy
+              editable: false
   destination:
     namespace: tools-monitoring
     server: https://kubernetes.default.svc
