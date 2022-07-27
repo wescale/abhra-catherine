@@ -47,7 +47,7 @@ spec:
                   access: proxy
                   editable: true
                   type: prometheus
-                  isDefault: true
+                  isDefault: false
                   url: http://{{ printf "%s-kube-prometheus-stac-prometheus.tools-monitoring" .Release.Name }}:9090
                 - name: Redis
                   type: redis-datasource
