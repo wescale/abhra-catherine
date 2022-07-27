@@ -19,8 +19,9 @@ kubectl create namespace tools-sealed-secrets
 kubectl --namespace tools-sealed-secrets apply -f secrets/master.key
 helm install -n tools-sealed-secrets  abhra helm/sealed-secrets
 kubectl create namespace tools-argo
-kubectl --namespace tools-argo apply -f sealed-secrets/google-secret.yaml
-helm install -n tools-argo  abhra helm/argo-cd (modifié) 
+kubectl --namespace tools-argo apply -f resources/sealed-secrets/google-secret.yaml
+kubectl --namespace tools-argo apply -f secrets/staging-cluster-secret.yaml
+helm install -n tools-argo  abhra helm/argo-cd
 
 
 

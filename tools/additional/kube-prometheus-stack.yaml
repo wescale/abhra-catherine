@@ -21,24 +21,43 @@ spec:
           skipCrds: true
           values: |
             grafana:
+              envFromSecret: google-secret
               plugins:
               - redis-datasource
-              #extraConfigmapMounts
+              # extraConfigmapMounts:
+              # - name: oauth-configmap
+                # mountPath: /etc/grafana/ssl/
+                # subPath: certificates.crt # (optional)
+                # configMap: certs-configmap
+                # readOnly: true
+              grafana.ini:
+                server:
+                  rootUrl: https://grafana.{{metadata.labels.abhra.shambhala/url-base-path}}
+                auth.google:
+                  enabled = true
+                  client_id = $clientID
+                  client_secret = $clientSecret
+                  scopes = https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
+                  auth_url = https://accounts.google.com/o/oauth2/auth
+                  token_url = https://accounts.google.com/o/oauth2/token
+                  allowed_domains = wescale.fr
+                  allow_sign_up = true
               additionalDataSources:
                 - name: Prometheus
                   access: proxy
                   editable: true
                   type: prometheus
-                  url: https://{{ printf "%s-kube-prometheus-stac-prometheus.tools-monitoring" .Release.Name }}:9090
+                  url: http://{{ printf "%s-kube-prometheus-stac-prometheus.tools-monitoring" .Release.Name }}:9090
                 - name: Redis
                   type: redis-datasource
                   access: proxy
                   editable: true
+                  url: redis://guru-redis-master.guru.svc:6379
                 - name: Loki
                   type: loki  
                   access: proxy
                   editable: true
-                  url: https://{{ printf "%s-loki" .Release.Name }}:3100
+                  url: http://{{ printf "%s-loki" .Release.Name }}:3100
               ingress:
                   enabled: true
                   ingressClassName: nginx
