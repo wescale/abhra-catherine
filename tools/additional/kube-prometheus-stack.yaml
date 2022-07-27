@@ -47,17 +47,22 @@ spec:
                   access: proxy
                   editable: true
                   type: prometheus
+                  isDefault: true
                   url: http://{{ printf "%s-kube-prometheus-stac-prometheus.tools-monitoring" .Release.Name }}:9090
                 - name: Redis
                   type: redis-datasource
                   access: proxy
                   editable: true
                   url: redis://guru-redis-master.guru.svc:6379
+                  basicAuth: true
+                  basicAuthPassword: $REDIS_PASSWORD
+                  isDefault: false
                 - name: Loki
                   type: loki  
                   access: proxy
                   editable: true
                   url: http://{{ printf "%s-loki" .Release.Name }}:3100
+                  isDefault: false
               ingress:
                   enabled: true
                   ingressClassName: nginx
