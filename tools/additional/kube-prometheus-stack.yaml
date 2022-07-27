@@ -21,15 +21,19 @@ spec:
           skipCrds: true
           values: |
             grafana:
+              sidecar:
+                dashboards:
+                  # To enable sidecar
+                  enabled: true
+                  # Label key that configMaps should have in order to be mounted 
+                  label: grafana_dashboard
+                  # Folder where the configMaps are mounted in Grafana container
+                  folder: /tmp/dashboards
+                  # To enable searching configMap accross all namespaces
+                  searchNamespace: guru
               envFromSecret: google-secret-for-grafana
               plugins:
               - redis-datasource
-              # extraConfigmapMounts:
-              # - name: oauth-configmap
-                # mountPath: /etc/grafana/ssl/
-                # subPath: certificates.crt # (optional)
-                # configMap: certs-configmap
-                # readOnly: true
               grafana.ini:
                 server:
                   root_url: https://grafana.{{metadata.labels.abhra.shambhala/url-base-path}}
@@ -43,12 +47,6 @@ spec:
                   allowed_domains: wescale.fr
                   allow_sign_up: true
               additionalDataSources:
-                # - name: Prometheus
-                #   access: proxy
-                #   editable: true
-                #   type: prometheus
-                #   isDefault: false
-                #   url: http://{{ printf "%s-kube-prometheus-stac-prometheus.tools-monitoring" .Release.Name }}:9090
                 - name: Redis
                   type: redis-datasource
                   access: proxy
@@ -57,12 +55,6 @@ spec:
                   basicAuth: true
                   basicAuthPassword: $REDIS_PASSWORD
                   isDefault: false
-                # - name: Loki
-                #   type: loki  
-                #   access: proxy
-                #   editable: true
-                #   url: http://{{ printf "%s-loki" .Release.Name }}:3100
-                #   isDefault: false
               ingress:
                   enabled: true
                   ingressClassName: nginx

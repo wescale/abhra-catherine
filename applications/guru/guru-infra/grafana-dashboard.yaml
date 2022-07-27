@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-dashboard                           # ConfigMap name
-  namespace: tools-monitoring                            # ConfigMap namespace (can be any namespace)
+  namespace: guru                          # ConfigMap namespace (can be any namespace)
   labels:
     grafana_dashboard: "argocd"                    # Required label key 'grafana_dashboard', label value can be anything
 data:
@@ -4007,7 +4007,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: guru-dashboard                           # ConfigMap name
-  namespace: tools-monitoring                            # ConfigMap namespace (can be any namespace)
+  namespace: guru                           # ConfigMap namespace (can be any namespace)
   labels:
     grafana_dashboard: "Guru"                    # Required label key 'grafana_dashboard', label value can be anything
 data:
