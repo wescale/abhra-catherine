@@ -32,7 +32,7 @@ spec:
                 # readOnly: true
               grafana.ini:
                 server:
-                  rootUrl: https://grafana.{{metadata.labels.abhra.shambhala/url-base-path}}
+                  root_url: https://grafana.{{metadata.labels.abhra.shambhala/url-base-path}}
                 auth.google:
                   enabled: true
                   client_id: 757461153918-c53aktbh8crmarmu1b9fvuqi5i3aop3s.apps.googleusercontent.com
