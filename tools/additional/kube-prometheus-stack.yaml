@@ -21,7 +21,7 @@ spec:
           skipCrds: true
           values: |
             grafana:
-              envFromSecret: google-secret
+              envFromSecret: google-secret-for-grafana
               plugins:
               - redis-datasource
               # extraConfigmapMounts:
