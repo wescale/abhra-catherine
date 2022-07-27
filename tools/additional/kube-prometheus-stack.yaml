@@ -57,12 +57,12 @@ spec:
                   basicAuth: true
                   basicAuthPassword: $REDIS_PASSWORD
                   isDefault: false
-                - name: Loki
-                  type: loki  
-                  access: proxy
-                  editable: true
-                  url: http://{{ printf "%s-loki" .Release.Name }}:3100
-                  isDefault: false
+                # - name: Loki
+                #   type: loki  
+                #   access: proxy
+                #   editable: true
+                #   url: http://{{ printf "%s-loki" .Release.Name }}:3100
+                #   isDefault: false
               ingress:
                   enabled: true
                   ingressClassName: nginx

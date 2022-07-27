@@ -16,6 +16,8 @@ spec:
     helm:
       releaseName: abhra
       values: |
+        loki:
+          isDefault: false
         promtail:
           config:
             lokiAddress: http://{{ .Release.Name }}-loki:3100/loki/api/v1/push
