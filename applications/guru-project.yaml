@@ -14,7 +14,7 @@ spec:
   destinations:
   # Ongoing bug : https://github.com/argoproj/argo-cd/issues/3474
   - namespace: 'tools-argo'
-    server: https://kubernetes.default.
+    server: https://kubernetes.default.svc
   - namespace: 'tools-monitoring'
     server: https://kubernetes.default.svc
   - namespace: 'guru'
