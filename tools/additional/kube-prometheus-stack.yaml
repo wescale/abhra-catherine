@@ -35,8 +35,8 @@ spec:
                   rootUrl: https://grafana.{{metadata.labels.abhra.shambhala/url-base-path}}
                 auth.google:
                   enabled: true
-                  client_id: $clientID
-                  client_secret: $clientSecret
+                  client_id: TO_BE_REPLACED
+                  client_secret: TO_BE_REPLACED
                   scopes: https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
                   auth_url: https://accounts.google.com/o/oauth2/auth
                   token_url: https://accounts.google.com/o/oauth2/token
