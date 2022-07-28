@@ -53,7 +53,7 @@ spec:
                   editable: true
                   url: redis://guru-redis-master.guru.svc:6379
                   basicAuth: true
-                  basicAuthPassword: $GF_AUTH_GOOGLE_CLIENT_ID
+                  basicAuthPassword: xxxx
                   isDefault: false
               ingress:
                   enabled: true
