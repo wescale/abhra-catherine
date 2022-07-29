@@ -21,16 +21,12 @@ spec:
           skipCrds: true
           values: |
             grafana:
-              # sidecar:
-              #   dashboards:
-              #     # To enable sidecar
-              #     enabled: true
-              #     # Label key that configMaps should have in order to be mounted 
-              #     label: grafana_dashboard
-              #     # Folder where the configMaps are mounted in Grafana container
-              #     folder: /tmp/dashboards
-              #     # To enable searching configMap accross all namespaces
-              #     searchNamespace: guru
+              sidecar:
+                dashboards:
+                  enabled: true
+                  label: grafana_dashboard
+                  folder: /tmp/addtional_dashboards
+                  searchNamespace: guru
               envFromSecrets: 
                 - name: google-secret-for-grafana
                 - name: redis-secret
