@@ -31,7 +31,9 @@ spec:
               #     folder: /tmp/dashboards
               #     # To enable searching configMap accross all namespaces
               #     searchNamespace: guru
-              envFromSecret: google-secret-for-grafana
+              envFromSecrets: 
+                - name: google-secret-for-grafana
+                - name: redis-secret
               plugins:
               - redis-datasource
               grafana.ini:
@@ -53,7 +55,7 @@ spec:
                   editable: true
                   url: redis://guru-redis-master.guru.svc:6379
                   basicAuth: true
-                  basicAuthPassword: xxxx
+                  basicAuthPassword: $redis-password
                   isDefault: false
               ingress:
                   enabled: true

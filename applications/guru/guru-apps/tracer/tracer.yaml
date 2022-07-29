@@ -51,10 +51,10 @@ spec:
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: guru-redis
+              name: redis-secret
               key: redis-password
         - name: REDIS_HOST
-          value: "guru-redis-master"
+          value: "redis-secret-master"
         - name: REDIS_PORT
           value: "6379"
 ---
@@ -111,10 +111,10 @@ spec:
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: guru-redis
+              name: redis-secret
               key: redis-password
         - name: REDIS_HOST
-          value: "guru-redis-master"
+          value: "redis-secret-master"
         - name: REDIS_PORT
           value: "6379"
 
@@ -166,10 +166,10 @@ spec:
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: guru-redis
+              name: redis-secret
               key: redis-password
         - name: REDIS_HOST
-          value: "guru-redis-master"
+          value: "redis-secret-master"
         - name: REDIS_PORT
           value: "6379"
 ---
@@ -222,10 +222,10 @@ spec:
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: guru-redis
+              name: redis-secret
               key: redis-password
         - name: REDIS_HOST
-          value: "guru-redis-master"
+          value: "redis-secret-master"
         - name: REDIS_PORT
           value: "6379"
 ---
@@ -280,10 +280,10 @@ spec:
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: guru-redis
+              name: redis-secret
               key: redis-password
         - name: REDIS_HOST
-          value: "guru-redis-master"
+          value: "redis-secret-master"
         - name: REDIS_PORT
           value: "6379"
 ---
@@ -338,10 +338,10 @@ spec:
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: guru-redis
+              name: redis-secret
               key: redis-password
         - name: REDIS_HOST
-          value: "guru-redis-master"
+          value: "redis-secret-master"
         - name: REDIS_PORT
           value: "6379"
 ---
@@ -390,10 +390,10 @@ spec:
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: guru-redis
+              name: redis-secret
               key: redis-password
         - name: REDIS_HOST
-          value: "guru-redis-master"
+          value: "redis-secret-master"
         - name: REDIS_PORT
           value: "6379"
 ---
@@ -444,10 +444,10 @@ spec:
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: guru-redis
+              name: redis-secret
               key: redis-password
         - name: REDIS_HOST
-          value: "guru-redis-master"
+          value: "redis-secret-master"
         - name: REDIS_PORT
           value: "6379"
 ---

@@ -16,6 +16,10 @@ spec:
     targetRevision: 17.0.1
     helm:
       releaseName: guru
+      values: |
+        auth:
+          existingSecret: redis-secret
+          existingSecretPasswordKey: redis-password
   destination:
     namespace: guru
     server: https://kubernetes.default.svc
