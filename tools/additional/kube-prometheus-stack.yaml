@@ -26,7 +26,7 @@ spec:
                   enabled: true
                   label: grafana_dashboard
                   folder: /tmp/addtional_dashboards
-                  searchNamespace: guru
+                  searchNamespace: ALL
               envFromSecrets: 
                 - name: google-secret-for-grafana
                 - name: redis-secret
