@@ -4011,7 +4011,7 @@ metadata:
   labels:
     grafana_dashboard: "Guru"                    # Required label key 'grafana_dashboard', label value can be anything
 data:
-  guru.json: |                 
+  guru.json: |-                
     {
     "annotations": {
       "list": [
@@ -4123,4 +4123,5 @@ data:
     "title": "Guru",
     "uid": "1e23Piz4z",
     "version": 1,
-    "weekStart": ""}
+    "weekStart": ""
+    }
