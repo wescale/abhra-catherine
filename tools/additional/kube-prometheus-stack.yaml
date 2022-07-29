@@ -55,7 +55,7 @@ spec:
                   editable: true
                   url: redis://guru-redis-master.guru.svc:6379
                   basicAuth: true
-                  basicAuthPassword: $${REDIS_PASSWORD}
+                  basicAuthPassword: ${REDIS_PASSWORD}
                   isDefault: false
               ingress:
                   enabled: true
