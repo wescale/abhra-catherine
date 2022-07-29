@@ -25,7 +25,7 @@ spec:
                 dashboards:
                   enabled: true
                   label: grafana_dashboard
-                  folder: /tmp/addtional_dashboards
+                  folder: /tmp/dashboards
                   searchNamespace: ALL
               envFromSecrets: 
                 - name: google-secret-for-grafana
