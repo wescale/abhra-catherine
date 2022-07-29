@@ -54,9 +54,9 @@ spec:
                   access: proxy
                   editable: true
                   url: redis://guru-redis-master.guru.svc:6379
-                  basicAuth: true
-                  basicAuthPassword: ${REDIS_PASSWORD}
                   isDefault: false
+                  secureJsonData:
+                    password: ${REDIS_PASSWORD}
               ingress:
                   enabled: true
                   ingressClassName: nginx
