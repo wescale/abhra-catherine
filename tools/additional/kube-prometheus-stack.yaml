@@ -22,6 +22,9 @@ spec:
           values: |
             grafana:
               sidecar:
+                logLevel: DEBUG
+                datasources:
+                  enabled: false
                 dashboards:
                   enabled: true
                   label: grafana_dashboard
