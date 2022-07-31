@@ -4007,7 +4007,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: guru-dashboard                           
-  namespace: guru                           
+  namespace: tools-monitoring                           
   labels:
     grafana_dashboard: "Guru"                    # Required label key 'grafana_dashboard', label value can be anything
 data:
