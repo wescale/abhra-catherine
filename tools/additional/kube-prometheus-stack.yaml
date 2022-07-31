@@ -30,8 +30,8 @@ spec:
               envFromSecrets: 
                 - name: google-secret-for-grafana
                 - name: redis-secret
-              plugins:
-              - redis-datasource
+              # plugins:
+              # - redis-datasource
               grafana.ini:
                 server:
                   root_url: https://grafana.{{metadata.labels.abhra.shambhala/url-base-path}}
@@ -44,15 +44,15 @@ spec:
                   token_url: https://accounts.google.com/o/oauth2/token
                   allowed_domains: wescale.fr
                   allow_sign_up: true
-              additionalDataSources:
-                - name: Redis
-                  type: redis-datasource
-                  access: proxy
-                  editable: true
-                  url: redis://guru-redis-master.guru.svc:6379
-                  isDefault: false
-                  secureJsonData:
-                    password: ${REDIS_PASSWORD}
+              # additionalDataSources:
+              #   - name: Redis
+              #     type: redis-datasource
+              #     access: proxy
+              #     editable: true
+              #     url: redis://guru-redis-master.guru.svc:6379
+              #     isDefault: false
+              #     secureJsonData:
+              #       password: ${REDIS_PASSWORD}
               ingress:
                   enabled: true
                   ingressClassName: nginx
