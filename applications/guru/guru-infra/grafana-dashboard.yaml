@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: guru-datasource
   labels:
-     grafana_datasource: "100"
+     grafana_datasource: "1"
   namespace: tools-monitoring
 data:
   redis-datasource.yaml: |-
