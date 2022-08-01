@@ -22,9 +22,15 @@ spec:
           values: |
             grafana:
               sidecar:
-                logLevel: DEBUG
+                logLevel: DEBUG  
                 datasources:
-                  enabled: false
+                  enabled: true
+                  label: grafana_datasource
+                  searchNamespace: ALL
+                  watchMethod: WATCH
+                  resource: both
+                  reloadURL: "http://localhost:3000/api/admin/provisioning/datasources/reload"
+                  skipReload: false
                 dashboards:
                   enabled: true
                   SCProvider: true

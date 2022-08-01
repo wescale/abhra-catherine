@@ -1,6 +1,26 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: guru-datasource
+  labels:
+     grafana_datasource: "redis"
+     namespace: tools-monitoring
+data:
+  redis-datasource.yaml: |-
+    apiVersion: 1
+    datasources:
+    - name: Redis
+      type: redis-datasource
+      access: proxy
+      editable: true
+      url: redis://guru-redis-master.guru.svc:6379
+      isDefault: false
+      secureJsonData:
+        password: ${REDIS_PASSWORD}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
   name: guru-dashboard                           
   namespace: tools-monitoring                           
   labels:
