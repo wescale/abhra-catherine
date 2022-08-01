@@ -27,9 +27,30 @@ spec:
                   enabled: false
                 dashboards:
                   enabled: true
+                  SCProvider: true
                   label: grafana_dashboard
                   folder: /tmp/dashboards
                   searchNamespace: ALL
+                  watchMethod: WATCH
+                  watchServerTimeout: 60
+                  watchClientTimeout: 60
+                  provider:
+                    name: sidecarProvider
+                    orgid: 1
+                    folder: ''
+                    type: file
+                    disableDelete: true
+                    allowUiUpdates: true
+                    foldersFromFilesStructure: false
+                plugins:
+                  enabled: true
+                  label: grafana_plugin
+                  searchNamespace: ALL
+                  watchMethod: WATCH
+                  resource: both
+                  reloadURL: "http://localhost:3000/api/admin/provisioning/plugins/reload"
+                  skipReload: false
+                  initPlugins: false
               envFromSecrets: 
                 - name: google-secret-for-grafana
                 - name: redis-secret
