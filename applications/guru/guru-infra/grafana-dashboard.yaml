@@ -26,7 +26,7 @@ metadata:
   labels:
     grafana_dashboard: "Guru"
 data:
-  guru.json: |-    
+  guru.json: |    
     {
       "annotations": {
         "list": [
