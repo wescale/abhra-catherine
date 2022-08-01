@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: guru-datasource
   labels:
-     grafana_datasource: "redis"
-     namespace: tools-monitoring
+     grafana_datasource: "100"
+  namespace: tools-monitoring
 data:
   redis-datasource.yaml: |-
     apiVersion: 1
@@ -24,7 +24,7 @@ metadata:
   name: guru-dashboard                           
   namespace: tools-monitoring                           
   labels:
-    grafana_dashboard: "Guru"
+    grafana_dashboard: "9999"
 data:
   guru.json: |    
     {
