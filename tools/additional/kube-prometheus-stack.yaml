@@ -26,6 +26,7 @@ spec:
                 datasources:
                   enabled: true
                   label: grafana_datasource
+                  labelValue: ""
                   searchNamespace: ALL
                   watchMethod: WATCH
                   resource: both
@@ -35,6 +36,7 @@ spec:
                   enabled: true
                   SCProvider: true
                   label: grafana_dashboard
+                  labelValue: ""
                   folder: /tmp/dashboards
                   searchNamespace: ALL
                   watchMethod: WATCH
@@ -49,8 +51,9 @@ spec:
                     allowUiUpdates: true
                     foldersFromFilesStructure: false
                 plugins:
-                  enabled: true
+                  enabled: false
                   label: grafana_plugin
+                  labelValue: ""
                   searchNamespace: ALL
                   watchMethod: WATCH
                   resource: both
@@ -60,8 +63,8 @@ spec:
               envFromSecrets: 
                 - name: google-secret-for-grafana
                 - name: redis-secret
-              # plugins:
-              # - redis-datasource
+              plugins:
+              - redis-datasource
               grafana.ini:
                 server:
                   root_url: https://grafana.{{metadata.labels.abhra.shambhala/url-base-path}}

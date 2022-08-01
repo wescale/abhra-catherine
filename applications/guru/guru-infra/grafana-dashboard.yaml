@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: guru-datasource
   labels:
-     grafana_datasource: "1"
+     grafana_datasource: "guru"
   namespace: tools-monitoring
 data:
   redis-datasource.yaml: |-
@@ -24,258 +24,133 @@ metadata:
   name: guru-dashboard                           
   namespace: tools-monitoring                           
   labels:
-    grafana_dashboard: "9999"
+    grafana_dashboard: "guru"
 data:
-  guru.json: |    
+  guru.json: |-            
     {
-      "annotations": {
-        "list": [
-          {
-            "builtIn": 1,
-            "datasource": {
-              "type": "grafana",
-              "uid": "-- Grafana --"
-            },
-            "enable": true,
-            "hide": true,
-            "iconColor": "rgba(0, 211, 255, 1)",
-            "name": "Annotations & Alerts",
-            "target": {
-              "limit": 100,
-              "matchAny": false,
-              "tags": [],
-              "type": "dashboard"
-            },
-            "type": "dashboard"
-          }
-        ]
-      },
-      "editable": true,
-      "fiscalYearStartMonth": 0,
-      "graphTooltip": 0,
-      "id": 27,
-      "links": [],
-      "liveNow": false,
-      "panels": [
-        {
-          "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
+      "annotations":{
+          "list":[
+            {
+                "builtIn":1,
+                "datasource":{
+                  "type":"grafana",
+                  "uid":"-- Grafana --"
                 },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
+                "enable":true,
+                "hide":true,
+                "iconColor":"rgba(0, 211, 255, 1)",
+                "name":"Annotations & Alerts",
+                "target":{
+                  "limit":100,
+                  "matchAny":false,
+                  "tags":[
+                      
+                  ],
+                  "type":"dashboard"
                 },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 0
-          },
-          "id": 2,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
+                "type":"dashboard"
             }
-          },
-          "title": "Panel Title",
-          "type": "timeseries"
-        }
+          ]
+      },
+      "editable":true,
+      "fiscalYearStartMonth":0,
+      "graphTooltip":0,
+      "id":27,
+      "links":[
+          
       ],
-      "refresh": "",
-      "schemaVersion": 36,
-      "style": "dark",
-      "tags": [],
-      "templating": {
-        "list": []
-      },
-      "time": {
-        "from": "now-6h",
-        "to": "now"
-      },
-      "timepicker": {},
-      "timezone": "",
-      "title": "Test",
-      "uid": "ErEW_hzVz",
-      "version": 1,
-      "weekStart": ""
-    }            
-#     {
-#       "annotations":{
-#           "list":[
-#             {
-#                 "builtIn":1,
-#                 "datasource":{
-#                   "type":"grafana",
-#                   "uid":"-- Grafana --"
-#                 },
-#                 "enable":true,
-#                 "hide":true,
-#                 "iconColor":"rgba(0, 211, 255, 1)",
-#                 "name":"Annotations & Alerts",
-#                 "target":{
-#                   "limit":100,
-#                   "matchAny":false,
-#                   "tags":[
+      "liveNow":false,
+      "panels":[
+          {
+            "datasource":{
+                "type":"redis-datasource",
+                "uid":"PA7F6415749A3297A"
+            },
+            "fieldConfig":{
+                "defaults":{
+                  "color":{
+                      "mode":"thresholds"
+                  },
+                  "mappings":[
                       
-#                   ],
-#                   "type":"dashboard"
-#                 },
-#                 "type":"dashboard"
-#             }
-#           ]
-#       },
-#       "editable":true,
-#       "fiscalYearStartMonth":0,
-#       "graphTooltip":0,
-#       "id":27,
-#       "links":[
-          
-#       ],
-#       "liveNow":false,
-#       "panels":[
-#           {
-#             "datasource":{
-#                 "type":"redis-datasource",
-#                 "uid":"PA7F6415749A3297A"
-#             },
-#             "fieldConfig":{
-#                 "defaults":{
-#                   "color":{
-#                       "mode":"thresholds"
-#                   },
-#                   "mappings":[
-                      
-#                   ],
-#                   "thresholds":{
-#                       "mode":"absolute",
-#                       "steps":[
-#                         {
-#                             "color":"green",
-#                             "value":null
-#                         },
-#                         {
-#                             "color":"red",
-#                             "value":80
-#                         }
-#                       ]
-#                   }
-#                 },
-#                 "overrides":[
+                  ],
+                  "thresholds":{
+                      "mode":"absolute",
+                      "steps":[
+                        {
+                            "color":"green",
+                            "value":null
+                        },
+                        {
+                            "color":"red",
+                            "value":80
+                        }
+                      ]
+                  }
+                },
+                "overrides":[
                   
-#                 ]
-#             },
-#             "gridPos":{
-#                 "h":9,
-#                 "w":12,
-#                 "x":0,
-#                 "y":0
-#             },
-#             "id":2,
-#             "options":{
-#                 "displayMode":"gradient",
-#                 "minVizHeight":10,
-#                 "minVizWidth":0,
-#                 "orientation":"auto",
-#                 "reduceOptions":{
-#                   "calcs":[
-#                       "lastNotNull"
-#                   ],
-#                   "fields":"",
-#                   "values":false
-#                 },
-#                 "showUnfilled":true
-#             },
-#             "pluginVersion":"9.0.1",
-#             "targets":[
-#                 {
-#                   "command":"llen",
-#                   "datasource":{
-#                       "type":"redis-datasource",
-#                       "uid":"PA7F6415749A3297A"
-#                   },
-#                   "keyName":"scoreBoard-challenge1",
-#                   "query":"",
-#                   "refId":"A",
-#                   "type":"command"
-#                 }
-#             ],
-#             "title":"Panel Title",
-#             "type":"bargauge"
-#           }
-#       ],
-#       "schemaVersion":36,
-#       "style":"dark",
-#       "tags":[
+                ]
+            },
+            "gridPos":{
+                "h":9,
+                "w":12,
+                "x":0,
+                "y":0
+            },
+            "id":2,
+            "options":{
+                "displayMode":"gradient",
+                "minVizHeight":10,
+                "minVizWidth":0,
+                "orientation":"auto",
+                "reduceOptions":{
+                  "calcs":[
+                      "lastNotNull"
+                  ],
+                  "fields":"",
+                  "values":false
+                },
+                "showUnfilled":true
+            },
+            "pluginVersion":"9.0.1",
+            "targets":[
+                {
+                  "command":"llen",
+                  "datasource":{
+                      "type":"redis-datasource",
+                      "uid":"PA7F6415749A3297A"
+                  },
+                  "keyName":"scoreBoard-challenge1",
+                  "query":"",
+                  "refId":"A",
+                  "type":"command"
+                }
+            ],
+            "title":"Panel Title",
+            "type":"bargauge"
+          }
+      ],
+      "schemaVersion":36,
+      "style":"dark",
+      "tags":[
           
-#       ],
-#       "templating":{
-#           "list":[
+      ],
+      "templating":{
+          "list":[
             
-#           ]
-#       },
-#       "time":{
-#           "from":"now-6h",
-#           "to":"now"
-#       },
-#       "timepicker":{
+          ]
+      },
+      "time":{
+          "from":"now-6h",
+          "to":"now"
+      },
+      "timepicker":{
           
-#       },
-#       "timezone":"",
-#       "title":"Guru",
-#       "uid":"1e23Piz4z",
-#       "version":1,
-#       "weekStart":""
-#     }
+      },
+      "timezone":"",
+      "title":"Guru",
+      "uid":"1e23Piz4z",
+      "version":1,
+      "weekStart":""
+    }
