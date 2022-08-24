@@ -5,7 +5,7 @@ metadata:
     sealedsecrets.bitnami.com/cluster-wide: "true"
   creationTimestamp: null
   name: ns-dig
-  namespace: tools-web
+  namespace: cd-tools
 spec:
   encryptedData:
     rfc2136_tsig_secret: AgBwZbEq1GuSU2Gxv3lTwZYKRIquPbnkrhrPujG3LM1kH05EEAzyQowv5YAofW0/ylzDceg6/7vIrt3FhVpxwm0e16Z2sB1T1ppRNF7+NJCl/8Bvu0mB+Api5hBG2Xb2xiod9R+CLkT856paO9ep16oC0sEmq16yV5XOT7cSjkhVrYop7QaA3vuTpNLXUUwt2jPUa4AjuAFdYv42qcEk5D84DuMwL1NzMLX5pevyc+a+NBa4WiDW1881hzQ+to3Gv+0nSEKTY+9dJrRT8EDvi0zhvzLGtUnyHW2zMOx+WyrEIRzrp5ldXGjbeDvAl5xHoOV6QX6y4DGbA0ca/kbNbf404bPvIyYtQAjo/lLsIoUSLxLFFPumXuWT7c898es7Dyps8DIh6ZgDi+arwPEK4yBcOQFsMfV7htqZ/R1j6IDwEDPyC/TO11sJT+bAIa55jRtmFK/F7+RXZfBCXus2PLy1lj7B0tZl8nvw5eCGDe9YIWCXvshUsBl91Ma0QvBBVhn6wpbvvlCdCgNiR8YdSzaiOkLlb9qa2rMBKp1ovNNzwv8KGMmT4roR2MWIr6gqt7+5ahPth6CX2AwQ3OaYhw0xiah04u0WxYUMaUhR+8A9/7gvU0HUUT4eN08TtZl5dvLZoL7o747Ux4YcgSv++MZh3qJoaSkzs6ViTZYGa91KTN+oEvJ6YO5ff93LM7HIhyN32fmcKHbfd15UB8/kAI8ays8qlkPKS0hSRKeNfQSvmnu7EHLuyloUe86q7rw=
@@ -16,6 +16,6 @@ spec:
         sealedsecrets.bitnami.com/cluster-wide: "true"
       creationTimestamp: null
       name: ns-dig
-      namespace: tools-web
+      namespace: cd-tools
     type: Opaque
 
