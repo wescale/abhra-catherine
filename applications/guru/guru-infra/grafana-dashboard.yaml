@@ -28,129 +28,175 @@ metadata:
 data:
   guru.json: |-            
     {
-      "annotations":{
-          "list":[
-            {
-                "builtIn":1,
-                "datasource":{
-                  "type":"grafana",
-                  "uid":"-- Grafana --"
-                },
-                "enable":true,
-                "hide":true,
-                "iconColor":"rgba(0, 211, 255, 1)",
-                "name":"Annotations & Alerts",
-                "target":{
-                  "limit":100,
-                  "matchAny":false,
-                  "tags":[
-                      
-                  ],
-                  "type":"dashboard"
-                },
-                "type":"dashboard"
-            }
-          ]
-      },
-      "editable":true,
-      "fiscalYearStartMonth":0,
-      "graphTooltip":0,
-      "id":27,
-      "links":[
-          
-      ],
-      "liveNow":false,
-      "panels":[
+      "annotations": {
+        "list": [
           {
-            "datasource":{
-                "type":"redis-datasource",
-                "uid":"PA7F6415749A3297A"
+            "builtIn": 1,
+            "datasource": {
+              "type": "grafana",
+              "uid": "-- Grafana --"
             },
-            "fieldConfig":{
-                "defaults":{
-                  "color":{
-                      "mode":"thresholds"
-                  },
-                  "mappings":[
-                      
-                  ],
-                  "thresholds":{
-                      "mode":"absolute",
-                      "steps":[
-                        {
-                            "color":"green",
-                            "value":null
-                        },
-                        {
-                            "color":"red",
-                            "value":80
-                        }
-                      ]
-                  }
-                },
-                "overrides":[
-                  
-                ]
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "target": {
+              "limit": 100,
+              "matchAny": false,
+              "tags": [],
+              "type": "dashboard"
             },
-            "gridPos":{
-                "h":9,
-                "w":12,
-                "x":0,
-                "y":0
-            },
-            "id":2,
-            "options":{
-                "displayMode":"gradient",
-                "minVizHeight":10,
-                "minVizWidth":0,
-                "orientation":"auto",
-                "reduceOptions":{
-                  "calcs":[
-                      "lastNotNull"
-                  ],
-                  "fields":"",
-                  "values":false
-                },
-                "showUnfilled":true
-            },
-            "pluginVersion":"9.0.1",
-            "targets":[
-                {
-                  "command":"llen",
-                  "datasource":{
-                      "type":"redis-datasource",
-                      "uid":"PA7F6415749A3297A"
-                  },
-                  "keyName":"scoreBoard-challenge1",
-                  "query":"",
-                  "refId":"A",
-                  "type":"command"
-                }
-            ],
-            "title":"Panel Title",
-            "type":"bargauge"
+            "type": "dashboard"
           }
+        ]
+      },
+      "editable": true,
+      "fiscalYearStartMonth": 0,
+      "graphTooltip": 0,
+      "id": 12,
+      "links": [],
+      "liveNow": false,
+      "panels": [
+        {
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "PA7F6415749A3297A"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 0
+          },
+          "id": 2,
+          "options": {
+            "displayMode": "gradient",
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "9.0.1",
+          "targets": [
+            {
+              "command": "llen",
+              "datasource": {
+                "type": "redis-datasource",
+                "uid": "PA7F6415749A3297A"
+              },
+              "keyName": "scoreBoard-challenge1",
+              "query": "",
+              "refId": "A",
+              "type": "command"
+            },
+            {
+              "command": "llen",
+              "datasource": {
+                "type": "redis-datasource",
+                "uid": "PA7F6415749A3297A"
+              },
+              "hide": false,
+              "keyName": "scoreBoard-challenge2",
+              "query": "",
+              "refId": "B",
+              "type": "command"
+            },
+            {
+              "command": "llen",
+              "datasource": {
+                "type": "redis-datasource",
+                "uid": "PA7F6415749A3297A"
+              },
+              "hide": false,
+              "keyName": "scoreBoard-challenge3",
+              "query": "",
+              "refId": "C",
+              "type": "command"
+            },
+            {
+              "command": "llen",
+              "datasource": {
+                "type": "redis-datasource",
+                "uid": "PA7F6415749A3297A"
+              },
+              "hide": false,
+              "keyName": "scoreBoard-challenge4",
+              "query": "",
+              "refId": "D",
+              "type": "command"
+            },
+            {
+              "command": "llen",
+              "datasource": {
+                "type": "redis-datasource",
+                "uid": "PA7F6415749A3297A"
+              },
+              "hide": false,
+              "keyName": "scoreBoard-challenge5",
+              "query": "",
+              "refId": "E",
+              "type": "command"
+            },
+            {
+              "command": "",
+              "datasource": {
+                "type": "redis-datasource",
+                "uid": "PA7F6415749A3297A"
+              },
+              "hide": false,
+              "query": "",
+              "refId": "F",
+              "type": "command"
+            }
+          ],
+          "title": "Stats saison 1",
+          "transformations": [],
+          "type": "bargauge"
+        }
       ],
-      "schemaVersion":36,
-      "style":"dark",
-      "tags":[
-          
-      ],
-      "templating":{
-          "list":[
-            
-          ]
+      "schemaVersion": 36,
+      "style": "dark",
+      "tags": [],
+      "templating": {
+        "list": []
       },
-      "time":{
-          "from":"now-6h",
-          "to":"now"
+      "time": {
+        "from": "now-6h",
+        "to": "now"
       },
-      "timepicker":{
-          
-      },
-      "timezone":"",
-      "title":"Guru",
-      "uid":"1e23Piz4z",
-      "version":1,
-      "weekStart":""
+      "timepicker": {},
+      "timezone": "",
+      "title": "Guru",
+      "uid": "1e23Piz4z",
+      "version": 4,
+      "weekStart": ""
     }

@@ -2,13 +2,17 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: argo-events-watcher-sa
-  namespace: tools-argo
+  namespace: cd-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argo-events-watcher-binding
-  namespace: tools-argo
+  namespace: cd-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -16,13 +20,15 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argo-events-watcher-sa
-  namespace: tools-argo
+  namespace: cd-tools
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argo-events-watcher-role
-  namespace: tools-argo
+  namespace: cd-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 rules:
 - apiGroups: [""]
   resources: ["secrets"]

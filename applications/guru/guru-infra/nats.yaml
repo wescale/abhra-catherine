@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: nats
   # Ongoing bug : https://github.com/argoproj/argo-cd/issues/3474
-  namespace: tools-argo
+  namespace: cd-tools
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:

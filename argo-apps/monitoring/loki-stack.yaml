@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: loki-stack
-  namespace: tools-argo
+  namespace: cd-tools
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
@@ -22,7 +22,7 @@ spec:
           config:
             lokiAddress: http://{{ .Release.Name }}-loki:3100/loki/api/v1/push
   destination:
-    namespace: tools-monitoring
+    namespace: cluster-tools
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

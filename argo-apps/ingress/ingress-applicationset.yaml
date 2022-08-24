@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: tools-ingress
-  namespace: tools-argo
+  namespace: cd-tools
 spec:
   generators:
   - clusters: {}
@@ -15,7 +15,7 @@ spec:
       source:
         repoURL: https://github.com/wescale/abhra-catherine
         targetRevision: HEAD
-        path: tools/ingress/{{nameNormalized}}
+        path: argo-apps/ingress/{{nameNormalized}}
       destination:
         server: https://kubernetes.default.svc
-        namespace: tools-argo
+        namespace: cd-tools

@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: drone
-  namespace: tools-argo
+  namespace: cd-tools
 spec:
   generators:
   - clusters: {}

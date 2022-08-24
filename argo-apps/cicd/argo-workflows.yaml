@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: argo-workflows-as
-  namespace: tools-argo
+  namespace: cd-tools
 spec:
   generators:
   - clusters: {}
@@ -41,7 +41,7 @@ spec:
                       - workflows.{{metadata.labels.abhra.shambhala/url-base-path}}
 
       destination:
-        namespace: tools-argo
+        namespace: cd-tools
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:

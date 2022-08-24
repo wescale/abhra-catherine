@@ -5,7 +5,7 @@ metadata:
     sealedsecrets.bitnami.com/cluster-wide: "true"
   creationTimestamp: null
   name: slack-secret
-  namespace: tools-argo
+  namespace: cd-tools
 spec:
   encryptedData:
     token: AgB3tLpr2ErHljFu4lMNaskkPOToZki66E8VZpkAfKU9TNyKZg4fhmj+phAxhm5wfZlza60i03x2qdVlacjZnzLa/wqcJOPk6KOW10RGOwT1eohZ4a0XZ3z9ZslKNKEqqa9vJ+Sau6AO81hlzpeXro2+lexHUZfPGyV/RtJmTfLGh9XopyM638lpLfWf5ZVFGtQOiIOEQug9hWGfsdI1h3jvYIouU8T5RkFhvgndbsDvb18sSbO8UOseDG+zJkJ6zGB++oBhBPwFRYYHOxWRqbh9j3CwcPfTX+D1HSCzUfBOW0uHDgiytqEab32bSi4tYgca5oFJykt+l+Nslq4EWxpV0sY/3u2qtuoZzTAdVLdrR9xi+92gd5D5YOmlXpSO+GF0V8mMES08FAll1U9QNspVMeLkj2iaLOckc1yqS8G3skSf30wtgyqXI+2AIiEQnAyqmNWqOcfSUr7ejcyssI9H7Lnzo3KZMdA017TvyAeF+IFxQhI9wyXTl3c+QbY22+WIdkWCHlZRXHYAnWgT2e8yJB3kA6qWtq+Kniy8iADEmZoyC/vnq/l87nnRXuj1DWE/0KQKi+Go1Xwg0RF+YwFQmaD+8S2CgNYdvahnLJS0p2j0zLAkAhukD2rN8OgaHlsmGA9t4Ngiv5TluLJF6AhrkJ49Suqn43TAVfZp7tbYTvEvq3Kve+OLK8UaPOZOVbvZVBAamr70AHtsp80IrfDdaAms3dkeeRyVt1sQuls6LFVZMqZsKR8rdEjXlO/yN5eJ90NN7GuJ6w==
@@ -16,5 +16,5 @@ spec:
         sealedsecrets.bitnami.com/cluster-wide: "true"
       creationTimestamp: null
       name: slack-secret
-      namespace: tools-argo
+      namespace: cd-tools
 

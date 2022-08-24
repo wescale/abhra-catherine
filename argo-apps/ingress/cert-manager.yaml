@@ -1,25 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress
-  namespace: tools-argo
+  name: cert-manager
+  namespace: cd-tools
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "32"
 spec:
   project: tools
   source:
-    chart: ingress-nginx
-    repoURL: https://kubernetes.github.io/ingress-nginx
-    targetRevision: 4.1.4
+    chart: cert-manager
+    repoURL: https://charts.jetstack.io
+    targetRevision: 1.8.2
     helm:
       releaseName: abhra
-      values: |
-        tcp:
-          4222: "guru/guru-nats:4222"
+      values: |-
+          installCRDs: true
+          podDnsPolicy: "None"
+          podDnsConfig:
+            nameservers:
+              - "1.1.1.1"
+              - "8.8.8.8"
   destination:
-    namespace: tools-web
+    namespace: cluster-tools
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

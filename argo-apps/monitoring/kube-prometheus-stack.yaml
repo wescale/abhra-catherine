@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: kube-prometheus-stack-as
-  namespace: tools-argo
+  namespace: cd-tools
 spec:
   generators:
   - clusters: {}
@@ -117,7 +117,7 @@ spec:
                         - prometheus.{{metadata.labels.abhra.shambhala/url-base-path}}
 
       destination:
-        namespace: tools-monitoring
+        namespace: commons-tools
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:

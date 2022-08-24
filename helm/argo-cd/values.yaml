@@ -23,3 +23,81 @@ argo-cd:
           type: oidc
           id: google
           name: Google
+      additionalProjects: 
+      - name: tools
+        namespace: cd-tools
+        additionalAnnotations:
+          app.kubernetes.io/managed-by : Helm
+          meta.helm.sh/release-name: abhra
+          meta.helm.sh/release-namespace: cd-tools
+        finalizers:
+        - resources-finalizer.argocd.argoproj.io
+        description: Tooling project
+        sourceRepos:
+        - '*'
+        destinations:
+        - namespace: '*-tools'
+          server: https://kubernetes.default.svc
+        - namespace: 'kube-system'
+          server: https://kubernetes.default.svc
+        clusterResourceWhitelist:
+        - group: '*'
+          kind: '*'
+        namespaceResourceWhitelist:
+        - group: '*'
+          kind: '*'
+    additionalApplications:
+      - name: ingress
+        namespace: cd-tools
+        additionalAnnotations:
+          argocd.argoproj.io/sync-wave: "1"
+        destination:
+          namespace: cluster-tools
+          server: https://kubernetes.default.svc
+        project: tools
+        source:
+          repoURL: https://github.com/wescale/abhra-catherine
+          targetRevision: HEAD
+          path: argo-apps/ingress
+        syncPolicy:
+          automated:
+            selfHeal: true
+            prune: true
+          syncOptions:
+          - CreateNamespace=true
+      - name: monitoring
+        namespace: cd-tools
+        additionalAnnotations:
+          argocd.argoproj.io/sync-wave: "50"
+        destination:
+          namespace: cluster-tools
+          server: https://kubernetes.default.svc
+        project: tools
+        source:
+          repoURL: https://github.com/wescale/abhra-catherine
+          targetRevision: HEAD
+          path: argo-apps/monitoring
+        syncPolicy:
+          automated:
+            selfHeal: true
+            prune: true
+          syncOptions:
+          - CreateNamespace=true
+      - name: cicd
+        namespace: cd-tools
+        additionalAnnotations:
+          argocd.argoproj.io/sync-wave: "100"
+        destination:
+          namespace: cluster-tools
+          server: https://kubernetes.default.svc
+        project: tools
+        source:
+          repoURL: https://github.com/wescale/abhra-catherine
+          targetRevision: HEAD
+          path: argo-apps/cicd
+        syncPolicy:
+          automated:
+            selfHeal: true
+            prune: true
+          syncOptions:
+          - CreateNamespace=true

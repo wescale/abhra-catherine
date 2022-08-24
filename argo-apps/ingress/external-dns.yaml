@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: external-dns
-  namespace: tools-argo
+  namespace: cd-tools
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
@@ -33,7 +33,7 @@ spec:
           domain-filter: abhra.shambhala.cloud
           logLevel: debug
   destination:
-    namespace: tools-web
+    namespace: cluster-tools
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
