@@ -16,6 +16,6 @@ spec:
         sealedsecrets.bitnami.com/cluster-wide: "true"
       creationTimestamp: null
       name: ns-dig
-      namespace: cd-tools
+      namespace: cluster-tools
     type: Opaque
 
