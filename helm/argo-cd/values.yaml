@@ -2,28 +2,7 @@ argo-cd:
   dex:
     enabled: true
   server:
-    rbacConfig:
-      policy.default: role:admin
-    extraArgs:
-      - --insecure
-    config:
-      url: https://cd.argo.abhra.shambhala.cloud
-      repositories: |
-        - type: helm
-          name: argo-cd
-          url: https://argoproj.github.io/argo-helm
-        - type: git
-          url: https://github.com/wescale/abhra-catherine
-      dex.config: |
-        connectors:
-        - config:
-            issuer: https://accounts.google.com
-            clientID: $google-secret:clientID
-            clientSecret: $google-secret:clientSecret
-          type: oidc
-          id: google
-          name: Google
-      additionalProjects: 
+    additionalProjects: 
       - name: tools
         namespace: cd-tools
         additionalAnnotations:
@@ -101,3 +80,24 @@ argo-cd:
             prune: true
           syncOptions:
           - CreateNamespace=true
+    rbacConfig:
+      policy.default: role:admin
+    extraArgs:
+      - --insecure
+    config:
+      url: https://cd.argo.abhra.shambhala.cloud
+      repositories: |
+        - type: helm
+          name: argo-cd
+          url: https://argoproj.github.io/argo-helm
+        - type: git
+          url: https://github.com/wescale/abhra-catherine
+      dex.config: |
+        connectors:
+        - config:
+            issuer: https://accounts.google.com
+            clientID: $google-secret:clientID
+            clientSecret: $google-secret:clientSecret
+          type: oidc
+          id: google
+          name: Google
