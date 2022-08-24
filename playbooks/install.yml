@@ -5,45 +5,47 @@
   strategy: linear
 
   vars:
-    project_root: "{{ (playbook_dir + '/../') | realpath }}"
-    ns_secrets: "tools-sealed-secrets"
-    ns_tooling: "tools-argo"
+    tooling_namespace: "cd-tools"
+
+    sealed_secret_helm_deploy_name: "abhra"
+    sealed_secret_chart_path: "{{ project_root }}/helm/sealed-secrets"
+    sealed_secret_master_key_path: "{{ project_root }}/secrets/master.key"
+    sealed_secret_google_sso_path: "{{ project_root }}/resources/sealed-secrets/google-secret.yaml"
+
+    argocd_helm_deploy_name: "abhra"
+    argocd_chart_path: "{{ project_root }}/helm/argo-cd"
 
   tasks:
-    - name: "Expected namespaces"
+    - name: "Create tooling namespace"
       kubernetes.core.k8s:
-        name: "{{ item }}"
-        api_version: v1
+        name: "{{ tooling_namespace }}"
         kind: Namespace
         state: present
-      loop:
-        - "{{ ns_tooling }}"
-        - "{{ ns_secrets }}"
 
-    - name: "Sealed secret master key deployment"
+    - name: "Install sealed-secret master key"
       kubernetes.core.k8s:
+        namespace: "{{ tooling_namespace }}"
+        src: "{{ sealed_secret_master_key_path }}"
         state: present
-        namespace: "{{ ns_secrets }}"
-        src: "{{ project_root }}/secrets/master.key"
 
-    - name: "Sealed secret helm install"
+    - name: "Install sealed-secret engine"
       kubernetes.core.helm:
-        name: abhra
-        chart_ref: "{{ project_root }}/helm/sealed-secrets"
-        release_namespace: "{{ ns_secrets }}"
+        release_namespace: "{{ tooling_namespace }}"
+        name: "{{ sealed_secret_helm_deploy_name }}"
+        chart_ref: "{{ sealed_secret_chart_path }}"
         wait: true
         replace: true
 
-    - name: "Sealed secret values deployment"
+    - name: "Deploy Google SSO values for argo-cd authentication"
       kubernetes.core.k8s:
+        namespace: "{{ tooling_namespace }}"
+        src: "{{ sealed_secret_google_sso_path }}"
         state: present
-        namespace: "{{ ns_tooling }}"
-        src: "{{ project_root }}/sealed-secrets/google-secret.yaml"
 
-    - name: "Argocd helm install"
+    - name: "Install argo-cd"
       kubernetes.core.helm:
-        name: abhra
-        chart_ref: "{{ project_root }}/helm/argo-cd"
-        release_namespace: "{{ ns_tooling }}"
+        release_namespace: "{{ tooling_namespace }}"
+        name: "{{ argocd_helm_deploy_name }}"
+        chart_ref: "{{ argocd_chart_path }}"
         wait: true
         replace: true
