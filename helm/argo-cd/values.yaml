@@ -6,48 +6,6 @@ argo-cd:
       policy.default: role:admin
     extraArgs:
       - --insecure
-    additionalProjects: 
-      - name: tools
-        namespace: tools-argo
-        additionalAnnotations:
-          app.kubernetes.io/managed-by : Helm
-          meta.helm.sh/release-name: abhra
-          meta.helm.sh/release-namespace: tools-argo
-        finalizers:
-        - resources-finalizer.argocd.argoproj.io
-        description: Tooling project
-        sourceRepos:
-        - '*'
-        destinations:
-        - namespace: 'tools-*'
-          server: https://kubernetes.default.svc
-        - namespace: 'kube-system'
-          server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-        - group: '*'
-          kind: '*'
-        namespaceResourceWhitelist:
-        - group: '*'
-          kind: '*'
-    additionalApplications:
-      - name: tools
-        namespace: tools-argo
-        additionalAnnotations:
-          argocd.argoproj.io/sync-wave: "1"
-        destination:
-          namespace: tools-argo
-          server: https://kubernetes.default.svc
-        project: tools
-        source:
-          repoURL: https://github.com/wescale/abhra-catherine
-          targetRevision: HEAD
-          path: tools
-        syncPolicy:
-          automated:
-            selfHeal: true
-            prune: true
-          syncOptions:
-          - CreateNamespace=true
     config:
       url: https://cd.argo.abhra.shambhala.cloud
       repositories: |

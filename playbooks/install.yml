@@ -12,10 +12,20 @@
     sealed_secret_master_key_path: "{{ project_root }}/secrets/master.key"
     sealed_secret_google_sso_path: "{{ project_root }}/resources/sealed-secrets/google-secret.yaml"
 
-    argocd_helm_deploy_name: "abhra"
+    argocd_helm_deploy_name: "abhra-argo"
+    argocd_cluster_name: "staging"
+    argocd_cluster_experimental: true
+    argocd_cluster_url_base_path: "{{ argocd_cluster_name }}.abhra.shambhala.cloud"
     argocd_chart_path: "{{ project_root }}/helm/argo-cd"
 
   tasks:
+    - name: Assert cluster name is supplied
+      assert:
+        that:
+          - argocd_cluster_name is defined
+          - (argocd_cluster_name | length) > 0
+        fail_msg: "Must define 'argocd_cluster_name' variable"
+
     - name: "Create tooling namespace"
       kubernetes.core.k8s:
         name: "{{ tooling_namespace }}"
@@ -27,6 +37,30 @@
         namespace: "{{ tooling_namespace }}"
         src: "{{ sealed_secret_master_key_path }}"
         state: present
+
+    - name: "Install argo-cd default cluster configuration"
+      kubernetes.core.k8s:
+        namespace: "{{ tooling_namespace }}"
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Secret
+          data:
+            config: eyJ0bHNDbGllbnRDb25maWciOnsiaW5zZWN1cmUiOmZhbHNlfX0=
+            name: "{{ argocd_cluster_name | b64encode }}"
+            server: aHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3Zj
+          metadata:
+            annotations:
+              managed-by: argocd.argoproj.io
+            labels:
+              argocd.argoproj.io/secret-type: cluster
+              abhra.shambhala/environment-type: "{{ argocd_cluster_name }}"
+              abhra.shambhala/url-base-path: "{{ argocd_cluster_url_base_path }}"
+              abhra.shambhala/experimental: "{{ argocd_cluster_experimental | string | lower}}"
+            name: cluster-kubernetes.default.svc
+            namespace: "{{ tooling_namespace }}"
+          type: Opaque (edited)
+
 
     - name: "Install sealed-secret engine"
       kubernetes.core.helm:
