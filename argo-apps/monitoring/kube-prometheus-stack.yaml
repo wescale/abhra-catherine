@@ -117,7 +117,7 @@ spec:
                         - prometheus.{{metadata.labels.abhra.shambhala/url-base-path}}
 
       destination:
-        namespace: commons-tools
+        namespace: cluster-tools
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:
