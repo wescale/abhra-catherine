@@ -80,6 +80,24 @@ argo-cd:
             prune: true
           syncOptions:
           - CreateNamespace=true
+      - name: guru
+        namespace: cd-tools
+        additionalAnnotations:
+          argocd.argoproj.io/sync-wave: "200"
+        destination:
+          namespace: cluster-tools
+          server: https://kubernetes.default.svc
+        project: tools
+        source:
+          repoURL: https://gitlab.com/abhra-shambhala/guru.git
+          targetRevision: HEAD
+          path: argo-apps
+        syncPolicy:
+          automated:
+            selfHeal: true
+            prune: true
+          syncOptions:
+          - CreateNamespace=true
     rbacConfig:
       policy.default: role:admin
     extraArgs:
