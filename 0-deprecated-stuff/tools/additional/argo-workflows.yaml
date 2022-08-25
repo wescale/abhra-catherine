@@ -1,0 +1,51 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argo-workflows-as
+  namespace: cd-tools
+spec:
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: argo-workflows
+    spec:
+      project: tools
+      source:
+        chart: argo-workflows
+        repoURL: https://argoproj.github.io/argo-helm
+        targetRevision: 0.16.6
+        helm:
+          releaseName: abhra
+          values: |
+            workflow:
+              rbac:
+                create: false
+              serviceAccount:
+                name: argo-workflow-sa
+            server:
+              ingress:
+                enabled: true
+                ingressClassName: nginx
+                annotations:
+                  cert-manager.io/cluster-issuer: 'letsencrypt-{{metadata.labels.abhra.shambhala/environment-type}}'
+                  kubernetes.io/tls-acme: 'true'
+                hosts: 
+                  - workflows.{{metadata.labels.abhra.shambhala/url-base-path}}
+                path: /
+                pathType: Prefix
+                tls: 
+                  - secretName: argo-workflows-server-cert
+                    hosts:
+                      - workflows.{{metadata.labels.abhra.shambhala/url-base-path}}
+
+      destination:
+        namespace: cd-tools
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true
