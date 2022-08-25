@@ -1,0 +1,20 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  creationTimestamp: null
+  name: gitlab-guru
+spec:
+  encryptedData:
+    token: AgBfQEmusmIL4gX/W2r4XA+JXi8JT7Mgdb787ZSPeFEQO3noWEf1dl+GeCBBEs7GYLUKpk9nUpIdy9LS3gvmYJqTt3NoRHVtU3lkukXgVA30m7W/cMZ/rNk0TeCbx8VCt6XnkpSHt2XEuOa5LZACTNfjg1L2SMsPqRqZi1xKey6ZoVL7cY1CDVoHCt8g9XUMWqAkg0IsWtDw+jWTaImc0BCvENXbWPbv8WiKCEILwT+RNbzv8xM5ENGAGeMnh26xslrVjTEH4Un2Zc1b+HyGPGvrBHsCUha2xRGuZZApm7Bbl8j1KoiJLoAaoIvTzTcUagicB3zajJoJkhxXQOncZGy59NmrMV9LrdmrmXZgYYi8NHFVolwjkE5emCnI35TSxd2wBHRuTdkFruwXqnp6PsvlI0KHPHH0weatUX+zsWNbpnV4ZXOUBlxob+YJ4JTHKvec+agRiyJM/yjqxRw7M+qSdq7tKG7EkAKXYAXR4bLcJo2MldMBiw8vZQ/s50AddBprmFLsxUo7ym6aHYF7/wR0ad4IV4rMg2sljAjDblarJRV+fsWcW2TeFMlpBqo7V/Ot3CobVAk5V9usRNIADJnDBYzQdroK3c10JoP48m0u9OAzCT9XD4TByKV4D/G110sW2ugENvG5+fzI2Ga/vDPZkYS6SQx+gMuDX1fusPTjluljaOtJVcwSWC3YETbo+NcJPXP8jXusx8razY2TuH+tbnGefpE=
+    username: AgCUGKrEz9V+z7/Tbmqf4DLeMAwNLE80b9XsyseRuNJy2bC+aWvsbJnEUey+PlW6OYjQVlrdBG2F2l3Ae06TVf9XTY2ABt7WuwZMkv75DElXYA/d0C52ORgFLoaQOdtiqQBXDbfJu3oSAFEB2LB0YGW8+RmJmpSdE86D3kPJO83N+EZSEfLxOh+7DtzU7ugbW9qtFw98AJtHE7AuWb10WDuTCp0//sU5jnWWY/+YINZ8VUahh7aqPXGyRJOyNDL7FQTIkBF8OHIwjg+BNGu7G7FBLrGQRC0vWHJsc2MCRbRFT1+d7B8TCrmghWydpi7MDcCUlGd0jWPaXOnlGfNkWRwrCO3pFk2G0ZUlkjnt6h/Zv8MgiavhGrR0+07ic7qaInlofFq9J7eJPE9GuW8TVyRb3Sa8MU2RyUbzGHbnIeFKOsFcJZlZpuL9DlwNj8SGPvOLsBEqkSrK/ogpNrxP6jeHYpF/T0Ar7cxd6ZBQPqZkOg9isJutjZ8YaE4yPS5qZWsKBVlNMNu0VE/KMptC2bzGcfNCfjaEwXiTHSp5ag6awcogj5YmnXu1PdsfEUxjKF/287aIDEH51/6F59oYUhIJhREQaDGLcoHteeWZilzHPViZFqxrRstfm1O4QEPw3rW4f972RrhjUZA5Xg2ym+AJOWiYcLg/pjpC8GgDEiE8rhG/QWHKkDXCef2mjRWgvyGb/V27hCf+
+  template:
+    data: null
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      creationTimestamp: null
+      name: gitlab-guru
+    type: Opaque
+

@@ -92,6 +92,14 @@ argo-cd:
           url: https://argoproj.github.io/argo-helm
         - type: git
           url: https://github.com/wescale/abhra-catherine
+        - type: git
+          url: https://github.com/argoproj/my-private-repository
+          passwordSecret:
+            name: gitlab-guru
+            key: token
+          usernameSecret:
+            name: gitlab-guru
+            key: username
       dex.config: |
         connectors:
         - config:
