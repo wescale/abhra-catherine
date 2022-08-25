@@ -81,5 +81,6 @@
         release_namespace: "{{ tooling_namespace }}"
         name: "{{ argocd_helm_deploy_name }}"
         chart_ref: "{{ argocd_chart_path }}"
+        values_files: "{{ omit if argocd_cluster_name == 'production' or [argocd_chart_path + '/values-' + argocd_cluster_name+ '.yaml'] }}"
         wait: true
         replace: true
