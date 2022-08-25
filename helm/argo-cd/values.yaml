@@ -93,7 +93,7 @@ argo-cd:
         - type: git
           url: https://github.com/wescale/abhra-catherine
         - type: git
-          url: https://github.com/argoproj/my-private-repository
+          url: https://gitlab.com/abhra-shambhala/guru.git
           passwordSecret:
             name: gitlab-guru
             key: token
