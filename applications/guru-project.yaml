@@ -15,7 +15,7 @@ spec:
   # Ongoing bug : https://github.com/argoproj/argo-cd/issues/3474
   - namespace: 'cd-tools'
     server: https://kubernetes.default.svc
-  - namespace: 'tools-monitoring'
+  - namespace: 'cluster-tools'
     server: https://kubernetes.default.svc
   - namespace: 'guru'
     server: https://kubernetes.default.svc

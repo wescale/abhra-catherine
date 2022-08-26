@@ -2,14 +2,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: tools-ingress
+  name: ingress-env-specific-applicationset
   namespace: cd-tools
 spec:
   generators:
   - clusters: {}
   template:
     metadata:
-      name: '{{nameNormalized}}-tools-ingress'
+      name: 'ingress-{{nameNormalized}}'
     spec:
       project: tools
       source:
