@@ -15,6 +15,6 @@ spec:
         sealedsecrets.bitnami.com/cluster-wide: "true"
       creationTimestamp: null
       name: gitlab-guru-admin
-      namespace: guru
+      namespace: cd-tools
     type: Opaque
 
