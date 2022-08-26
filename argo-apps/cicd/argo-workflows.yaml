@@ -28,6 +28,8 @@ spec:
               extraArgs:
                 - --auth-mode=sso
               sso:
+                rbac:
+                  enabled: false
                 issuer: https://accounts.google.com
                 clientId:
                    name: google-secret
