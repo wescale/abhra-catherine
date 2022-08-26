@@ -25,6 +25,15 @@ spec:
               serviceAccount:
                 name: argo-workflow-sa
             server:
+              sso:
+                issuer: https://accounts.google.com
+                clientId:
+                   name: google-secret
+                   key: clientID
+                clientSecret:
+                   name: google-secret
+                   key: clientSecret
+                redirectUrl: https://workflows.{{metadata.labels.abhra.shambhala/url-base-path}}/oauth2/callback
               ingress:
                 enabled: true
                 ingressClassName: nginx
