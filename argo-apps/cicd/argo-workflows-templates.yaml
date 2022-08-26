@@ -3,13 +3,6 @@ kind: WorkflowTemplate
 metadata:
   name: workflow-template-kaniko
 spec:
-  entrypoint: kaniko-build-template    # Fields other than "arguments" and "templates" not supported in v2.4 - v2.6
-  arguments:
-    parameters:
-      - name: gitlabcontext
-        value: to be replaced
-      - name: commitId
-        value: to be replaced
   templates:
     - name: kaniko-build-template
       inputs:
@@ -19,10 +12,10 @@ spec:
       container:
         image: gcr.io/kaniko-project/executor:debug
         command: [/kaniko/executor]
-        args: ["{{inputs.parameters.gitlabcontext}}",
+        args: ["{{workflow.parameters.gitlabcontext}}",
                 "--context-sub-path=app/",
                 "--dockerfile=Dockerfile",
-                "--destination=rg.fr-par.scw.cloud/weshare/bzh-app:{{inputs.parameters.commitId}}",
+                "--destination=rg.fr-par.scw.cloud/weshare/test:{{workflow.parameters.commitId}}",
                 "--verbosity=debug"
               ]
         volumeMounts:
