@@ -63,3 +63,12 @@ rules:
   verbs:
   - create
   - get
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - get
+  - watch
+  - list
+   

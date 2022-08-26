@@ -26,7 +26,6 @@ spec:
                 name: argo-workflow-sa
             server:
               extraArgs:
-                - --auth-mode=server
                 - --auth-mode=sso
               sso:
                 issuer: https://accounts.google.com
