@@ -1,3 +1,4 @@
 argo-cd:
+  server:
     config:
       url: https://cd.argo.staging.abhra.shambhala.cloud
