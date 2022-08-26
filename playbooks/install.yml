@@ -11,6 +11,7 @@
     sealed_secret_chart_path: "{{ project_root }}/helm/sealed-secrets"
     sealed_secret_master_key_path: "{{ project_root }}/secrets/master.key"
     sealed_secret_google_sso_path: "{{ project_root }}/resources/sealed-secrets/google-secret.yaml"
+    sealed_secret_gitlab_credentials_path: "{{ project_root }}/resources/sealed-secrets/gitlab-guru.yaml"
 
     argocd_helm_deploy_name: "abhra-argo"
     argocd_cluster_name: "staging"
@@ -76,10 +77,17 @@
         src: "{{ sealed_secret_google_sso_path }}"
         state: present
 
+    - name: "Deploy Gitlab credentials for argo-cd authentication"
+      kubernetes.core.k8s:
+        namespace: "{{ tooling_namespace }}"
+        src: "{{ sealed_secret_gitlab_credentials_path }}"
+        state: present
+
     - name: "Install argo-cd"
       kubernetes.core.helm:
         release_namespace: "{{ tooling_namespace }}"
         name: "{{ argocd_helm_deploy_name }}"
         chart_ref: "{{ argocd_chart_path }}"
+        values_files: "{{ (argocd_cluster_name == 'production') | ternary(omit, [argocd_chart_path + '/values-' + argocd_cluster_name+ '.yaml']) }}"
         wait: true
         replace: true
