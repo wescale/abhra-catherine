@@ -6,7 +6,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "50"
 spec:
   project: tools
   source:
@@ -16,7 +16,7 @@ spec:
     helm:
       releaseName: abhra
       values: |-
-          installCRDs: true
+          installCRDs: false
           podDnsPolicy: "None"
           podDnsConfig:
             nameservers:

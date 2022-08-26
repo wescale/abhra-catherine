@@ -4,7 +4,7 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt-production
   annotations:
-    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-wave: "200"
 spec:
   acme:
     email: cto@wescale.fr
@@ -22,7 +22,7 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt-staging
   annotations:
-    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-wave: "200"
 spec:
   acme:
     email: cto@wescale.fr
