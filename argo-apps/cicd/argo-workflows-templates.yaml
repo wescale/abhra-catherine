@@ -39,4 +39,9 @@ spec:
               secretKeyRef:
                 name: gitlab-guru
                 key: token
+          - name: GIT_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: gitlab-guru
+                key: token
       
