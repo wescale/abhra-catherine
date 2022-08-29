@@ -19,7 +19,7 @@ spec:
       container:
         image: gcr.io/kaniko-project/executor:debug
         command: [/kaniko/executor]
-        args: ["git://$GIT_USERNAME:$GIT_PASSWORD@gitlab.com/abhra-shambhala/guru.git#refs/heads/main",
+        args: ["{{workflow.parameters.gitlabcontext}}",
                 "--context-sub-path=src/{{input.parameters.project_name}}",
                 "--dockerfile=Dockerfile",
                 "--destination=rg.fr-par.scw.cloud/weshare/test:{{workflow.parameters.commitId}}",
