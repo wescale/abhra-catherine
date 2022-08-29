@@ -13,14 +13,13 @@ spec:
             items:
               - key: .dockerconfigjson
                 path: config.json
-      inputs:
-        parameters:
-          - name: project_name
+      # inputs:
+      #   parameters:
+      #     - name: project_name
       container:
         image: gcr.io/kaniko-project/executor:debug
         command: [/bin/sh]
         # --destination=rg.fr-par.scw.cloud/weshare/test:{{workflow.parameters.commitId}} 
-            
         args: 
           - "-c"
           - >-
