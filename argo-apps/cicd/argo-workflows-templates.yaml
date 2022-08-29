@@ -23,8 +23,7 @@ spec:
                 "--context-sub-path=src/{{input.parameters.project_name}}",
                 "--dockerfile=Dockerfile",
                 "--destination=rg.fr-par.scw.cloud/weshare/test:{{workflow.parameters.commitId}}",
-                "--verbosity=debug",
-                "--test=$GIT_USERNAME"
+                "--verbosity=debug"
               ]
         volumeMounts:
           - name: kaniko-secret
