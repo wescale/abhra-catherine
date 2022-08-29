@@ -18,11 +18,12 @@ spec:
           - name: project_name
       container:
         image: gcr.io/kaniko-project/executor:debug
-        command: [/kaniko/executor]
+        command: [env && echo $GIT_USERNAME && echo $GIT_PASSWORD && /kaniko/executor]
         args: ["{{workflow.parameters.gitlabcontext}}",
                 "--context-sub-path=src/{{input.parameters.project_name}}",
-                "--dockerfile=Dockerfile",
-                "--destination=rg.fr-par.scw.cloud/weshare/test:{{workflow.parameters.commitId}}",
+                #"--dockerfile=Dockerfile",
+                #"--destination=rg.fr-par.scw.cloud/weshare/test:{{workflow.parameters.commitId}}",
+                "--no-push",
                 "--verbosity=debug"
               ]
         volumeMounts:
