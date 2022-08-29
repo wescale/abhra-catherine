@@ -13,9 +13,9 @@ spec:
             items:
               - key: .dockerconfigjson
                 path: config.json
-      # inputs:
-      #   parameters:
-      #     - name: project_name
+      inputs:
+        parameters:
+          - name: project
       container:
         image: gcr.io/kaniko-project/executor:debug
         command: [/bin/sh]
@@ -25,7 +25,7 @@ spec:
           - >-
             /kaniko/executor
             {{workflow.parameters.gitlabcontext}} 
-            --context-sub-path=src/{{input.parameters.project_name}}
+            --context-sub-path=src/{{input.parameters.project}}
             --dockerfile=Dockerfile 
             --verbosity=debug
             --no-push
