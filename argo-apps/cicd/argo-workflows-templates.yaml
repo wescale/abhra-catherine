@@ -25,7 +25,7 @@ spec:
           - >-
             /kaniko/executor
             {{workflow.parameters.gitlabcontext}} 
-            --context-sub-path=src/{{input.parameters.project}}
+            --context-sub-path=src/{{inputs.parameters.project}}
             --dockerfile=Dockerfile 
             --verbosity=debug
             --no-push
