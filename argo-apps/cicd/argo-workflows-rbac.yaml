@@ -71,4 +71,14 @@ rules:
   - get
   - watch
   - list
+- apiGroups:
+  - "argoproj.io"
+  resources:
+  - workflowtemplates
+  verbs:
+  - get
+  - watch
+  - list
+
+  
    
