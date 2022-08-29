@@ -25,9 +25,8 @@ spec:
         #         "--destination=rg.fr-par.scw.cloud/weshare/test:{{workflow.parameters.commitId}}",
         #         "--verbosity=debug"
         #       ]
-        command: [echo]
-        args: ["$GIT_USERNAME", "$GIT_TOKEN" ]
-
+        command: [env]
+        
         volumeMounts:
           - name: kaniko-secret
             mountPath: /kaniko/.docker/
