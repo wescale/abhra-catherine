@@ -6,6 +6,13 @@ metadata:
 spec:
   templates:
     - name: kaniko-build-template
+      volumes:
+        - name: kaniko-secret
+          secret:
+            secretName: registry-secret
+            items:
+              - key: .dockerconfigjson
+                path: config.json
       inputs:
         parameters:
           - name: project_name
