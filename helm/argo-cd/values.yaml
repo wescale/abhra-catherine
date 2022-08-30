@@ -118,6 +118,15 @@ argo-cd:
           usernameSecret:
             name: gitlab-guru
             key: username
+        - type: helm
+          name: guru-stable
+          url: https://gitlab.com/api/v4/projects/abhra-shambhala%2Fguru/packages/helm/stable
+          passwordSecret:
+            name: gitlab-guru
+            key: token
+          usernameSecret:
+            name: gitlab-guru
+            key: username
       dex.config: |
         connectors:
         - config:
