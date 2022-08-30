@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: leaderboard-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+spec:
+  rules:
+    - host: "skor.staging.abhra.shambhala.cloud"
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: leaderboard-service
+              port:
+                number: 8090
+  tls:
+    - hosts:
+        - "skor.staging.abhra.shambhala.cloud"
+      secretName: leaderboard-cert

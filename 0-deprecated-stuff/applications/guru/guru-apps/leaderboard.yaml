@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leaderboard-deployment
+  namespace: guru
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    matchLabels:
+      app: leaderboard
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: leaderboard
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/leaderboard:latest
+        ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: leaderboard-service
+  namespace: guru
+spec:
+  ports:
+  - port: 8090
+    targetPort: 80
+    name: http
+  selector:
+    app: leaderboard

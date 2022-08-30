@@ -1,0 +1,20 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  creationTimestamp: null
+  name: redis-secret
+  namespace: guru
+spec:
+  encryptedData:
+    redis-password: AgAZMykCzZTVZUF/PTqFl4Pg6hpsrV2Na1P0SPSlsEndpvQOb+ItkNhnIHYFsSh5mlo2YO/XAEaxHFe3seKsSm17/r6yXILCWaPgH8pdlm6GQhz4AsT3kIgmlMOXhwt62n2sXK2ZQqvrfwFFeMiTLZh1NvyE8we0GzxPbGF3Vg9tgpSijVNHqhC/nfKTfAJBP5wwwn0VOzy4WPaagCZyowya9ApH6jvwvpACQF7yhulBIW7G15vDr+uXIyF1C9E97t4ow/1KqC+PtfPJ0LMnL5UW/2G2Q4OZbg27NVxnD9Up5x5UGRCfe5+sZQdeFCtjABwBoJI/3cSkJe8PNGqCbs7X+HS8ZwOrCBqpE+6jl5o+qbughjLWzOhibr5e9775fXBS037cfl/kGQdHsU8HRZVdfA+68B1TC3FLLEhLOb8AJu+4EWCmdbABP2OwRQPAe/gL4CoqPjS7PhEly3CScUUBo7qN0XDCDIF7x1QeK30kZudWmg2YM2hzcOZGxXNt9d8NWPJotDviBXRJUdIdgHXTM3NjqMIp/2d9VWlrMYCh+UZjkL4fpDMlEzNmde6vjBVDi95gxJgpeWouvCOurUWz43f5HlLkmwksfV/0Mw40mFtEK9HuEVA/FPhmNFURCpHvdsqZpP8VHDuBMwTBrziH4iyveR0ffoOR/P9novMsnVTI5xc6Etn/bQPgtV5kkJKU5nPNz6DZwOfbeH4uFyot
+  template:
+    data: null
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      creationTimestamp: null
+      name: redis-secret
+      namespace: guru
+

@@ -1,0 +1,258 @@
+# hosts =
+# ["tracer-ignore-me-service.guru.svc.cluster.local:5001",
+# "tracer-not-relevant-service.guru.svc.cluster.local:5002",
+# "tracer-useless-module-service.guru.svc.cluster.local:5003",
+# "tracer-forget-me-service.guru.svc.cluster.local:5004",
+# "tracer-really-important-service.guru.svc.cluster.local:5005",
+# "tracer-capital-to-understand-service.guru.svc.cluster.local:5006",
+# "tracer-momo-was-there-service.guru.svc.cluster.local:5007",
+# "tracer-wescale-rules-service.guru.svc.cluster.local:5008"
+#]
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-ignore-me-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    matchLabels:
+      app: locust-ignore-me
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: locust-ignore-me
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/locust:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: HOST
+          value: "http://tracer-ignore-me-service.guru.svc.cluster.local:5001"
+        - name: DELAY
+          value: "600"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-not-relevant-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    matchLabels:
+      app: locust-not-relevant
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: locust-not-relevant
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/locust:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: HOST
+          value: "http://tracer-not-relevant-service.guru.svc.cluster.local:5002"
+        - name: DELAY
+          value: "600"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-useless-module-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    matchLabels:
+      app: locust-useless-module
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: locust-useless-module
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/locust:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: HOST
+          value: "http://tracer-useless-module-service.guru.svc.cluster.local:5003"
+        - name: DELAY
+          value: "600"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-forget-me-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    matchLabels:
+      app: locust-forget-me
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: locust-forget-me
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/locust:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: HOST
+          value: "http://tracer-forget-me-service.guru.svc.cluster.local:5004"
+        - name: DELAY
+          value: "600"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-really-important-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    matchLabels:
+      app: locust-really-important
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: locust-really-important
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/locust:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: HOST
+          value: "http://tracer-really-important-service.guru.svc.cluster.local:5005"
+        - name: DELAY
+          value: "600"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-capital-to-understand-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    matchLabels:
+      app: locust-capital-to-understand
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: locust-capital-to-understand
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/locust:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: HOST
+          value: "http://tracer-capital-to-understand-service.guru.svc.cluster.local:5006"
+        - name: DELAY
+          value: "600"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-momo-was-there-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    matchLabels:
+      app: locust-momo-was-there
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: locust-momo-was-there
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/locust:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: HOST
+          value: "http://tracer-momo-was-there-service.guru.svc.cluster.local:5007"
+        - name: DELAY
+          value: "600"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-wescale-rules-deployment
+  namespace: guru
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    matchLabels:
+      app: locust-wescale-rules
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: locust-wescale-rules
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: flask
+        image: rg.fr-par.scw.cloud/guru/locust:latest
+        ports:
+          - containerPort: 5000
+        env:
+        - name: HOST
+          value: "http://tracer-wescale-rules-service.guru.svc.cluster.local:5008"
+        - name: DELAY
+          value: "600"
+---

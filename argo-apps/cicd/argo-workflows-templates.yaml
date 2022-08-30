@@ -42,4 +42,24 @@ spec:
               secretKeyRef:
                 name: gitlab-guru
                 key: token
+    - name: filter-git-projects-template
+      outputs:
+        parameters:
+          - name: projects-to-build
+      script:
+        image: python:alpine3.6
+        command: [python]
+        source: |
+          import json, sys
+
+          projects = []
+
+          for commit in {{workflow.parameters.commits}}:
+            for key in ["added", "modified", "removed"]:
+              for line in commit.get(key):
+                if line.startswith("src"):
+                  projects.append(line.split("/", 2)[1])
+
+          projects = list(dict.fromkeys(projects))
+          json.dump(projects, sys.stdout)
       

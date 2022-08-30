@@ -1,0 +1,52 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: drone
+  namespace: cd-tools
+spec:
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: '{{nameNormalized}}-drone'
+    spec:
+      project: guru
+      source:
+        chart: drone
+        repoURL: https://charts.drone.io
+        targetRevision: 0.5.0
+        helm:
+          releaseName: guru
+          values: |
+            imagePullSecrets:
+            - name: registry-secret
+            server:
+              kubernetes:
+                enabled: true
+            service:
+              type: ClusterIP
+              port: 80
+            ingress:
+              enabled: false
+            env:
+              DRONE_SERVER_PROTO: https
+              DRONE_GITLAB_SERVER: https://gitlab.com
+              DRONE_LOGS_COLOR: true
+              DRONE_LOGS_DEBUG: true
+              DRONE_LOGS_PRETTY: true
+              DRONE_LOGS_TRACE: true
+              DRONE_GIT_ALWAYS_AUTH: true
+              DRONE_SERVER_HOST: ci.{{metadata.labels.abhra.shambhala/url-base-path}}
+              DRONE_SERVER: https://ci.{{metadata.labels.abhra.shambhala/url-base-path}}
+            extraSecretNamesForEnvFrom:
+              - drone-secrets
+      destination:
+        namespace: guru
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true

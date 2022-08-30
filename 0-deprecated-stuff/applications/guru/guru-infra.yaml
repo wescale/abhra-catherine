@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guru-infra
+  # Ongoing bug : https://github.com/argoproj/argo-cd/issues/3474
+  namespace: cd-tools
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: guru
+  source:
+    repoURL: https://github.com/wescale/abhra-catherine
+    targetRevision: HEAD
+    path: applications/guru/guru-infra
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: guru
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+

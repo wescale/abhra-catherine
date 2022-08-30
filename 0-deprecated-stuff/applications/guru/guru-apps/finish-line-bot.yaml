@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finish-line-bot
+  namespace: guru
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    matchLabels:
+      app: finish-line-bot
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: finish-line-bot
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+        - name: finish-line-bot
+          image: rg.fr-par.scw.cloud/guru/finish-line-bot:latest
+          env:
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: redis-secret
+                key: redis-password
+          - name: REDIS_HOST
+            value: "guru-redis-master"
+          - name: REDIS_PORT
+            value: "6379"
+          - name: IMAP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: otto-bot-creds
+                key: IMAP_PASSWORD
