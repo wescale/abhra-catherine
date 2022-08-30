@@ -66,25 +66,27 @@ spec:
       inputs:
           parameters:
             - name: project
-      script:
+      container:
         image: alpine/helm
-        command: [sh]
-        source: |
-          apk add curl
-          echo $GIT_USERNAME
-          set TGZ_FILE = `helm package charts/{{inputs.parameters.project}} | cut -d ":" -f 2 | tr -d " "`
-          curl --request POST --form 'chart=@$TGZ_FILE' --user $GIT_USERNAME:$GIT_PASSWORD https://gitlab.com/api/v4/projects/abhra-shambhala%2Fguru/packages/helm/api/stable/charts
-      env:
-        - name: GIT_USERNAME 
-          valueFrom:
-            secretKeyRef:
-              name: gitlab-guru
-              key: username
-        - name: GIT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: gitlab-guru
-              key: token
+        command: [/bin/sh]
+        args: 
+          - "-c"
+          - >-
+            apk add curl
+            git clone {{workflow.parameters.gitlabcontext}}
+            set TGZ_FILE = `helm package charts/{{inputs.parameters.project}} | cut -d ":" -f 2 | tr -d " "`
+            curl --request POST --form 'chart=@$TGZ_FILE' --user $GIT_USERNAME:$GIT_PASSWORD https://gitlab.com/api/v4/projects/abhra-shambhala%2Fguru/packages/helm/api/stable/charts
+        env:
+          - name: GIT_USERNAME 
+            valueFrom:
+              secretKeyRef:
+                name: gitlab-guru
+                key: username
+          - name: GIT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: gitlab-guru
+                key: token
 
 
           
