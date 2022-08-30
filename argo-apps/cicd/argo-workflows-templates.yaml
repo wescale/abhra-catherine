@@ -43,9 +43,6 @@ spec:
                 name: gitlab-guru
                 key: token
     - name: filter-git-projects-template
-      outputs:
-        parameters:
-          - name: projects-to-build
       script:
         image: python:alpine3.6
         command: [python]
