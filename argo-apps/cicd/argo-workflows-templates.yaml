@@ -73,7 +73,7 @@ spec:
           - "-c"
           - >-
             apk add curl && 
-            git clone {{workflow.parameters.gitlabcontext}} &&
+            git clone {{workflow.parameters.gitlaburl}} &&
             set TGZ_FILE = `helm package charts/{{inputs.parameters.project}} | cut -d ":" -f 2 | tr -d " "` &&
             curl --request POST --form 'chart=@$TGZ_FILE' --user $GIT_USERNAME:$GIT_PASSWORD https://gitlab.com/api/v4/projects/abhra-shambhala%2Fguru/packages/helm/api/stable/charts
         env:
