@@ -43,6 +43,9 @@ spec:
                 name: gitlab-guru
                 key: token
     - name: filter-git-projects-template
+      inputs:
+          parameters:
+            - name: filter-prefix
       script:
         image: python:alpine3.6
         command: [python]
@@ -54,9 +57,35 @@ spec:
           for commit in {{workflow.parameters.commits}}:
             for key in ["added", "modified", "removed"]:
               for line in commit.get(key):
-                if line.startswith("src"):
+                if line.startswith("{{inputs.parameters.filter-prefix}}/"):
                   projects.append(line.split("/", 2)[1])
 
           projects = list(dict.fromkeys(projects))
           json.dump(projects, sys.stdout)
+    - name: helm-package-template
+      inputs:
+          parameters:
+            - name: project
+      script:
+        image: alpine/helm
+        command: [sh]
+        source: |
+          apk add curl
+          echo $GIT_USERNAME
+          set TGZ_FILE = `helm package charts/{{inputs.parameters.project}} | cut -d ":" -f 2 | tr -d " "`
+          curl --request POST --form 'chart=@$TGZ_FILE' --user $GIT_USERNAME:$GIT_PASSWORD https://gitlab.com/api/v4/projects/abhra-shambhala%2Fguru/packages/helm/api/stable/charts
+      env:
+        - name: GIT_USERNAME 
+          valueFrom:
+            secretKeyRef:
+              name: gitlab-guru
+              key: username
+        - name: GIT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: gitlab-guru
+              key: token
+
+
+          
       
