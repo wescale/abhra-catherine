@@ -14,7 +14,7 @@ spec:
       project: tools
       source:
         repoURL: https://github.com/wescale/abhra-catherine
-        targetRevision: {{metadata.labels.abhra.shambhala/target-revision}}
+        targetRevision: '{{metadata.labels.abhra.shambhala/url-base-path}}'
         path: argo-apps/ingress/env-specific
       destination:
         server: https://kubernetes.default.svc
