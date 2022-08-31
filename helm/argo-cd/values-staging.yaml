@@ -13,7 +13,7 @@ argo-cd:
         project: tools
         source:
           repoURL: https://github.com/wescale/abhra-catherine
-          targetRevision: HEAD
+          targetRevision: staging
           path: argo-apps/ingress
         syncPolicy:
           automated:
@@ -31,7 +31,7 @@ argo-cd:
         project: tools
         source:
           repoURL: https://github.com/wescale/abhra-catherine
-          targetRevision: HEAD
+          targetRevision: staging
           path: argo-apps/monitoring
         syncPolicy:
           automated:
@@ -49,7 +49,7 @@ argo-cd:
         project: tools
         source:
           repoURL: https://github.com/wescale/abhra-catherine
-          targetRevision: HEAD
+          targetRevision: staging
           path: argo-apps/cicd
         syncPolicy:
           automated:
@@ -67,7 +67,7 @@ argo-cd:
         project: tools
         source:
           repoURL: https://gitlab.com/abhra-shambhala/guru.git
-          targetRevision: HEAD
+          targetRevision: staging
           path: argo-apps
         syncPolicy:
           automated:
