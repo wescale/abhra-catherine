@@ -18,6 +18,7 @@
     argocd_cluster_experimental: true
     argocd_cluster_url_base_path: "{{ argocd_cluster_name }}.abhra.shambhala.cloud"
     argocd_chart_path: "{{ project_root }}/helm/argo-cd"
+    gitlab_branch: "staging"
 
   tasks:
     - name: Assert cluster name is supplied
@@ -58,6 +59,7 @@
               abhra.shambhala/environment-type: "{{ argocd_cluster_name }}"
               abhra.shambhala/url-base-path: "{{ argocd_cluster_url_base_path }}"
               abhra.shambhala/experimental: "{{ argocd_cluster_experimental | string | lower}}"
+              abhra.shambhala/target-revision: "{{ gitlab_branch | string}}"
             name: cluster-kubernetes.default.svc
             namespace: "{{ tooling_namespace }}"
           type: Opaque (edited)

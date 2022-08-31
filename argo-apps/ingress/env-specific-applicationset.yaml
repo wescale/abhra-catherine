@@ -14,8 +14,8 @@ spec:
       project: tools
       source:
         repoURL: https://github.com/wescale/abhra-catherine
-        targetRevision: HEAD
-        path: argo-apps/ingress/{{nameNormalized}}
+        targetRevision: {{metadata.labels.abhra.shambhala/target-revision}}
+        path: argo-apps/ingress/env-specific
       destination:
         server: https://kubernetes.default.svc
         namespace: cd-tools

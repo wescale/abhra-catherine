@@ -2,3 +2,16 @@ argo-cd:
   server:
     config:
       url: https://cd.argo.staging.abhra.shambhala.cloud
+    additionalApplications:
+      - name: ingress
+        source:
+            targetRevision: staging
+      - name: monitoring
+        source:
+            targetRevision: staging
+      - name: cicd
+        source:
+            targetRevision: staging
+      - name: guru
+        source:
+            targetRevision: staging
