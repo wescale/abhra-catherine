@@ -3,6 +3,8 @@ kind: WorkflowTemplate
 metadata:
   name: workflow-template-kaniko
   namespace: cd-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "300"
 spec:
   templates:
     - name: kaniko-build-template

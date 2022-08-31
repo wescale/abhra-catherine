@@ -3,6 +3,8 @@ kind: EventBus
 metadata:
   name: default
   namespace: cd-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "300"
 spec:
   nats:
     native:
