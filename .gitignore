@@ -4,3 +4,4 @@ shell/*
 secrets/*
 tags
 .direnv
+drone
