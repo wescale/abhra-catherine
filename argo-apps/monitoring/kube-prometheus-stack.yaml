@@ -62,7 +62,7 @@ spec:
                   initPlugins: false
               envFromSecrets: 
                 - name: google-secret-for-grafana
-                #- name: redis-secret
+                - name: redis-secret
               plugins:
               - redis-datasource
               grafana.ini:
