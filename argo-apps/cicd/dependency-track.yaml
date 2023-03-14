@@ -26,7 +26,7 @@ spec:
                   memory: 4608Mi
                 requests:
                   cpu: 1
-                  memory: 2048Gi
+                  memory: 2048Mi
 
             ingress:
               enabled: true
