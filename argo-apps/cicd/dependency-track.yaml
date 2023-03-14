@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress
+  name: dependency-track
   namespace: cd-tools
   finalizers:
     - resources-finalizer.argocd.argoproj.io
