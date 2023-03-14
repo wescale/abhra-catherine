@@ -19,6 +19,15 @@ spec:
         helm:
           releaseName: abhra
           values: |
+            apiserver:
+              resources:
+                limits:
+                  cpu: 2
+                  memory: 4608Mi
+                requests:
+                  cpu: 1
+                  memory: 2048Gi
+
             ingress:
               enabled: true
               ingressClassName: nginx
