@@ -22,14 +22,10 @@ spec:
           annotations:
             cert-manager.io/cluster-issuer: 'letsencrypt-{{metadata.labels.abhra.shambhala/environment-type}}'
             kubernetes.io/tls-acme: 'true'
-          hosts: 
-            - dependency.{{metadata.labels.abhra.shambhala/url-base-path}}
-          path: /
-          pathType: Prefix
+          host: dependency.{{metadata.labels.abhra.shambhala/url-base-path}}
           tls: 
-            - secretName: dependency-track-cert
-              hosts:
-                - dependency.{{metadata.labels.abhra.shambhala/url-base-path}}
+            enabled: true
+            secretName: dependency-track-cert
   destination:
     namespace: cluster-tools
     server: https://kubernetes.default.svc
