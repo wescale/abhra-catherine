@@ -27,6 +27,10 @@ spec:
             createRabbitMqSecret: true
             # create postgresql secret in defectdojo chart, outside of postgresql chart
             createPostgresqlSecret: true
+
+            extraConfigs:
+              DD_SOCIAL_AUTH_GOOGLE_OAUTH2_ENABLED: 'true'
+              DD_SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS: ['wescale.fr']
             
             host: defectdojo.{{metadata.labels.abhra.shambhala/url-base-path}}
             
