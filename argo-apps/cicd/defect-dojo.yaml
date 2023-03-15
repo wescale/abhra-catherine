@@ -2,19 +2,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: defectodojo-as
+  name: defectdojo-as
   namespace: cd-tools
 spec:
   generators:
   - clusters: {}
   template:
     metadata:
-      name: defectodojo
+      name: defectdojo
     spec:
       project: tools
       source:
-        chart: defectodojo
-        repoURL: https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/master/helm/
+        chart: defectdojo
+        repoURL: https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/helm-charts
         targetRevision: 1.6.59
         helm:
           releaseName: abhra
