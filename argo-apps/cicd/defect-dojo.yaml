@@ -30,7 +30,7 @@ spec:
 
             extraConfigs:
               DD_SOCIAL_AUTH_GOOGLE_OAUTH2_ENABLED: 'true'
-              DD_SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS: ['wescale.fr']
+              DD_SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS: 'wescale.fr'
               DD_MEDIA_ROOT: '/app/media'
             
             host: defectdojo.{{metadata.labels.abhra.shambhala/url-base-path}}
