@@ -14,7 +14,7 @@ spec:
       project: tools
       source:
         chart: defectodojo
-        repoURL: https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/helm-charts
+        repoURL: https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/master/helm/
         targetRevision: 1.6.59
         helm:
           releaseName: abhra
