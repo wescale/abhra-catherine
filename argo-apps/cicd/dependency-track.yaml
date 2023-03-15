@@ -27,6 +27,17 @@ spec:
                 requests:
                   cpu: 1
                   memory: 2048Mi
+            frontend:
+              env:                
+                - name: API_BASE_URL
+                  value: abhra-dependency-track-apiserver
+                # FIX HELM CHART
+                #- name: OIDC_ISSUER
+                #  value: https://accounts.google.com
+                #- name: OIDC_CLIENT_ID
+                #  value: https://accounts.google.com
+                #- name: OIDC_FLOW
+                #  value: implicit
 
             ingress:
               enabled: true

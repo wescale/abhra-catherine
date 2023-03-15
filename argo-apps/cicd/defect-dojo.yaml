@@ -1,0 +1,41 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: defectodojo-as
+  namespace: cd-tools
+spec:
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: defectodojo
+    spec:
+      project: tools
+      source:
+        chart: defectodojo
+        repoURL: https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/helm-charts
+        targetRevision: 1.6.59
+        helm:
+          releaseName: abhra
+          values: |
+            host: defectdojo.{{metadata.labels.abhra.shambhala/url-base-path}}
+            
+            django:
+              ingress:
+                enabled: true
+                ingressClassName: nginx
+                annotations:
+                  cert-manager.io/cluster-issuer: 'letsencrypt-{{metadata.labels.abhra.shambhala/environment-type}}'
+                  kubernetes.io/tls-acme: 'true'
+                activateTLS: true
+                secretName: defectdojo-tls
+      destination:
+        namespace: cluster-tools
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true
