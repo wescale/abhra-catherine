@@ -18,17 +18,16 @@ spec:
         targetRevision: 1.6.59
         helm:
           # Postgresql overlapping
-          releaseName: abhra-defect
+          releaseName: abhra
           values: |
-            # Global settings
-            # create defectdojo specific secret
             createSecret: true
-            # create rabbitmq secret in defectdojo chart, outside of rabbitmq chart
             createRabbitMqSecret: true
-            # create postgresql secret in defectdojo chart, outside of postgresql chart
-            createPostgresqlSecret: true
-            createPostgresqlHaSecret: true
-            createPostgresqlHaPgpoolSecret: true
+            createRedisSecret: true
+
+            database: redis
+
+            redis:
+              enabled: true
 
             extraConfigs:
               DD_SOCIAL_AUTH_GOOGLE_OAUTH2_ENABLED: 'true'
