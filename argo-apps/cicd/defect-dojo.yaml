@@ -22,11 +22,11 @@ spec:
           values: |
             createSecret: true
             createRabbitMqSecret: true
-            createRedisSecret: true
+            createMysqlSecret: true
 
-            database: redis
+            database: mysql
 
-            redis:
+            mysql:
               enabled: true
 
             postgresql:
