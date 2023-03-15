@@ -118,7 +118,3 @@ spec:
               secretKeyRef:
                 name: gitlab-guru
                 key: token
-
-
-          
-      
