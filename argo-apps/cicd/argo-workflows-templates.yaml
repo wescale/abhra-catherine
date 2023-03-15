@@ -44,6 +44,34 @@ spec:
               secretKeyRef:
                 name: gitlab-guru
                 key: token
+    - name: trivy-scan-template
+      volumes:
+        - name: kaniko-secret
+          secret:
+            secretName: registry-secret
+            items:
+              - key: .dockerconfigjson
+                path: config.json
+      inputs:
+        parameters:
+          - name: project
+      container:
+        image: aquasec/trivy:0.17.2
+        command: [image]
+        args: 
+          - >-
+            rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} 
+        env:
+          - name: TRIVY_USERNAME 
+            valueFrom:
+              secretKeyRef:
+                name: scaleway-registry-secret
+                key: username
+          - name: TRIVY_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: scaleway-registry-secret
+                key: password
     - name: filter-git-projects-template
       inputs:
           parameters:
