@@ -24,10 +24,10 @@ spec:
             # create defectdojo specific secret
             createSecret: true
             # create rabbitmq secret in defectdojo chart, outside of rabbitmq chart
-            createRabbitMqSecret: false
+            createRabbitMqSecret: true
             # create postgresql secret in defectdojo chart, outside of postgresql chart
-            createPostgresqlSecret: false
-
+            createPostgresqlSecret: true
+            
             extraConfigs:
               DD_SOCIAL_AUTH_GOOGLE_OAUTH2_ENABLED: 'true'
               DD_SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS: 'wescale.fr'
