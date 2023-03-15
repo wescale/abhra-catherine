@@ -24,9 +24,9 @@ spec:
             # create defectdojo specific secret
             createSecret: true
             # create rabbitmq secret in defectdojo chart, outside of rabbitmq chart
-            createRabbitMqSecret: true
+            createRabbitMqSecret: false
             # create postgresql secret in defectdojo chart, outside of postgresql chart
-            createPostgresqlSecret: true
+            createPostgresqlSecret: false
 
             extraConfigs:
               DD_SOCIAL_AUTH_GOOGLE_OAUTH2_ENABLED: 'true'
