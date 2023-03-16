@@ -61,6 +61,8 @@ spec:
         args: 
           - "-c"
           - >-
+            echo $TRIVY_USERNAME
+            echo $TRIVY_PASSWORD
             /usr/local/bin/trivy
             image
             rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} 
