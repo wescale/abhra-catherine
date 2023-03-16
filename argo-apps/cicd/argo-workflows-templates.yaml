@@ -60,7 +60,6 @@ spec:
         command: [trivy]
         args: 
           - >-
-            image
             rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} 
         env:
           - name: TRIVY_USERNAME 
