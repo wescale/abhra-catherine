@@ -63,7 +63,7 @@ spec:
           - >-
             apk add curl &&
             /usr/local/bin/trivy image -o sbom.json -f cyclonedx rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} &&
-            curl -X "PUT" "https://dependency.abhra.shambhala.cloud/api/v1/bom" -H 'Content-Type: application/json' -H 'X-API-Key: 27BqM7ILJXAzhatndIYiRVwGAiB3T1IS' -F "autoCreate=true" -F "projectName={{inputs.parameters.project}}" -F "projectVersion={{workflow.parameters.commitId}}" -F "bom=@sbom.json"
+            curl -X "POST" "https://dependency.abhra.shambhala.cloud/api/v1/bom" -H 'Content-Type: multipart/form-data' -H 'X-API-Key: 27BqM7ILJXAzhatndIYiRVwGAiB3T1IS' -F "autoCreate=true" -F "projectName={{inputs.parameters.project}}" -F "projectVersion={{workflow.parameters.commitId}}" -F "bom=@sbom.json"
         env:
           - name: TRIVY_USERNAME 
             valueFrom:
