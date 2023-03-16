@@ -60,7 +60,8 @@ spec:
         command: [/usr/local/bin/trivy]
         args: 
           - sbom
-          - -o /tmp/sbom.xml
+          - -o 
+          - /tmp/sbom.xml
           - rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} 
         env:
           - name: TRIVY_USERNAME 
