@@ -56,13 +56,14 @@ spec:
         parameters:
           - name: project
       container:
-        image: aquasec/trivy:0.17.2
-        command: [/usr/local/bin/trivy]
+        image: aquasec/trivy:0.38.3
+        command: [/bin/sh]
         args: 
-          - sbom
-          - -o 
-          - /tmp/sbom.xml
-          - rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} 
+          - "-c"
+          - >-
+            apk add curl &&
+            /usr/local/bin/trivy image -o sbom.json -f cyclonedx rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} &&
+            curl -X "PUT" "https://dependency.abhra.shambhala.cloud/api/v1/bom" -H 'Content-Type: application/json' -H 'X-API-Key: LPojpCDSsEd4V9Zi6qCWr4KsiF3Konze' -F "autoCreate=true" -F "projectName={{inputs.parameters.project}}" -F "projectVersion={{workflow.parameters.commitId}}" -F "bom=@sbom.json"
         env:
           - name: TRIVY_USERNAME 
             valueFrom:

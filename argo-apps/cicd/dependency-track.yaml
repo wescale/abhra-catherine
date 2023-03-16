@@ -30,7 +30,7 @@ spec:
             frontend:
               env:                
                 - name: API_BASE_URL
-                  value: abhra-dependency-track-apiserver
+                  value: dependency.{{metadata.labels.abhra.shambhala/url-base-path}}
                 # FIX HELM CHART
                 #- name: OIDC_ISSUER
                 #  value: https://accounts.google.com
