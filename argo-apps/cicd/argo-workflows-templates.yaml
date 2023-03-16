@@ -57,14 +57,10 @@ spec:
           - name: project
       container:
         image: aquasec/trivy:0.17.2
-        command: [/bin/sh]
+        command: [/usr/local/bin/trivy]
         args: 
-          - "-c"
-          - >-
-            echo $TRIVY_PASSWORD
-            /usr/local/bin/trivy
-            image
-            rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} 
+          - image
+          - rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} 
         env:
           - name: TRIVY_USERNAME 
             valueFrom:
