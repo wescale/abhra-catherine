@@ -61,7 +61,6 @@ spec:
         args: 
           - "-c"
           - >-
-            echo $TRIVY_USERNAME
             echo $TRIVY_PASSWORD
             /usr/local/bin/trivy
             image
