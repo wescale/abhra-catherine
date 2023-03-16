@@ -59,7 +59,8 @@ spec:
         image: aquasec/trivy:0.17.2
         command: [/usr/local/bin/trivy]
         args: 
-          - image
+          - sbom
+          - -o /tmp/sbom.xml
           - rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} 
         env:
           - name: TRIVY_USERNAME 
