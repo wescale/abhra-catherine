@@ -57,6 +57,7 @@ spec:
           - name: project
       container:
         image: aquasec/trivy:0.17.2
+        command: [trivy]
         args: 
           - >-
             image
