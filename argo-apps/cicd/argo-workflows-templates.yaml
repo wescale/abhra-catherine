@@ -44,6 +44,10 @@ spec:
               secretKeyRef:
                 name: gitlab-guru
                 key: token
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1"
     - name: trivy-scan-template
       volumes:
         - name: kaniko-secret
