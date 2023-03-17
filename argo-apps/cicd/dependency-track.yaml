@@ -45,7 +45,7 @@ spec:
               annotations:
                 cert-manager.io/cluster-issuer: 'letsencrypt-{{metadata.labels.abhra.shambhala/environment-type}}'
                 kubernetes.io/tls-acme: 'true'
-                nginx.org/client-max-body-size: 0
+                nginx.org/client-max-body-size: '0'
               host: dependency.{{metadata.labels.abhra.shambhala/url-base-path}}
               tls: 
                 enabled: true
