@@ -47,7 +47,7 @@ spec:
         resources:
           requests:
             memory: "2Gi"
-            cpu: "250m"
+            cpu: "150m"
     - name: trivy-scan-template
       volumes:
         - name: kaniko-secret
