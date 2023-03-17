@@ -79,6 +79,10 @@ spec:
               secretKeyRef:
                 name: scaleway-registry-secret
                 key: password
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "150m"
     - name: filter-git-projects-template
       inputs:
           parameters:
