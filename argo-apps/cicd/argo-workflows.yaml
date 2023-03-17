@@ -15,7 +15,7 @@ spec:
       source:
         chart: argo-workflows
         repoURL: https://argoproj.github.io/argo-helm
-        targetRevision: 0.16.6
+        targetRevision: 0.22.14
         helm:
           releaseName: abhra
           values: |
