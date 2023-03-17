@@ -28,7 +28,7 @@ spec:
             {{workflow.parameters.gitlabcontext}} 
             --context-sub-path=src/{{inputs.parameters.project}}
             --dockerfile=Dockerfile 
-            --verbosity=trace
+            --verbosity=info
             --destination=rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} 
         volumeMounts:
           - name: kaniko-secret
