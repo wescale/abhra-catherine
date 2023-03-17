@@ -22,11 +22,11 @@ spec:
             apiserver:
               resources:
                 limits:
+                  cpu: 4
+                  memory: 13900Mi
+                requests:
                   cpu: 2
                   memory: 4608Mi
-                requests:
-                  cpu: 1
-                  memory: 2048Mi
             frontend:
               env:                
                 #- name: API_BASE_URL
