@@ -22,11 +22,11 @@ spec:
             apiserver:
               resources:
                 limits:
+                  cpu: 4
+                  memory: 13900Mi
+                requests:
                   cpu: 2
                   memory: 4608Mi
-                requests:
-                  cpu: 1
-                  memory: 2048Mi
             frontend:
               env:                
                 #- name: API_BASE_URL
@@ -51,6 +51,8 @@ spec:
               annotations:
                 cert-manager.io/cluster-issuer: 'letsencrypt-{{metadata.labels.abhra.shambhala/environment-type}}'
                 kubernetes.io/tls-acme: 'true'
+                nginx.ingress.kubernetes.io/client-body-buffer-size: '1M'
+                nginx.ingress.kubernetes.io/proxy-body-size: '8M'
               host: dependency.{{metadata.labels.abhra.shambhala/url-base-path}}
               tls: 
                 enabled: true
