@@ -29,11 +29,11 @@ spec:
                   memory: 4608Mi
               env: 
                 - name: ALPINE_HTTP_TIMEOUT_CONNECTION
-                  value: 120
+                  value: "120"
                 - name: ALPINE_HTTP_TIMEOUT_SOCKET
-                  value: 120
+                  value: "120"
                 - name: ALPINE_HTTP_TIMEOUT_POOL
-                  value: 120
+                  value: "120"
             frontend:
               env:                
                 #- name: API_BASE_URL
