@@ -38,6 +38,12 @@ spec:
                 #  value: https://accounts.google.com
                 #- name: OIDC_FLOW
                 #  value: implicit
+                - name: ALPINE_HTTP_TIMEOUT_CONNECTION
+                  value: 120
+                - name: ALPINE_HTTP_TIMEOUT_SOCKET
+                  value: 120
+                - name: ALPINE_HTTP_TIMEOUT_POOL
+                  value: 120
 
             ingress:
               enabled: true
