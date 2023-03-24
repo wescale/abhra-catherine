@@ -13,7 +13,7 @@ spec:
     metadata:
       name: 'argo-ingress-{{nameNormalized}}'
     spec:
-      project: cd-tools
+      project: tools
       source:
         chart: ingresses
         repoURL: https://gitlab.com/api/v4/projects/abhra-shambhala%2Fguru/packages/helm/stable
@@ -39,7 +39,7 @@ spec:
                 hosts:
                   - new.cd.argo.{{metadata.labels.abhra.shambhala/url-base-path}}
       destination:
-        namespace: guru
+        namespace: cd-tools
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:
