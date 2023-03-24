@@ -1,0 +1,49 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argo-ingress-as
+  namespace: cd-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "72"
+spec:
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: 'argo-ingress-{{nameNormalized}}'
+    spec:
+      project: guru
+      source:
+        chart: ingresses
+        repoURL: https://gitlab.com/api/v4/projects/abhra-shambhala%2Fguru/packages/helm/stable
+        targetRevision: 0.2.0
+        helm:
+          values: | 
+            ingresses:
+            - label: drone
+              annotations: 
+                kubernetes.io/ingress.class: nginx
+                cert-manager.io/cluster-issuer: letsencrypt-{{nameNormalized}}
+                kubernetes.io/tls-acme: "true"
+                nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+                nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+              hosts:
+                - host: cd.argo.{{metadata.labels.abhra.shambhala/url-base-path}}
+                  paths:
+                    - path: "/"
+                      service: "abhra-argo-argocd-server"
+                      port: "80"
+              tls: 
+              - secretName: argocd-secret-cert
+                hosts:
+                  - cd.argo.{{metadata.labels.abhra.shambhala/url-base-path}}
+      destination:
+        namespace: guru
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true
