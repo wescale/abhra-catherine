@@ -12,7 +12,7 @@ spec:
   source:
     chart: loki-stack
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 2.6.5
+    targetRevision: 2.9.9
     helm:
       releaseName: abhra
       values: |

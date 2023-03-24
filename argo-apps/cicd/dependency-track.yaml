@@ -1,0 +1,70 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dependency-track-as
+  namespace: cd-tools
+spec:
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: dependency-track
+    spec:
+      project: tools
+      source:
+        chart: dependency-track
+        repoURL: https://evryfs.github.io/helm-charts
+        targetRevision: 1.5.5
+        helm:
+          releaseName: abhra
+          values: |
+            apiserver:
+              resources:
+                limits:
+                  cpu: 4
+                  memory: 13900Mi
+                requests:
+                  cpu: 2
+                  memory: 4608Mi
+              env: 
+                - name: ALPINE_HTTP_TIMEOUT_CONNECTION
+                  value: "120"
+                - name: ALPINE_HTTP_TIMEOUT_SOCKET
+                  value: "120"
+                - name: ALPINE_HTTP_TIMEOUT_POOL
+                  value: "120"
+            frontend:
+              env:                
+                #- name: API_BASE_URL
+                #  value: dependency.{{metadata.labels.abhra.shambhala/url-base-path}}
+                # FIX HELM CHART
+                #- name: OIDC_ISSUER
+                #  value: https://accounts.google.com
+                #- name: OIDC_CLIENT_ID
+                #  value: https://accounts.google.com
+                #- name: OIDC_FLOW
+                #  value: implicit
+                
+
+            ingress:
+              enabled: true
+              ingressClassName: nginx
+              annotations:
+                cert-manager.io/cluster-issuer: 'letsencrypt-{{metadata.labels.abhra.shambhala/environment-type}}'
+                kubernetes.io/tls-acme: 'true'
+                nginx.ingress.kubernetes.io/client-body-buffer-size: '1M'
+                nginx.ingress.kubernetes.io/proxy-body-size: '8M'
+              host: dependency.{{metadata.labels.abhra.shambhala/url-base-path}}
+              tls: 
+                enabled: true
+                secretName: dependency-track-cert
+      destination:
+        namespace: cluster-tools
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true

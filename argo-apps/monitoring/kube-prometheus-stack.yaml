@@ -15,7 +15,7 @@ spec:
       source:
         chart: kube-prometheus-stack
         repoURL: https://prometheus-community.github.io/helm-charts
-        targetRevision: 37.0.0
+        targetRevision: 45.7.1
         helm:
           releaseName: abhra
           skipCrds: true
@@ -62,7 +62,7 @@ spec:
                   initPlugins: false
               envFromSecrets: 
                 - name: google-secret-for-grafana
-                #- name: redis-secret
+                - name: redis-secret
               plugins:
               - redis-datasource
               grafana.ini:

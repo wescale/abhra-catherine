@@ -1,4 +1,7 @@
+backup
+backup/*
 shell/*
 secrets/*
 tags
 .direnv
+drone

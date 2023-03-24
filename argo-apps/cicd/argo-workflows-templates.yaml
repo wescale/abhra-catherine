@@ -28,7 +28,7 @@ spec:
             {{workflow.parameters.gitlabcontext}} 
             --context-sub-path=src/{{inputs.parameters.project}}
             --dockerfile=Dockerfile 
-            --verbosity=debug
+            --verbosity=info
             --destination=rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} 
         volumeMounts:
           - name: kaniko-secret
@@ -44,6 +44,45 @@ spec:
               secretKeyRef:
                 name: gitlab-guru
                 key: token
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "150m"
+    - name: trivy-scan-template
+      volumes:
+        - name: kaniko-secret
+          secret:
+            secretName: registry-secret
+            items:
+              - key: .dockerconfigjson
+                path: config.json
+      inputs:
+        parameters:
+          - name: project
+      container:
+        image: aquasec/trivy:0.38.3
+        command: [/bin/sh]
+        args: 
+          - "-c"
+          - >-
+            apk add curl &&
+            /usr/local/bin/trivy image -o sbom.json -f cyclonedx rg.fr-par.scw.cloud/guru/{{inputs.parameters.project}}:{{workflow.parameters.commitId}} &&
+            curl -X "POST" "https://dependency.abhra.shambhala.cloud/api/v1/bom" -H 'Content-Type: multipart/form-data' -H 'X-API-Key: 27BqM7ILJXAzhatndIYiRVwGAiB3T1IS' -F "autoCreate=true" -F "projectName={{inputs.parameters.project}}" -F "projectVersion={{workflow.parameters.commitId}}" -F "bom=@sbom.json"
+        env:
+          - name: TRIVY_USERNAME 
+            valueFrom:
+              secretKeyRef:
+                name: scaleway-registry-secret
+                key: username
+          - name: TRIVY_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: scaleway-registry-secret
+                key: password
+        resources:
+          requests:
+            memory: "3Gi"
+            cpu: "250m"
     - name: filter-git-projects-template
       inputs:
           parameters:
@@ -90,7 +129,3 @@ spec:
               secretKeyRef:
                 name: gitlab-guru
                 key: token
-
-
-          
-      
