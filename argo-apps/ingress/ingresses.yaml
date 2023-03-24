@@ -35,7 +35,7 @@ spec:
                       service: "abhra-argo-argocd-server"
                       port: "80"
               tls: 
-              - secretName: argocd-secret-cert
+              - secretName: new-argocd-secret-cert
                 hosts:
                   - new.cd.argo.{{metadata.labels.abhra.shambhala/url-base-path}}
       destination:
