@@ -21,7 +21,8 @@ spec:
         helm:
           values: | 
             ingresses:
-            - annotations: 
+            - label: argocd
+              annotations: 
                 kubernetes.io/ingress.class: nginx
                 cert-manager.io/cluster-issuer: letsencrypt-{{nameNormalized}}
                 kubernetes.io/tls-acme: "true"
